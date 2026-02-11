@@ -1,4 +1,4 @@
-import HeaderOne from "@/layouts/Headers/HeaderOne";
+import Header from "@/layouts/Headers/Header";
 import HomeOnePage from "./(homes)/home-one/page";
 import BackToTop from "@/components/Common/BackToTop";
 import Wrapper from "@/layouts/Wrapper";
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       <Wrapper>
-        <HeaderOne />
+        <Header />
         <main>
           <HomeOnePage />
         </main>
