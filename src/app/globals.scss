@@ -1,0 +1,114 @@
+@forward "../../public/assets/css/bootstrap.css";
+@forward "../../public/assets/css/spacing.css";
+@forward "../../public/assets/css/animate.css";
+@forward "../../public/assets/scss/main.scss";
+@forward "../../public/assets/css/font-awesome-pro.css";
+
+.tp-hero-tab-input {
+  margin-right: 0px !important;
+  margin-bottom: 20px;
+}
+.logo-header {
+  width: 167px;
+  height: 45px;
+}
+.tp-header-1-menu nav > ul {
+  text-align: start;
+  padding: 4px;
+  border-radius: 60px;
+  display: inline-block;
+  border: none;
+}
+.gsrch {
+  background: #fff;
+  margin-right: 0px;
+  padding-top: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+.tp-property-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.84px;
+}
+.tp-rent-item:hover .tp-rent-thumb a img {
+  transform: none;
+  transition: none;
+}
+.tp-hero-tab-box {
+  border-radius: 8px;
+}
+.tp-hero-tab-search button {
+  border-radius: 8px;
+}
+.tp-header-1-menu nav > ul > li > a {
+  border-radius: 8px !important;
+}
+.tp-btn {
+  border-radius: 8px;
+}
+.tp-hero-tab-select .nice-select {
+  border-radius: 8px !important;
+}
+.tp-hero-tab-filter .tp-hero-filter-btn span {
+  border-radius: 8px;
+}
+.tp-dashboard-profile-btn a {
+  border-radius: 8px;
+}
+.tp-dashboard-new-btn button {
+  border-radius: 8px;
+}
+.tp-feature-item {
+  border-radius: 8px;
+}
+.tp-section-title {
+  font-size: 30px;
+}
+.tp-dashboard-main {
+  padding: 15px;
+}
+.tp-main-menu ul li > a {
+  font-size: 14px;
+}
+.tp-dashboard-new-title {
+  font-size: 22px;
+}
+.tp-dashboard-new-input label {
+  font-size: 15px;
+}
+.err-msg {
+  color: red;
+  font-size: 13px;
+}
+.tp-sign-in-register-box {
+  border-radius: 8px;
+}
+.tp-sign-in-register-title {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -1.02px;
+}
+.tp-from-button button {
+  border-radius: 8px;
+}
+.rc-slider {
+  margin-top: 20px;
+}
+.input-range {
+  padding-left: 60px;
+}
+@media only screen and (max-width: 767px) {
+  .marTop20 {
+    margin-top: 20px;
+  }
+  .tp-dashboard-main {
+    padding: 10px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+  only screen and (min-width: 992px) and (max-width: 1199px),
+  only screen and (min-width: 768px) and (max-width: 991px) {
+}
