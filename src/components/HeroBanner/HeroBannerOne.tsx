@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import heroBg from "../../../public/assets/img/hero/home-bg.jpg";
 import HeroBannerTabContent from "./subComponents/HeroBannerTab";
-import BannerFromFilter from "../Form/BannerFromFilter";
+//import BannerFromFilter from "../Form/BannerFromFilter";
+//import SearchAutocomplete from "./subComponents/SearchAutocomplete";
 import { SocialLinks } from "../UI/SocialLinks";
 
 export default function HeroBannerOne() {
@@ -27,8 +28,13 @@ export default function HeroBannerOne() {
       >
         <div className="container">
           <div className="row">
-            <div className="col-lg-12">
+            <div className="col-lg-2"></div>
+            <div className="col-lg-8">
               <div className="tp-hero-content" style={{ marginTop: "15%" }}>
+                {/* <section className="mx-auto max-w-6xl px-4 py-12">
+                  <SearchAutocomplete />
+                </section> */}
+
                 <div
                   className="tp-hero-tab p-relative wow fadeInUp"
                   data-wow-duration="1s"
@@ -61,7 +67,7 @@ export default function HeroBannerOne() {
                         >
                           Rent
                         </button>
-                        <button
+                        {/* <button
                           className="nav-link"
                           id="nav-new-tab"
                           data-bs-toggle="tab"
@@ -72,8 +78,8 @@ export default function HeroBannerOne() {
                           aria-selected="false"
                         >
                           New Launch
-                        </button>
-                        <button
+                        </button> */}
+                        {/* <button
                           className="nav-link"
                           id="nav-commercial-tab"
                           data-bs-toggle="tab"
@@ -84,8 +90,8 @@ export default function HeroBannerOne() {
                           aria-selected="false"
                         >
                           Commercial
-                        </button>
-                        <button
+                        </button> */}
+                        {/* <button
                           className="nav-link"
                           id="nav-land-tab"
                           data-bs-toggle="tab"
@@ -96,7 +102,7 @@ export default function HeroBannerOne() {
                           aria-selected="false"
                         >
                           Plots/Land
-                        </button>
+                        </button> */}
                       </div>
                     </nav>
                     <div className="tab-content" id="nav-tabContent">
@@ -132,19 +138,18 @@ export default function HeroBannerOne() {
                       />
                     </div>
                   </div>
-                  {/* -- form area start -- */}
                   <section
                     className={`tp-from-filter ${
                       isFilterVisible ? "show" : "hidden"
                     }`}
                   >
-                    <BannerFromFilter />
+                    {/* <BannerFromFilter /> */}
                   </section>
-                  {/* -- form area end -- */}
                 </div>
                 <SocialLinks />
               </div>
             </div>
+            <div className="col-lg-2"></div>
           </div>
         </div>
       </section>
