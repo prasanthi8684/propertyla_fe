@@ -36,7 +36,7 @@
   transition: none;
 }
 .tp-hero-tab-box {
-  border-radius: 8px;
+  border-radius: 0px 8px 8px 8px;
 }
 .tp-hero-tab-search button {
   border-radius: 8px;
@@ -104,6 +104,12 @@
   }
   .tp-dashboard-main {
     padding: 10px;
+  }
+  .tp-hero-tab-box {
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 30px 10px 10px;
+    background-color: var(--tp-common-white);
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {

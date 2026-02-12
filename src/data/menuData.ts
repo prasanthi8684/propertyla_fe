@@ -1,46 +1,46 @@
-import MenuOne from "../../public/assets/img/menu/img-1.jpg";
-import MenuTwo from "../../public/assets/img/menu/img-2.jpg";
-import MenuThree from "../../public/assets/img/menu/img-3.jpg";
-import MenuFour from "../../public/assets/img/menu/img-4.jpg";
-import MenuFive from "../../public/assets/img/menu/img-5.jpg";
+// import MenuOne from "../../public/assets/img/menu/img-1.jpg";
+// import MenuTwo from "../../public/assets/img/menu/img-2.jpg";
+// import MenuThree from "../../public/assets/img/menu/img-3.jpg";
+// import MenuFour from "../../public/assets/img/menu/img-4.jpg";
+// import MenuFive from "../../public/assets/img/menu/img-5.jpg";
 
 const menu_data_one = [
   {
     id: 1,
     label: "Buy",
     url: "/",
-    home_menu: true,
-    previewImg: true,
+    home_menu: false,
+    previewImg: false,
     submenu: [
       {
         id: 1,
         label: "Kuala Lumpur",
-        url: "/",
-        img: MenuOne,
+        url: "/search",
+        img: "",
       },
       {
         id: 2,
         label: "Penang",
-        url: "/home-two",
-        img: MenuTwo,
+        url: "/search",
+        img: "",
       },
       {
         id: 3,
         label: "Johor",
-        url: "/home-three",
-        img: MenuThree,
+        url: "/search",
+        img: "",
       },
       {
         id: 4,
         label: "Ipoh",
-        url: "/home-four",
-        img: MenuFour,
+        url: "/search",
+        img: "",
       },
       {
         id: 5,
         label: "Malacca",
-        url: "/home-five",
-        img: MenuFive,
+        url: "/search",
+        img: "",
       },
     ],
   },
@@ -48,38 +48,38 @@ const menu_data_one = [
     id: 2,
     label: "Rent",
     url: "/",
-    home_menu: true,
-    previewImg: true,
+    home_menu: false,
+    previewImg: false,
     submenu: [
       {
         id: 1,
         label: "Kuala Lumpur",
-        url: "/",
-        img: MenuOne,
+        url: "/search",
+        img: "",
       },
       {
         id: 2,
         label: "Penang",
-        url: "/home-two",
-        img: MenuTwo,
+        url: "/search",
+        img: "",
       },
       {
         id: 3,
         label: "Johor",
-        url: "/home-three",
-        img: MenuThree,
+        url: "/search",
+        img: "",
       },
       {
         id: 4,
         label: "Ipoh",
-        url: "/home-four",
-        img: MenuFour,
+        url: "/search",
+        img: "",
       },
       {
         id: 5,
         label: "Malacca",
-        url: "/home-five",
-        img: MenuFive,
+        url: "/search",
+        img: "",
       },
     ],
   },
@@ -87,38 +87,38 @@ const menu_data_one = [
     id: 3,
     label: "New Projects",
     url: "/",
-    home_menu: true,
-    previewImg: true,
+    home_menu: false,
+    previewImg: false,
     submenu: [
       {
         id: 1,
         label: "Kuala Lumpur",
-        url: "/",
-        img: MenuOne,
+        url: "/search",
+        img: "",
       },
       {
         id: 2,
         label: "Penang",
-        url: "/home-two",
-        img: MenuTwo,
+        url: "/search",
+        img: "",
       },
       {
         id: 3,
         label: "Johor",
-        url: "/home-three",
-        img: MenuThree,
+        url: "/search",
+        img: "",
       },
       {
         id: 4,
         label: "Ipoh",
-        url: "/home-four",
-        img: MenuFour,
+        url: "/search",
+        img: "",
       },
       {
         id: 5,
         label: "Malacca",
-        url: "/home-five",
-        img: MenuFive,
+        url: "/search",
+        img: "",
       },
     ],
   },

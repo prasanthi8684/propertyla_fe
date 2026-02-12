@@ -285,7 +285,7 @@
       & button {
         font-size: 14px;
         font-weight: 500;
-        padding: 13px 40px;
+        padding: 13px 26px;
         color: var(--tp-common-white);
         background-color: var(--tp-theme-primary);
         & span {
@@ -546,7 +546,9 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: transform 6000ms ease, opacity 1000ms ease-in,
+    transition:
+      transform 6000ms ease,
+      opacity 1000ms ease-in,
       -webkit-transform 6000ms ease;
     &::after {
       position: absolute;
@@ -903,7 +905,7 @@
     }
     & .tab-content {
       & .tp-hero-tab-box {
-        padding: 30px 25px 10px;
+        padding: 30px 20px 15px 30px;
         box-shadow: 0px 0px 60px 0px rgba(39, 40, 60, 0.1);
       }
     }
