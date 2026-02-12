@@ -159,8 +159,6 @@ const menu_data_one = [
       { id: 5, label: "Pricing", url: "/pricing" },
       { id: 6, label: "Agent", url: "/agent" },
       { id: 7, label: "Agent Details", url: "/agent-details" },
-      { id: 8, label: "Blog", url: "/blog" },
-      { id: 9, label: "Blog Details", url: "/blog-details" },
       { id: 10, label: "Sign up", url: "/sign-up" },
       { id: 11, label: "Sign In", url: "/sign-in" },
       { id: 12, label: "Error", url: "/error" },
