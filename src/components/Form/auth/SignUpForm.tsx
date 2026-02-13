@@ -95,7 +95,7 @@ export default function SignUpForm() {
       const response = await axios.post(
         "https://example.com/api/login",
         requestBody,
-        { headers }
+        { headers },
       );
       console.log("Sign-up response", response);
       toast.success("Sign-up successful! Welcome aboard!");

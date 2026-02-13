@@ -143,14 +143,17 @@ export default function HeroBannerTabContent({
                           cursor: "pointer",
                         }}
                         key={item.objectId}
-                        className="cursor-pointer border-b px-5 py-4 hover:bg-gray-50 last:border-none"
+                        className="cursor-pointer border-b px-3 py-3 hover:bg-gray-50 last:border-none"
                         onClick={() => {
                           setQuery(item.displayText);
                           setOpen(false);
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-lg font-semibold text-blue-600">
+                          <span
+                            className="text-lg font-semibold text-blue-600"
+                            style={{ color: "#000" }}
+                          >
                             {item.displayText}
                           </span>
                           <span
