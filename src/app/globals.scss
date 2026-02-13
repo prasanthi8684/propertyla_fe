@@ -108,8 +108,14 @@
   .tp-hero-tab-box {
     width: 100%;
     flex-wrap: wrap;
-    padding: 30px 10px 10px;
+    padding: 30px 0px 15px 15px;
     background-color: var(--tp-common-white);
+  }
+  .tp-apartment-item {
+    margin-right: 0px;
+    transition: all 0.3s ease-out;
+    padding: 13px 48px 13px 20px;
+    background-color: var(--tp-theme-secondary);
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {

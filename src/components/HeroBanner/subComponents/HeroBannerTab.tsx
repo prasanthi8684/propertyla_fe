@@ -105,7 +105,7 @@ export default function HeroBannerTabContent({
                     }}
                     placeholder={`Search property`}
                     style={{
-                      width: "100%",
+                      width: "104%",
                       border: "1px solid #000",
                       borderRadius: "8px",
                       paddingLeft: "15px",
@@ -133,7 +133,7 @@ export default function HeroBannerTabContent({
                 {/* Dropdown */}
                 {open && results.length > 0 && (
                   <div
-                    style={{ borderRadius: "8px" }}
+                    style={{ borderRadius: "8px", width: "104%" }}
                     className="absolute left-0 top-[72px] z-50 w-full rounded-2xl border bg-white shadow-2xl"
                   >
                     {results.map((item) => (
@@ -143,7 +143,7 @@ export default function HeroBannerTabContent({
                           cursor: "pointer",
                         }}
                         key={item.objectId}
-                        className="cursor-pointer border-b px-3 py-3 hover:bg-gray-50 last:border-none"
+                        className="cursor-pointer border-b px-3 py-2 hover:bg-gray-50 last:border-none"
                         onClick={() => {
                           setQuery(item.displayText);
                           setOpen(false);
