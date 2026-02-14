@@ -121,7 +121,7 @@ export default function HeroBannerOne() {
                         onSortChange={handleSorting}
                         toggleFilter={toggleFilter}
                       />
-                      <HeroBannerTabContent
+                      {/* <HeroBannerTabContent
                         id="new-launch"
                         isActive={activeTab === "new-launch"}
                         onSortChange={handleSorting}
@@ -138,7 +138,7 @@ export default function HeroBannerOne() {
                         isActive={activeTab === "land"}
                         onSortChange={handleSorting}
                         toggleFilter={toggleFilter}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <section

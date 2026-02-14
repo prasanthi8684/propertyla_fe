@@ -96,7 +96,7 @@ export default function HeroBannerTabContent({
                 ref={wrapperRef}
                 className="relative flex w-full flex-col gap-3 sm:flex-row"
               >
-                <div className="relative w-full">
+                <div className="relative w-full max-w-md">
                   <input
                     value={query}
                     onChange={(e) => {
@@ -105,24 +105,27 @@ export default function HeroBannerTabContent({
                     }}
                     placeholder={`Search property`}
                     style={{
-                      width: "104%",
+                      width: "103%",
                       border: "1px solid #000",
                       borderRadius: "8px",
                       paddingLeft: "15px",
                       height: "50px",
                       marginBottom: "10px",
                     }}
-                    className="w-full rounded-full border border-gray-300 pl-12 pr-12 text-base focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="
+          w-full rounded-full border border-gray-300
+          py-3 pl-4 pr-10
+          focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-
-                  {/* {query && (
+                  {query && (
                     <button
                       onClick={() => setQuery("")}
+                      style={{ marginLeft: "-30px" }}
                       className="absolute right-4 top-1/2 -translate-y-1/2 text-xl text-gray-400 hover:text-gray-600"
                     >
                       ✕
                     </button>
-                  )} */}
+                  )}
                 </div>
 
                 {/* Search Button */}
@@ -133,7 +136,11 @@ export default function HeroBannerTabContent({
                 {/* Dropdown */}
                 {open && results.length > 0 && (
                   <div
-                    style={{ borderRadius: "8px", width: "104%" }}
+                    style={{
+                      borderRadius: "8px",
+                      width: "104%",
+                      marginBottom: "8px",
+                    }}
                     className="absolute left-0 top-[72px] z-50 w-full rounded-2xl border bg-white shadow-2xl"
                   >
                     {results.map((item) => (
