@@ -3,17 +3,14 @@
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
-import CartOffcanvas from "@/components/OffCanvas/CartOffcanvas";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/Form/auth/SignInForm";
 
 export default function DashboardHeader() {
-  const [openCartMini, setOpenCartMini] = useState<boolean>(false);
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
 
@@ -56,11 +53,6 @@ export default function DashboardHeader() {
 
   return (
     <>
-      {/* cart mini */}
-      <CartOffcanvas
-        openCartMini={openCartMini}
-        setOpenCartMini={setOpenCartMini}
-      />
       {/* off canvas */}
       <OffcanvasArea />
 

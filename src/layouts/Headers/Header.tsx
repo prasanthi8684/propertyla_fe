@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import logoWhite from "../../../public/assets/img/logo/logo-white.png";
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-import CartOffcanvas from "@/components/OffCanvas/CartOffcanvas";
 //import { CartIconSvg } from "@/components/SVG/CartIconSvg";
 import useShoppingCartMetrics from "@/hooks/useCart";
 import useGlobalContext from "@/hooks/useContext";
@@ -15,7 +14,6 @@ import useSticky from "@/hooks/useSticky";
 import Link from "next/link";
 
 export default function HeaderOne() {
-  const [openCartMini, setOpenCartMini] = useState<boolean>(false);
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
   //cart quantity
@@ -98,12 +96,6 @@ export default function HeaderOne() {
 
   return (
     <>
-      {/* cart mini */}
-      <CartOffcanvas
-        openCartMini={openCartMini}
-        setOpenCartMini={setOpenCartMini}
-      />
-      {/* cart mini */}
       <header className="tp-header-1-ptb tp-header-transparent top p-relative">
         <div className="tp-header-main-sticky p-relative">
           {renderHeaderContent()}
