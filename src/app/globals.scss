@@ -20,8 +20,8 @@
   border: none;
 }
 .gsrch {
-  background: #fff;
-  margin-right: 0px;
+  //background: #fff;
+  //margin-right: 0px;
   padding-top: 20px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -98,6 +98,18 @@
 .input-range {
   padding-left: 60px;
 }
+.padLR0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.srchUpdate {
+  width: 102%;
+  margin-bottom: 10px;
+  height: 50px;
+  padding-left: 15px;
+  border-radius: 8px;
+  border: "1px solid #000";
+}
 @media only screen and (max-width: 767px) {
   .marTop20 {
     margin-top: 20px;
@@ -117,10 +129,32 @@
     padding: 13px 48px 13px 20px;
     background-color: var(--tp-theme-secondary);
   }
+  .padLR0 {
+    padding-left: 15px;
+    padding-right: 0px;
+  }
+  .srchUpdate {
+    width: 104%;
+    margin-bottom: 10px;
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 8px;
+    border: "1px solid #000";
+  }
+  .mlb {
+    margin-bottom: 0px !important;
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
   only screen and (min-width: 992px) and (max-width: 1199px),
   only screen and (min-width: 768px) and (max-width: 991px) {
+}
+@media only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (max-width: 767px) {
+  .tp-property-ptb {
+    padding-top: 0px !important;
+    padding-bottom: 77px;
+  }
 }

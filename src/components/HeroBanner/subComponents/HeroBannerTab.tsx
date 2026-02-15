@@ -127,13 +127,6 @@ export default function HeroBannerTabContent({
                     </button>
                   )}
                 </div>
-
-                {/* Search Button */}
-                {/* <button className="flex h-[56px] shrink-0 items-center justify-center rounded-full bg-blue-600 px-8 text-lg font-semibold text-white hover:bg-blue-700">
-                  Search
-                </button> */}
-
-                {/* Dropdown */}
                 {open && results.length > 0 && (
                   <div
                     style={{
