@@ -7,8 +7,8 @@ import {
   AuthUserSvg,
   ClosedEyeSvg,
   OpenEyeSvg,
-  CallThreeSvg,
 } from "@/components/SVG";
+import AuthPhoneSvg from "@/components/SVG/AuthSvg/AuthPhoneSvg";
 import { ISignUpFormData } from "@/types/custom-interface";
 import { signUpSchema } from "@/schemas/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -200,6 +200,7 @@ export default function SignUpForm() {
               <input
                 type="text"
                 placeholder="Enter phone number"
+                value="+60"
                 {...register("phone", {
                   required: "Phone number is required",
                   pattern: {
@@ -209,7 +210,7 @@ export default function SignUpForm() {
                 })}
               />
               <i>
-                <CallThreeSvg />
+                <AuthPhoneSvg />
               </i>
             </div>
             <ErrorMessage message={errors?.phone?.message || ""} />
