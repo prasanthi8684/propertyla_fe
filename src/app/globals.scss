@@ -110,6 +110,10 @@
   border-radius: 8px;
   border: "1px solid #000";
 }
+.bclp {
+  margin: 0px 0px 0px -15px;
+  font-size: 14px;
+}
 @media only screen and (max-width: 767px) {
   .marTop20 {
     margin-top: 20px;
@@ -143,6 +147,11 @@
   }
   .mlb {
     margin-bottom: 0px !important;
+  }
+  .bclp {
+    margin: 0px 0px 0px 0px;
+    font-size: 14px;
+    padding-top: 10px;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {

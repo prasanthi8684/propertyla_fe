@@ -8,6 +8,7 @@ import { propertyStates } from "@/data/dropdownData";
 import NiceSelect from "../UI/NiceSelect";
 import PlaceSearch from "../../components/HeroBanner/subComponents/PlaceSearch";
 import { useSearchParams } from "next/navigation";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 type SearchItem = {
   objectId: string;
@@ -103,6 +104,9 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
         style={{ backgroundImage: `url(${propertyBg.src})` }}
       >
         <div className="container">
+          <Breadcrumb
+            items={[{ label: "Home", href: "/" }, { label: "Search" }]}
+          />
           <div className="row align-items-center gsrch">
             <div className="col-lg-12 padLR0">
               <div className="tp-property-heading mb-10 mlb">
