@@ -98,6 +98,7 @@ export default function SignUpForm() {
         { headers },
       );
       console.log("Sign-up response", response);
+      sessionStorage.setItem("registeredEmail", response.data.data.email);
       toast.success("Sign-up successful! Welcome aboard!");
       router.push("/verify");
       return;
@@ -200,7 +201,6 @@ export default function SignUpForm() {
               <input
                 type="text"
                 placeholder="Enter phone number"
-                value="+60"
                 {...register("phone", {
                   required: "Phone number is required",
                   pattern: {
