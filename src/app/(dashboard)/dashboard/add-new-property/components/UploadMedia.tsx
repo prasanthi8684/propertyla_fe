@@ -53,7 +53,7 @@ export default function UploadMedia() {
                     // remove JSON content-type so the browser can set the multipart boundary
                     const formHeaders = { ...headers };
                     delete formHeaders["Content-Type"];
- const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+ const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
         const uploadUrl = `${API_BASE}/api/images/upload-single`;
                     const presignRes = await fetch(uploadUrl, {
                       method: "POST",

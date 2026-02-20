@@ -33,7 +33,7 @@ export default function AddPropertyPage() {
         });
 
         // Upload images to your server API which should upload to your "space"
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
         const uploadUrl = `${API_BASE}/api/uploads`;
         const uploadRes = await fetch(uploadUrl, {
           method: "POST",
@@ -99,7 +99,7 @@ export default function AddPropertyPage() {
 
       console.log(localStorage.getItem("authToken"));
       const authHeader = `Bearer ${rawToken ?? ""}`;
-      const API_BASE2 = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+      const API_BASE2 = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
       const propertyUrl = `${API_BASE2}/api/properties`;
       const res = await fetch(propertyUrl, {
         method: "POST",

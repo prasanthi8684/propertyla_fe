@@ -98,28 +98,43 @@ export default function VerifyForm() {
   };
 
   const onSubmit = async (data: FormData) => {
-    alert("Hello" + data.emailOtp);
-    // const requestBody = {
-    //   emailOrPhone: data.emailOrPhone,
-    //   password: data.password,
-    // };
-    // const headers = {
-    //   "Content-Type": "application/json",
-    //   "X-Request-Source": "react-client",
-    // };
-    // try {
-    //   const response = await axios.post(
-    //     "https://example.com/api/login",
-    //     requestBody,
-    //     { headers }
-    //   );
-    //   console.log("login response", response);
-    //   toast.success("Login successful!");
-    // } catch (error: any) {
-    //   toast.error(error);
-    // }
-    // reset();
-    router.push("/");
+    const value = selectedValue;
+    if (value === "Yes") {
+      setShowEmailOtp(true);
+
+      // prefer using react-hook-form data instead of querying DOM
+      const otp = data.emailOtp?.trim();
+
+      if (otp) {
+        try {
+          // read the registered email saved at registration (fallback to the previous hardcoded email)
+          const user_id = localStorage.getItem("user_id")
+           
+
+          const res = await fetch("http://159.203.68.169/api/auth/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ user_id: user_id, otp }),
+          });
+
+          if (!res.ok) {
+            const errBody = await res.json().catch(() => ({ message: res.statusText }));
+            console.error("OTP verification failed:", errBody);
+            return;
+          }
+
+          const resData = await res.json();
+          console.log("OTP verified:", resData);
+          // on successful verification you can navigate or mark verified
+          router.push("/sign-in");
+        } catch (error) {
+          console.error("Error verifying OTP:", error);
+        }
+      }
+    } else {
+      router.push("/sign-up");
+    }
+    setSelectedValue(value);
   };
 
   return (
@@ -131,7 +146,11 @@ export default function VerifyForm() {
               <div className="row">
                 <div className="col-lg-5 col-xs-12">
                   <label style={{ float: "left", marginRight: "20px" }}>
-                    ram@gmail.com
+                    {(() => {
+                  const email =
+                    typeof window !== "undefined" ? localStorage.getItem("email") : null;
+                  return email ;
+                })()}
                   </label>
                 </div>
                 <div className="col-lg-7 col-xs-12">

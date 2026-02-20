@@ -30,6 +30,7 @@ export default function SignUpForm() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<ISignUpFormData>({
     resolver: yupResolver(signUpSchema),
@@ -79,7 +80,7 @@ export default function SignUpForm() {
 
   const onSubmit = async (data: ISignUpFormData) => {
     const requestBody = {
-      displayname: data.displayname,
+      username: data.displayname,
       email: data.email,
       phone: data.phone,
       renNumber: data.renNumber,
@@ -91,29 +92,79 @@ export default function SignUpForm() {
       "Content-Type": "application/json",
       "X-Request-Source": "react-client",
     };
-    try {
+     const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
+        const signupUrl = `${API_BASE}/api/auth/register`;
+      try {
+      const payload = {
+        ...requestBody,
+        userType: selectedValue,
+      };
+
       const response = await axios.post(
-        "https://example.com/api/login",
-        requestBody,
+        signupUrl,
+        payload,
         { headers }
       );
-      console.log("Sign-up response", response);
+      // Persist the registered email so the verify page can read it via localStorage.getItem("registeredEmail")
+      try {
+        console.log("Registration response:", response);
+        const registeredEmail = response?.data?.data?.email ?? data.email;
+        if (registeredEmail) {
+          localStorage.setItem("registeredEmail", registeredEmail);
+          localStorage.setItem("user_id", response?.data?.data?.userId);
+          localStorage.setItem("username", response?.data?.data?.username);
+        }
+      } catch (e) {
+        // ignore localStorage errors in environments where it's unavailable
+        console.warn("Could not store registeredEmail", e);
+      }
       toast.success("Sign-up successful! Welcome aboard!");
       router.push("/verify");
-      return;
-    } catch (error: unknown) {
+    } catch (err: unknown) {
       let message = "Sign-up failed";
-      if (axios.isAxiosError(error)) {
-        message =
-          (error.response &&
-            (error.response as { data?: { message?: string } }).data
-              ?.message) ||
-          error.message ||
-          message;
-      } else if (error instanceof Error) {
-        message = error.message;
-      } else if (typeof error === "string") {
-        message = error;
+      if (axios.isAxiosError(err)) {
+        const respData = err.response?.data as
+          | { errors?: Array<{ path?: string; msg?: string; message?: string }>; message?: string }
+          | undefined;
+        // If server returned structured validation errors array, map them into form fields
+        if (respData?.errors && Array.isArray(respData.errors)) {
+          for (const serverErr of respData.errors) {
+            const serverPath = serverErr.path;
+            // map server field names to local form field names
+            const fieldMap: Record<string, keyof ISignUpFormData> = {
+              username: "displayname",
+              // add additional mappings here if server uses different names
+            };
+            const mappedField = serverPath
+              ? (fieldMap[serverPath as string] ?? (serverPath as keyof ISignUpFormData))
+              : undefined;
+            if (mappedField) {
+              // set field error in the form so it shows next to the input
+              try {
+                setError(mappedField as keyof ISignUpFormData, {
+                  type: "server",
+                  message: serverErr.msg || serverErr.message || "Invalid value",
+                });
+              } catch {
+                // ignore if mapping doesn't match a registered field
+              }
+            }
+          }
+          message = respData?.message || "Validation failed";
+        } else {
+          const maybeMessage =
+            (err.response &&
+              (err.response as { data?: { message?: string } }).data
+                ?.message) ||
+            (err instanceof Error ? err.message : undefined);
+          if (typeof maybeMessage === "string") {
+            message = maybeMessage;
+          }
+        }
+      } else if (err instanceof Error) {
+        message = err.message;
+      } else if (typeof err === "string") {
+        message = err;
       }
       toast.error(message);
     }

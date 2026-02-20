@@ -79,7 +79,11 @@ export default function HeaderOne() {
                 </Link>
               </div>
               <div className="tp-header-right-user-content">
-                <p>Hi, Sign In</p>
+                {(() => {
+                  const username =
+                    typeof window !== "undefined" ? localStorage.getItem("username") : null;
+                  return username ? <p>Hi, {username}</p> : <p>Hi, Sign In</p>;
+                })()}
                 <span>Your Account</span>
               </div>
             </div>

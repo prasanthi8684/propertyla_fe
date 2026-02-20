@@ -44,8 +44,8 @@ export default function HeroBannerTabContent({
   //toggleFilter,
 }: ITabContentProps) {
   const router = useRouter();
-  const [place, setPlace] = useState<string>("");
-  const [city, setCity] = useState<string>("");
+  const [place] = useState<string>("");
+  const [city] = useState<string>("");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchItem[]>([]);
   const [open, setOpen] = useState(false);

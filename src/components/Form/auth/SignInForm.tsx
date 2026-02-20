@@ -43,8 +43,41 @@ export default function SignInForm() {
       "Content-Type": "application/json",
       "X-Request-Source": "react-client",
     };
-    const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
-        const signupUrl = `${API_BASE}/api/auth/login`;
+    const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
+
+    const formatApiError = (err: any): string => {
+      if (axios.isAxiosError(err)) {
+        const data = err.response?.data;
+        if (!data) return err.message ?? "Login failed";
+
+        if (typeof data === "string") return data;
+        if (typeof data.message === "string") return data.message;
+        if (typeof data.error === "string") return data.error;
+        if (Array.isArray(data.error)) return data.error.join(", ");
+
+        if (Array.isArray(data.errors)) {
+          return data.errors.map((e: any) => e?.message || String(e)).join(", ");
+        }
+        if (typeof data.errors === "object" && data.errors !== null) {
+          return Object.values(data.errors)
+            .flat()
+            .map((v: any) => (typeof v === "string" ? v : v?.message || JSON.stringify(v)))
+            .join(", ");
+        }
+
+        return JSON.stringify(data);
+      }
+
+      if (typeof err === "string") return err;
+      return String(err) || "Login failed";
+    };
+
+    // Wrap toast.error so existing catch(...) { toast.error(error) } shows API-friendly messages
+        const _toastError = toast.error;
+        toast.error = (err: any, opts?: any) => {
+          return _toastError(formatApiError(err), opts);
+        };
+            const signupUrl = `${API_BASE}/api/auth/login`;
     try {
       const response = await axios.post<any>(
         signupUrl,
