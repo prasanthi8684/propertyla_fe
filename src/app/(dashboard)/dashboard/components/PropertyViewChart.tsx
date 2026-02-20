@@ -34,7 +34,7 @@ const PropertyViewChart = () => {
       },
       axisTicks: { show: true },
     },
-    fill: { opacity: 1, colors: ["#f1913d", "#DBD6FD"] },
+    fill: { opacity: 1, colors: ["#5758d6", "#DBD6FD"] },
     tooltip: {
       y: {
         formatter: (val: number) => `$ ${val} thousands`,

@@ -46,7 +46,7 @@ export default function LocationArea({
                 <div className="tp-location-item-btn">
                   <Link href="/search">
                     <span>
-                      <RactangleArrowSvg color="#f1913d" />
+                      <RactangleArrowSvg color="#5758d6" />
                     </span>
                   </Link>
                 </div>

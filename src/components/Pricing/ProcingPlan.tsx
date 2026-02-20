@@ -58,7 +58,7 @@ export default function HomeTwoPricing() {
                         >
                           <path
                             d="M12.6364 1L4.63636 9L1 5.36364"
-                            stroke="#f1913d"
+                            stroke="#5758d6"
                             strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -78,7 +78,7 @@ export default function HomeTwoPricing() {
                         >
                           <path
                             d="M12.6364 1L4.63636 9L1 5.36364"
-                            stroke="#f1913d"
+                            stroke="#5758d6"
                             strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -98,7 +98,7 @@ export default function HomeTwoPricing() {
                         >
                           <path
                             d="M12.6364 1L4.63636 9L1 5.36364"
-                            stroke="#f1913d"
+                            stroke="#5758d6"
                             strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"

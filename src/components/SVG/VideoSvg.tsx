@@ -1,7 +1,7 @@
 export default function VideoSvg({
   width = "23",
   height = "26",
-  color = "#f1913d",
+  color = "#5758d6",
 }) {
   return (
     <svg

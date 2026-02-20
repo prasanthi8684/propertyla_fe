@@ -62,7 +62,7 @@ export default function SignUpForm() {
     radioInput: {
       width: "16px",
       height: "16px",
-      accentColor: "#0070f3", // modern browsers support this
+      accentColor: "#5758d6", // modern browsers support this
       cursor: "pointer",
       marginRight: "0px",
     },

@@ -64,7 +64,7 @@ export default function HomeNewsletter() {
                     viewBox="0 0 21 20"
                     fill="none"
                   >
-                    <circle cx="10.8906" cy="10" r="10" fill="#f1913d" />
+                    <circle cx="10.8906" cy="10" r="10" fill="#5758d6" />
                     <path
                       d="M14.8906 7L9.39062 12.5L6.89062 10"
                       stroke="white"
@@ -85,7 +85,7 @@ export default function HomeNewsletter() {
                     viewBox="0 0 21 20"
                     fill="none"
                   >
-                    <circle cx="10.8906" cy="10" r="10" fill="#f1913d" />
+                    <circle cx="10.8906" cy="10" r="10" fill="#5758d6" />
                     <path
                       d="M14.8906 7L9.39062 12.5L6.89062 10"
                       stroke="white"
