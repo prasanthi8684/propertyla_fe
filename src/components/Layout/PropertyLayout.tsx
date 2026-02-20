@@ -112,9 +112,9 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
               <div className="tp-property-heading mb-10 mlb">
                 <div className="tp-property-list">
                   <span style={{ color: "#000" }}>
-                    <span style={{ color: "#BD2228" }}>5</span> results |
+                    <span style={{ color: "#5758d6" }}>5</span> results |
                     Property for{" "}
-                    <span style={{ color: "#BD2228" }}>{type}</span> in{" "}
+                    <span style={{ color: "#5758d6" }}>{type}</span> in{" "}
                     {address?.substring(0, 100)}..
                   </span>
                 </div>
