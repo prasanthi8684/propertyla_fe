@@ -76,8 +76,9 @@
     @include transition();
     background-color: var(--tp-common-white);
     &:hover {
-      box-shadow: 0px 30px 50px 0px rgba(108, 84, 177, 0.1),
-        0px 6px 0px 0px #f1913d;
+      box-shadow:
+        0px 30px 50px 0px rgba(108, 84, 177, 0.1),
+        0px 6px 0px 0px #5758d6;
       & .tp-blog-2 {
         &-thumb {
           & img {
@@ -264,8 +265,8 @@
   &-btn {
     font-weight: 600;
     &.textline {
-      background-image: linear-gradient(#f1913d, #f1913d),
-        linear-gradient(#f1913d, #f1913d);
+      background-image:
+        linear-gradient(#5758d6, #5758d6), linear-gradient(#5758d6, #5758d6);
     }
     & span {
       margin-left: 4px;

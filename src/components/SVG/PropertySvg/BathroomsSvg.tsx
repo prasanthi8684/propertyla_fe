@@ -1,4 +1,4 @@
-export default function BathroomsSvg({ color = "#f1913d" }) {
+export default function BathroomsSvg({ color = "#5758d6" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

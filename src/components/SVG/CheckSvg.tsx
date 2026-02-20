@@ -10,7 +10,7 @@ export function CheckSvg() {
       <circle cx="10.8906" cy="10.6523" r="10" fill="#F0F4FD" />
       <path
         d="M14.8906 7.65234L9.39062 13.1523L6.89062 10.6523"
-        stroke="#f1913d"
+        stroke="#5758d6"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -28,7 +28,7 @@ export function CheckTwoSvg() {
       viewBox="0 0 16 16"
       fill="none"
     >
-      <circle cx="8" cy="8" r="8" fill="#f1913d" />
+      <circle cx="8" cy="8" r="8" fill="#5758d6" />
       <path
         d="M12 5L6.5 10.5L4 8"
         stroke="white"
@@ -49,7 +49,7 @@ export function CheckThreeSvg() {
       viewBox="0 0 20 20"
       fill="none"
     >
-      <circle cx="10" cy="10" r="10" fill="#f1913d" />
+      <circle cx="10" cy="10" r="10" fill="#5758d6" />
       <path
         d="M14 7L8.5 12.5L6 10"
         stroke="white"
@@ -73,7 +73,7 @@ export function CircleCheckSvg() {
       <circle cx="17" cy="17" r="17" fill="#F0F4FD" />
       <path
         d="M23 13L15.4375 21L12 17.3636"
-        stroke="#f1913d"
+        stroke="#5758d6"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
