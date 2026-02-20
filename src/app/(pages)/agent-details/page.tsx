@@ -1,4 +1,3 @@
-import AgentDetaisMain from "@/components/Agent/Details/AgentDetaisMain";
 import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import { Metadata } from "next";
 
@@ -13,10 +12,6 @@ export default async function AgentDetails() {
         {/* breadcrumb area */}
         <BreadcrumbArea title="Agent Details" />
         {/* breadcrumb area end */}
-
-        {/*agent details area start */}
-        <AgentDetaisMain id={1} />
-        {/*agent details area end */}
       </>
     </main>
   );

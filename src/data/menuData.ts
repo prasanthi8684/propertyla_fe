@@ -153,12 +153,8 @@ const menu_data_one = [
     url: "#",
     submenu: [
       { id: 1, label: "About", url: "/about" },
-      { id: 2, label: "Agency", url: "/agency" },
-      { id: 3, label: "Agency Details", url: "/agency-details" },
       { id: 4, label: "Faq", url: "/faq" },
       { id: 5, label: "Pricing", url: "/pricing" },
-      { id: 6, label: "Agent", url: "/agent" },
-      { id: 7, label: "Agent Details", url: "/agent-details" },
       { id: 10, label: "Sign up", url: "/sign-up" },
       { id: 11, label: "Sign In", url: "/sign-in" },
       { id: 12, label: "Error", url: "/error" },

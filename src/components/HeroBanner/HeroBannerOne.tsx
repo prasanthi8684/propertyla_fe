@@ -44,18 +44,6 @@ export default function HeroBannerOne() {
                     <nav>
                       <div className="nav nav-tabs" id="nav-tab" role="tablist">
                         <button
-                          className="nav-link"
-                          id="nav-buy-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#buy"
-                          type="button"
-                          role="tab"
-                          aria-controls="nav-buy"
-                          aria-selected="true"
-                        >
-                          Buy
-                        </button>
-                        <button
                           className="nav-link active"
                           id="nav-rent-tab"
                           data-bs-toggle="tab"
@@ -64,9 +52,24 @@ export default function HeroBannerOne() {
                           role="tab"
                           aria-controls="nav-rent"
                           aria-selected="false"
+                          style={{ borderRadius: "8px 0px 0px 0px" }}
                         >
                           Rent
                         </button>
+                        <button
+                          className="nav-link"
+                          id="nav-buy-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#buy"
+                          type="button"
+                          role="tab"
+                          aria-controls="nav-buy"
+                          aria-selected="true"
+                          style={{ borderRadius: "0px 8px 0px 0px" }}
+                        >
+                          Buy
+                        </button>
+
                         {/* <button
                           className="nav-link"
                           id="nav-new-tab"
@@ -118,7 +121,7 @@ export default function HeroBannerOne() {
                         onSortChange={handleSorting}
                         toggleFilter={toggleFilter}
                       />
-                      <HeroBannerTabContent
+                      {/* <HeroBannerTabContent
                         id="new-launch"
                         isActive={activeTab === "new-launch"}
                         onSortChange={handleSorting}
@@ -135,7 +138,7 @@ export default function HeroBannerOne() {
                         isActive={activeTab === "land"}
                         onSortChange={handleSorting}
                         toggleFilter={toggleFilter}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <section

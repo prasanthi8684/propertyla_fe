@@ -9,7 +9,6 @@ import HomePropertiesByCity from "@/components/Neighborhood/HomePropertiesByCity
 //import HomeNewsletter from "@/components/Newsletter/HomeNewsletter";
 //import FeatureShowcaseCategory from "@/components/Property/FeatureShowcaseCategory";
 import PropertyHome from "@/components/Property/PropertyHomeFour";
-//import TeamAgentsArea from "@/components/Agent/TeamAgentsArea";
 //import HomeTestimonialArea from "@/components/Testimonial/HomeTestimonialArea";
 //import TextSlide from "@/components/Features/TextSlide";
 import React from "react";
@@ -52,7 +51,6 @@ export default function HomeOnePage() {
       {/* <TextSlide /> */}
       {/* text slide end*/}
       {/* team area */}
-      {/* <TeamAgentsArea /> */}
       {/* team area end*/}
       {/* barnd area */}
       {/* <BrandAreaOne /> */}

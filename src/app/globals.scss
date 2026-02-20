@@ -20,8 +20,8 @@
   border: none;
 }
 .gsrch {
-  background: #fff;
-  margin-right: 0px;
+  //background: #fff;
+  //margin-right: 0px;
   padding-top: 20px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -98,6 +98,22 @@
 .input-range {
   padding-left: 60px;
 }
+.padLR0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.srchUpdate {
+  width: 102%;
+  margin-bottom: 10px;
+  height: 50px;
+  padding-left: 15px;
+  border-radius: 8px;
+  border: "1px solid #000";
+}
+.bclp {
+  margin: 0px 0px 0px -15px;
+  font-size: 14px;
+}
 @media only screen and (max-width: 767px) {
   .marTop20 {
     margin-top: 20px;
@@ -108,8 +124,34 @@
   .tp-hero-tab-box {
     width: 100%;
     flex-wrap: wrap;
-    padding: 30px 10px 10px;
+    padding: 30px 0px 15px 15px;
     background-color: var(--tp-common-white);
+  }
+  .tp-apartment-item {
+    margin-right: 0px;
+    transition: all 0.3s ease-out;
+    padding: 13px 48px 13px 20px;
+    background-color: var(--tp-theme-secondary);
+  }
+  .padLR0 {
+    padding-left: 15px;
+    padding-right: 0px;
+  }
+  .srchUpdate {
+    width: 104%;
+    margin-bottom: 10px;
+    height: 50px;
+    padding-left: 15px;
+    border-radius: 8px;
+    border: "1px solid #000";
+  }
+  .mlb {
+    margin-bottom: 0px !important;
+  }
+  .bclp {
+    margin: 0px 0px 0px 0px;
+    font-size: 14px;
+    padding-top: 10px;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -117,4 +159,11 @@
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
   only screen and (min-width: 992px) and (max-width: 1199px),
   only screen and (min-width: 768px) and (max-width: 991px) {
+}
+@media only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (max-width: 767px) {
+  .tp-property-ptb {
+    padding-top: 0px !important;
+    padding-bottom: 77px;
+  }
 }

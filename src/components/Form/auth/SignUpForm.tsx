@@ -7,8 +7,8 @@ import {
   AuthUserSvg,
   ClosedEyeSvg,
   OpenEyeSvg,
-  CallThreeSvg,
 } from "@/components/SVG";
+import AuthPhoneSvg from "@/components/SVG/AuthSvg/AuthPhoneSvg";
 import { ISignUpFormData } from "@/types/custom-interface";
 import { signUpSchema } from "@/schemas/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -95,9 +95,10 @@ export default function SignUpForm() {
       const response = await axios.post(
         "https://example.com/api/login",
         requestBody,
-        { headers }
+        { headers },
       );
       console.log("Sign-up response", response);
+      sessionStorage.setItem("registeredEmail", response.data.data.email);
       toast.success("Sign-up successful! Welcome aboard!");
       router.push("/verify");
       return;
@@ -209,7 +210,7 @@ export default function SignUpForm() {
                 })}
               />
               <i>
-                <CallThreeSvg />
+                <AuthPhoneSvg />
               </i>
             </div>
             <ErrorMessage message={errors?.phone?.message || ""} />
