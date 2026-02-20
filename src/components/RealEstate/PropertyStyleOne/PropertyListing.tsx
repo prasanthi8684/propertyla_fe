@@ -2,7 +2,7 @@ import PropertySingleCard from "@/components/Common/PropertySingleCard";
 //import PropertyListCardItem from "./subComponents/PropertyListCardItem";
 import { propertyData } from "@/data/propertyData";
 
-export default function PropertyOneArea() {
+export default function PropertyListing() {
   return (
     <>
       <div className="tab-content" id="myTabContent">

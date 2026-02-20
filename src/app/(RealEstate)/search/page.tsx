@@ -1,5 +1,5 @@
 import PropertyLayout from "@/components/Layout/PropertyLayout";
-import PropertyOneArea from "@/components/RealEstate/PropertyStyleOne/PropertyOneArea";
+import PropertyListing from "@/components/RealEstate/PropertyStyleOne/PropertyListing";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export default function PropertyOne() {
     <>
       {/* property area start */}
       <PropertyLayout>
-        <PropertyOneArea />
+        <PropertyListing />
       </PropertyLayout>
       {/* property area end */}
     </>

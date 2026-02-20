@@ -96,7 +96,7 @@ export default function HeroBannerTabContent({
                 ref={wrapperRef}
                 className="relative flex w-full flex-col gap-3 sm:flex-row"
               >
-                <div className="relative w-full">
+                <div className="relative w-full max-w-md">
                   <input
                     value={query}
                     onChange={(e) => {
@@ -105,35 +105,35 @@ export default function HeroBannerTabContent({
                     }}
                     placeholder={`Search property`}
                     style={{
-                      width: "100%",
+                      width: "103%",
                       border: "1px solid #000",
                       borderRadius: "8px",
                       paddingLeft: "15px",
                       height: "50px",
                       marginBottom: "10px",
                     }}
-                    className="w-full rounded-full border border-gray-300 pl-12 pr-12 text-base focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="
+          w-full rounded-full border border-gray-300
+          py-3 pl-4 pr-10
+          focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-
-                  {/* {query && (
+                  {query && (
                     <button
                       onClick={() => setQuery("")}
+                      style={{ marginLeft: "-30px" }}
                       className="absolute right-4 top-1/2 -translate-y-1/2 text-xl text-gray-400 hover:text-gray-600"
                     >
                       ✕
                     </button>
-                  )} */}
+                  )}
                 </div>
-
-                {/* Search Button */}
-                {/* <button className="flex h-[56px] shrink-0 items-center justify-center rounded-full bg-blue-600 px-8 text-lg font-semibold text-white hover:bg-blue-700">
-                  Search
-                </button> */}
-
-                {/* Dropdown */}
                 {open && results.length > 0 && (
                   <div
-                    style={{ borderRadius: "8px" }}
+                    style={{
+                      borderRadius: "8px",
+                      width: "104%",
+                      marginBottom: "8px",
+                    }}
                     className="absolute left-0 top-[72px] z-50 w-full rounded-2xl border bg-white shadow-2xl"
                   >
                     {results.map((item) => (
@@ -143,14 +143,17 @@ export default function HeroBannerTabContent({
                           cursor: "pointer",
                         }}
                         key={item.objectId}
-                        className="cursor-pointer border-b px-5 py-4 hover:bg-gray-50 last:border-none"
+                        className="cursor-pointer border-b px-3 py-2 hover:bg-gray-50 last:border-none"
                         onClick={() => {
                           setQuery(item.displayText);
                           setOpen(false);
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-lg font-semibold text-blue-600">
+                          <span
+                            className="text-lg font-semibold text-blue-600"
+                            style={{ color: "#000" }}
+                          >
                             {item.displayText}
                           </span>
                           <span

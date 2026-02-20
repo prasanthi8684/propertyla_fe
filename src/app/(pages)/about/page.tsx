@@ -4,7 +4,6 @@ import BreadcrumbArea from "../../../components/Breadcrumb/BreadcrumbArea";
 import AboutTestimonial from "@/components/Testimonial/AboutTestimonial";
 import AboutHomeFive from "@/components/About/ReusableAboutArea";
 import AboutPointArea from "@/components/About/AboutPointArea";
-import TeamAgentsArea from "@/components/Agent/TeamAgentsArea";
 import ContactArea from "@/components/Contact/ContactArea";
 import { Metadata } from "next";
 
@@ -31,9 +30,6 @@ export default function About() {
       {/* about point area */}
       <AboutPointArea />
       {/* about point area end */}
-      {/* team area */}
-      <TeamAgentsArea />
-      {/* team area end*/}
       {/* realestate area */}
       <RealestateAboutArea />
       {/* realestate area end */}

@@ -33,7 +33,7 @@ export interface AwardItemProps {
   image: StaticImageData;
   handleMouseMove: (
     event: React.MouseEvent<HTMLDivElement>,
-    selector: string
+    selector: string,
   ) => void;
 }
 //define interface for counter

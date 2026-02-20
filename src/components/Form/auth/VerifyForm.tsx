@@ -23,7 +23,7 @@ export default function VerifyForm() {
   const router = useRouter();
   const [showEmailOtp, setShowEmailOtp] = useState(false);
   //const [buttonStatus, setButtonStatus] = useState<boolean>(false);
- // const [verifiedStatus, setVerifiedStatus] = useState<boolean>(false);
+  // const [verifiedStatus, setVerifiedStatus] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<string>("");
 
   const {
@@ -72,7 +72,7 @@ export default function VerifyForm() {
     if (value === "Yes") {
       setShowEmailOtp(true);
     } else {
-      router.push("/sign-up");
+      router.push("/");
     }
     setSelectedValue(value);
 
@@ -151,6 +151,7 @@ export default function VerifyForm() {
                     typeof window !== "undefined" ? localStorage.getItem("email") : null;
                   return email ;
                 })()}
+                    {sessionStorage.getItem("registeredEmail")}
                   </label>
                 </div>
                 <div className="col-lg-7 col-xs-12">
@@ -178,9 +179,8 @@ export default function VerifyForm() {
                       />
                       <span>No</span>
                     </label>
-                    
-                      <label>✅ Verified</label>
-                    
+
+                    {/* <label>✅ Verified</label> */}
                   </div>
                 </div>
               </div>

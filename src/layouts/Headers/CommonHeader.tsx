@@ -2,25 +2,19 @@
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-import CartOffcanvas from "@/components/OffCanvas/CartOffcanvas";
 import WishlistIconSvg from "@/components/SVG/WishlistIconSvg";
-import { CartIconSvg } from "@/components/SVG/CartIconSvg";
 import useShoppingCartMetrics from "@/hooks/useCart";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
-import { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function CommonHeader({ wrapClass = "" }) {
-  const [openCartMini, setOpenCartMini] = useState<boolean>(false);
-  const { useCartProductQuantity, useWishlstQuantity } =
-    useShoppingCartMetrics();
+  const { useWishlstQuantity } = useShoppingCartMetrics();
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
-  //cart quantity
-  const TotalCartQuantity = useCartProductQuantity();
   const TotalWishlistQuantity = useWishlstQuantity();
 
   // Header Content Component
@@ -57,19 +51,6 @@ export default function CommonHeader({ wrapClass = "" }) {
                 <em>{TotalWishlistQuantity}</em>
               </Link>
             </div>
-
-            <div className="tp-header-right-cart color-black mr-30">
-              <button
-                onClick={() => setOpenCartMini(true)}
-                className="cartmini-open-btn"
-              >
-                <span>
-                  <CartIconSvg color="#000" />
-                </span>
-                <em>{TotalCartQuantity}</em>
-              </button>
-            </div>
-
             {/* <div className="tp-header-5-btn d-none d-md-block">
               <Link className="tp-btn" href="/search">
                 <span className="btn-wrap">
@@ -96,12 +77,6 @@ export default function CommonHeader({ wrapClass = "" }) {
 
   return (
     <>
-      {/* cart mini */}
-      <CartOffcanvas
-        openCartMini={openCartMini}
-        setOpenCartMini={setOpenCartMini}
-      />
-      {/* cart mini */}
       {/* Main Header */}
       <header className={`tp-header-5-ptb p-relative ${wrapClass}`}>
         <div className="tp-header-main-sticky p-relative">

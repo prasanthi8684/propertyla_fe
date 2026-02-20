@@ -7,8 +7,8 @@ import {
   AuthUserSvg,
   ClosedEyeSvg,
   OpenEyeSvg,
-  CallThreeSvg,
 } from "@/components/SVG";
+import AuthPhoneSvg from "@/components/SVG/AuthSvg/AuthPhoneSvg";
 import { ISignUpFormData } from "@/types/custom-interface";
 import { signUpSchema } from "@/schemas/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -63,7 +63,7 @@ export default function SignUpForm() {
     radioInput: {
       width: "16px",
       height: "16px",
-      accentColor: "#0070f3", // modern browsers support this
+      accentColor: "#5758d6", // modern browsers support this
       cursor: "pointer",
       marginRight: "0px",
     },
@@ -260,7 +260,7 @@ export default function SignUpForm() {
                 })}
               />
               <i>
-                <CallThreeSvg />
+                <AuthPhoneSvg />
               </i>
             </div>
             <ErrorMessage message={errors?.phone?.message || ""} />
