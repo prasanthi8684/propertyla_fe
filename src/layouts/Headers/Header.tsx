@@ -5,9 +5,9 @@ import logoWhite from "../../../public/assets/img/logo/logo-white.png";
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 //import { CartIconSvg } from "@/components/SVG/CartIconSvg";
-import useShoppingCartMetrics from "@/hooks/useCart";
+//import useShoppingCartMetrics from "@/hooks/useCart";
 import useGlobalContext from "@/hooks/useContext";
-import { WishlistIconSvg } from "@/components/SVG";
+//import { WishlistIconSvg } from "@/components/SVG";
 import NavMenus from "../subComponents/NavMenus";
 import UserSvg from "@/components/SVG/UserSvg";
 import useSticky from "@/hooks/useSticky";
@@ -17,9 +17,9 @@ export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
   //cart quantity
-  const { useWishlstQuantity } = useShoppingCartMetrics();
+  //const { useWishlstQuantity } = useShoppingCartMetrics();
   //const TotalCartQuantity = useCartProductQuantity();
-  const TotalWishlistQuantity = useWishlstQuantity();
+  //const TotalWishlistQuantity = useWishlstQuantity();
 
   const renderHeaderContent = () => (
     <div className="container container-large">

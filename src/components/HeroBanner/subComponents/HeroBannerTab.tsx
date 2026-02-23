@@ -90,7 +90,7 @@ export default function HeroBannerTabContent({
     >
       <div className="tp-hero-tab-box d-flex align-items-center">
         <div className="row" style={{ width: "100%" }}>
-          <div className="col-xs-12 col-xl-10 col-lg-10 marTop20">
+          <div className="col-xs-12 col-xl-10 col-lg-10">
             <div className="tp-hero-tab-input1 p-relative">
               <div
                 ref={wrapperRef}
@@ -157,8 +157,11 @@ export default function HeroBannerTabContent({
                             {item.displayText}
                           </span>
                           <span
-                            className="rounded-full border px-3 py-1 text-sm text-gray-600"
-                            style={{ float: "right" }}
+                            className="rounded-full border px-3 text-sm text-gray-600"
+                            style={{
+                              float: "right",
+                              fontSize: "12px",
+                            }}
                           >
                             {item.displayType}
                           </span>

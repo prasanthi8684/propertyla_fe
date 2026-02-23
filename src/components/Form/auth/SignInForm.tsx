@@ -43,7 +43,8 @@ export default function SignInForm() {
       "Content-Type": "application/json",
       "X-Request-Source": "react-client",
     };
-    const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
+    const API_BASE =
+      process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
 
     const formatApiError = (err: any): string => {
       if (axios.isAxiosError(err)) {
@@ -56,12 +57,16 @@ export default function SignInForm() {
         if (Array.isArray(data.error)) return data.error.join(", ");
 
         if (Array.isArray(data.errors)) {
-          return data.errors.map((e: any) => e?.message || String(e)).join(", ");
+          return data.errors
+            .map((e: any) => e?.message || String(e))
+            .join(", ");
         }
         if (typeof data.errors === "object" && data.errors !== null) {
           return Object.values(data.errors)
             .flat()
-            .map((v: any) => (typeof v === "string" ? v : v?.message || JSON.stringify(v)))
+            .map((v: any) =>
+              typeof v === "string" ? v : v?.message || JSON.stringify(v),
+            )
             .join(", ");
         }
 
@@ -73,34 +78,44 @@ export default function SignInForm() {
     };
 
     // Wrap toast.error so existing catch(...) { toast.error(error) } shows API-friendly messages
-        const _toastError = toast.error;
-        toast.error = (err: any, opts?: any) => {
-          return _toastError(formatApiError(err), opts);
-        };
-            const signupUrl = `${API_BASE}/api/auth/login`;
+    const _toastError = toast.error;
+    toast.error = (err: any, opts?: any) => {
+      return _toastError(formatApiError(err), opts);
+    };
+    const signupUrl = `${API_BASE}/api/auth/login`;
     try {
-      const response = await axios.post<any>(
-        signupUrl,
-        requestBody,
-        { headers }
-      );
+      const response = await axios.post<any>(signupUrl, requestBody, {
+        headers,
+      });
 
       // if token returned, store it immediately and schedule a redirect so the rest of the code (toast, etc.) can run
       const token = response?.data?.data?.token;
       if (token) {
         localStorage.setItem("authToken", token);
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        console.log("axios token", axios.defaults.headers.common["Authorization"]);
-        console.log("Stored authToken in localStorage",localStorage.getItem("authToken"));
+        console.log(
+          "axios token",
+          axios.defaults.headers.common["Authorization"],
+        );
+        console.log(
+          "Stored authToken in localStorage",
+          localStorage.getItem("authToken"),
+        );
         setTimeout(() => {
           if (typeof window !== "undefined") window.location.href = "/";
         }, 700);
       }
-console.log("token", token);
+      console.log("token", token);
       console.log("login response", response);
       toast.success("Login successful!");
     } catch (error: any) {
-      toast.error(error);
+      const errorMessage =
+        error?.response?.data?.errors?.[0]?.msg ||
+        error?.response?.data?.message ||
+        error?.message ||
+        "Something went wrong";
+
+      toast.error(errorMessage);
     }
     reset();
   };
