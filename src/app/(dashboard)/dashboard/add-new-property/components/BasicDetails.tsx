@@ -2,6 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
+import ErrorMessage from "../../../../../components/Form/ErrorMassage";
 import "../property.css";
 
 export default function BasicDetails() {
@@ -24,8 +25,8 @@ export default function BasicDetails() {
                 {...register("title")}
                 placeholder="Spacious 3-Bedroom Condo in Mont Kiara"
               />
-              {errors.title && (
-                <p className="err-msg">{errors.title.message}</p>
+              {errors?.title && (
+                <ErrorMessage message={errors?.title?.message || ""} />
               )}
             </div>
           </div>
@@ -36,8 +37,8 @@ export default function BasicDetails() {
                 placeholder="Describe features, nearby schools, shopping malls, transportation, etc."
                 {...register("description")}
               ></textarea>
-              {errors.description && (
-                <p className="err-msg">{errors.description.message}</p>
+              {errors?.description && (
+                <ErrorMessage message={errors?.description?.message || ""} />
               )}
             </div>
           </div>
@@ -54,8 +55,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.listingType && (
-                  <p className="err-msg">{errors.listingType.message}</p>
+                {errors?.listingType && (
+                  <ErrorMessage message={errors?.listingType?.message || ""} />
                 )}
               </div>
             </div>
@@ -77,8 +78,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.propertyType && (
-                  <p className="err-msg">{errors.propertyType.message}</p>
+                {errors?.propertyType && (
+                  <ErrorMessage message={errors?.propertyType?.message || ""} />
                 )}
               </div>
             </div>
@@ -94,8 +95,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.tenure && (
-                  <p className="err-msg">{errors.tenure.message}</p>
+                {errors?.tenure && (
+                  <ErrorMessage message={errors?.tenure?.message || ""} />
                 )}
               </div>
             </div>

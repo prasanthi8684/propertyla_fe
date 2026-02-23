@@ -77,7 +77,7 @@ export function AmenityGroup({ title, amenities }: AmenityGroup) {
 
 export default function AmenitiesArea() {
   const {
-    formState: { errors },
+    formState: {},
   } = useFormContext<FormValues>();
 
   return (
@@ -92,9 +92,9 @@ export default function AmenitiesArea() {
       </div>
 
       {/* Display validation error if no amenities selected */}
-      {errors.amenities && (
-        <p className="err-msg">{errors.amenities?.message}</p>
-      )}
+      {/* {errors?.amenities && (
+        <ErrorMessage message={errors?.amenities?.message || ""} />
+      )} */}
     </div>
   );
 }

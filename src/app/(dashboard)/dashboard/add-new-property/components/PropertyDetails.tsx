@@ -2,6 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
+import ErrorMessage from "../../../../../components/Form/ErrorMassage";
 import "../property.css";
 
 export default function BasicDetails() {
@@ -24,8 +25,8 @@ export default function BasicDetails() {
                 {...register("price")}
                 placeholder="Enter price"
               />
-              {errors.price && (
-                <p className="err-msg">{errors.price.message}</p>
+              {errors?.price && (
+                <ErrorMessage message={errors?.price?.message || ""} />
               )}
             </div>
           </div>
@@ -38,8 +39,8 @@ export default function BasicDetails() {
                 {...register("builtUpArea")}
                 placeholder="Enter build up area"
               />
-              {errors.builtUpArea && (
-                <p className="err-msg">{errors.builtUpArea.message}</p>
+              {errors?.builtUpArea && (
+                <ErrorMessage message={errors?.builtUpArea?.message || ""} />
               )}
             </div>
           </div>
@@ -49,15 +50,13 @@ export default function BasicDetails() {
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("furnishing")} className="listDropDown">
                   <option value="Fully">Fully Furnished</option>
-                  <option value="Partially">
-                    Partially Furnished
-                  </option>
+                  <option value="Partially">Partially Furnished</option>
                   <option value="Unfurnished">Unfurnished</option>
                 </select>
               </div>
               <div>
-                {errors.furnishing && (
-                  <p className="err-msg">{errors.furnishing.message}</p>
+                {errors?.furnishing && (
+                  <ErrorMessage message={errors?.furnishing?.message || ""} />
                 )}
               </div>
             </div>
@@ -78,8 +77,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.bedRooms && (
-                  <p className="err-msg">{errors.bedRooms.message}</p>
+                {errors?.bedRooms && (
+                  <ErrorMessage message={errors?.bedRooms?.message || ""} />
                 )}
               </div>
             </div>
@@ -98,8 +97,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.bathRooms && (
-                  <p className="err-msg">{errors.bathRooms.message}</p>
+                {errors?.bathRooms && (
+                  <ErrorMessage message={errors?.bathRooms?.message || ""} />
                 )}
               </div>
             </div>
@@ -115,8 +114,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.availability && (
-                  <p className="err-msg">{errors.availability.message}</p>
+                {errors?.availability && (
+                  <ErrorMessage message={errors?.availability?.message || ""} />
                 )}
               </div>
             </div>
@@ -132,8 +131,8 @@ export default function BasicDetails() {
                 {...register("floorLevel")}
                 placeholder="Enter floor number"
               />
-              {errors.floorLevel && (
-                <p className="err-msg">{errors.floorLevel.message}</p>
+              {errors?.floorLevel && (
+                <ErrorMessage message={errors?.floorLevel?.message || ""} />
               )}
             </div>
           </div>
@@ -146,8 +145,8 @@ export default function BasicDetails() {
                 {...register("yearBuilt")}
                 placeholder="Enter built year"
               />
-              {errors.yearBuilt && (
-                <p className="err-msg">{errors.yearBuilt.message}</p>
+              {errors?.yearBuilt && (
+                <ErrorMessage message={errors?.yearBuilt?.message || ""} />
               )}
             </div>
           </div>
@@ -161,8 +160,8 @@ export default function BasicDetails() {
                 </select>
               </div>
               <div>
-                {errors.negotiable && (
-                  <p className="err-msg">{errors.negotiable.message}</p>
+                {errors?.negotiable && (
+                  <ErrorMessage message={errors?.negotiable?.message || ""} />
                 )}
               </div>
             </div>

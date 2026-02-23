@@ -2,6 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
+import ErrorMessage from "../../../../../components/Form/ErrorMassage";
 
 export default function LocationDetails() {
   const {
@@ -23,8 +24,8 @@ export default function LocationDetails() {
                 {...register("propertyName")}
                 placeholder="The Horizon Residences"
               />
-              {errors.propertyName && (
-                <p className="err-msg">{errors.propertyName.message}</p>
+              {errors?.propertyName && (
+                <ErrorMessage message={errors?.propertyName?.message || ""} />
               )}
             </div>
           </div>
@@ -37,8 +38,8 @@ export default function LocationDetails() {
                 {...register("streetName")}
                 placeholder="Enter street name"
               />
-              {errors.streetName && (
-                <p className="err-msg">{errors.streetName.message}</p>
+              {errors?.streetName && (
+                <ErrorMessage message={errors?.streetName?.message || ""} />
               )}
             </div>
           </div>
@@ -53,8 +54,8 @@ export default function LocationDetails() {
                 {...register("cityName")}
                 placeholder="Enter city name"
               />
-              {errors.cityName && (
-                <p className="err-msg">{errors.cityName.message}</p>
+              {errors?.cityName && (
+                <ErrorMessage message={errors?.cityName?.message || ""} />
               )}
             </div>
           </div>
@@ -70,8 +71,8 @@ export default function LocationDetails() {
                 </select>
               </div>
               <div>
-                {errors.stateName && (
-                  <p className="err-msg">{errors.stateName.message}</p>
+                {errors?.stateName && (
+                  <ErrorMessage message={errors?.stateName?.message || ""} />
                 )}
               </div>
             </div>
@@ -87,8 +88,8 @@ export default function LocationDetails() {
                 </select>
               </div>
               <div>
-                {errors.countryName && (
-                  <p className="err-msg">{errors.countryName.message}</p>
+                {errors?.countryName && (
+                  <ErrorMessage message={errors?.countryName?.message || ""} />
                 )}
               </div>
             </div>
@@ -102,8 +103,8 @@ export default function LocationDetails() {
                 {...register("pinCode")}
                 placeholder="Enter property name"
               />
-              {errors.pinCode && (
-                <p className="err-msg">{errors.pinCode.message}</p>
+              {errors?.pinCode && (
+                <ErrorMessage message={errors?.pinCode?.message || ""} />
               )}
             </div>
           </div>
@@ -118,8 +119,8 @@ export default function LocationDetails() {
                 {...register("landmark")}
                 placeholder="Near MRT"
               />
-              {errors.landmark && (
-                <p className="err-msg">{errors.landmark.message}</p>
+              {errors?.landmark && (
+                <ErrorMessage message={errors?.landmark?.message || ""} />
               )}
             </div>
           </div>

@@ -6,7 +6,7 @@ interface ErrorType {
 
 const ErrorMessage = ({ message }: ErrorType) => {
   return (
-    <div style={{ color: "#5758d6", textAlign: "start", fontSize: "14px" }}>
+    <div style={{ color: "#d20023", textAlign: "start", fontSize: "14px" }}>
       {message}
     </div>
   );
