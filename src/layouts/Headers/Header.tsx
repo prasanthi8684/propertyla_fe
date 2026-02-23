@@ -61,14 +61,14 @@ export default function HeaderOne() {
         <div className="col-xl-2 col-lg-2 col-md-5 col-3">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
             <div className="tp-header-right-user d-none d-md-flex align-items-center">
-              <div className="tp-header-right-wishlist mr-30 d-none d-xxl-block">
+              {/* <div className="tp-header-right-wishlist mr-30 d-none d-xxl-block">
                 <Link href="/wishlist">
                   <span>
                     <WishlistIconSvg color="currentColor" />
                   </span>
                   <em>{TotalWishlistQuantity}</em>
                 </Link>
-              </div>
+              </div> */}
               <div className="tp-header-right-user-icon">
                 <Link href="/sign-in">
                   <span>
@@ -79,10 +79,12 @@ export default function HeaderOne() {
               <div className="tp-header-right-user-content">
                 {(() => {
                   const username =
-                    typeof window !== "undefined" ? localStorage.getItem("username") : null;
+                    typeof window !== "undefined"
+                      ? localStorage.getItem("username")
+                      : null;
                   return username ? <p>Hi, {username}</p> : <p>Hi, Sign In</p>;
                 })()}
-                <span>Your Account</span>
+                {/* <span>Your Account</span> */}
               </div>
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">

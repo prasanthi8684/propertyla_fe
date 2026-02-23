@@ -2,8 +2,8 @@
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-import WishlistIconSvg from "@/components/SVG/WishlistIconSvg";
-import useShoppingCartMetrics from "@/hooks/useCart";
+//import WishlistIconSvg from "@/components/SVG/WishlistIconSvg";
+//import useShoppingCartMetrics from "@/hooks/useCart";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
@@ -12,10 +12,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function CommonHeader({ wrapClass = "" }) {
-  const { useWishlstQuantity } = useShoppingCartMetrics();
+  //const { useWishlstQuantity } = useShoppingCartMetrics();
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
-  const TotalWishlistQuantity = useWishlstQuantity();
+  //const TotalWishlistQuantity = useWishlstQuantity();
 
   // Header Content Component
   const renderHeaderContent = ({
@@ -43,14 +43,14 @@ export default function CommonHeader({ wrapClass = "" }) {
         </div>
         <div className="col-xl-4 col-lg-4 col-md-9 col-6">
           <div className="tp-header-5-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-right-wishlist color-black mr-30 d-none d-xxl-block">
+            {/* <div className="tp-header-right-wishlist color-black mr-30 d-none d-xxl-block">
               <Link href="/wishlist">
                 <span>
                   <WishlistIconSvg color="#000" />
                 </span>
                 <em>{TotalWishlistQuantity}</em>
               </Link>
-            </div>
+            </div> */}
             {/* <div className="tp-header-5-btn d-none d-md-block">
               <Link className="tp-btn" href="/search">
                 <span className="btn-wrap">

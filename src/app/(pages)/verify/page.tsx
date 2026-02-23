@@ -18,7 +18,7 @@ export default function Verify() {
           <div className="row justify-content-center">
             <div className="col-lg-6">
               <div className="tp-sign-in-register-box p-relative text-center">
-                <div className="tp-sign-in-register-heading mb-60">
+                <div className="tp-sign-in-register-heading mb-10">
                   <h4 className="tp-sign-in-register-title">Verify now!</h4>
                 </div>
                 <div className="tp-sign-in-input-form">
