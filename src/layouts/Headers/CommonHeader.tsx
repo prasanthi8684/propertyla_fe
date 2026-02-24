@@ -43,22 +43,6 @@ export default function CommonHeader({ wrapClass = "" }) {
         </div>
         <div className="col-xl-4 col-lg-4 col-md-9 col-6">
           <div className="tp-header-5-main-right d-flex align-items-center justify-content-end">
-            {/* <div className="tp-header-right-wishlist color-black mr-30 d-none d-xxl-block">
-              <Link href="/wishlist">
-                <span>
-                  <WishlistIconSvg color="#000" />
-                </span>
-                <em>{TotalWishlistQuantity}</em>
-              </Link>
-            </div> */}
-            {/* <div className="tp-header-5-btn d-none d-md-block">
-              <Link className="tp-btn" href="/search">
-                <span className="btn-wrap">
-                  <b className="text-1">Find Property</b>
-                  <b className="text-2">Find Property</b>
-                </span>
-              </Link>
-            </div> */}
             <div className="tp-header-dashboard-user ml-20">
               <Image src={userImg} alt="user image" />
             </div>

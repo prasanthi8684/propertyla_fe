@@ -1,8 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-//import FilterBtnSvg from "@/components/SVG/BannerSvg/FilterBtnSvg";
-//import { propertyStates } from "@/data/dropdownData";
-//import NiceSelect from "@/components/UI/NiceSelect";
 import { ITabContentProps } from "@/types/banner-d-t";
 type SearchItem = {
   objectId: string;
@@ -16,23 +13,23 @@ const MOCK_RESULTS: SearchItem[] = [
   {
     objectId: "21794",
     objectType: "PROPERTY",
-    displayText: "Palma",
-    displayType: "Apartment",
+    displayText: "Palm court conodiminium",
+    displayType: "Condominium",
     displayDescription: "Jalan Desa Ria, Bandar Country Homes 48000, Selangor",
   },
   {
     objectId: "1239",
     objectType: "PROPERTY",
-    displayText: "Palm Spring @ Damansara",
-    displayType: "Condominium",
+    displayText: "Sentral Suites",
+    displayType: "Serviced Apartment",
     displayDescription: "1 Jalan PJU 3/29 41050, Selangor",
   },
   {
     objectId: "9egrz",
     objectType: "AREA",
-    displayText: "Palm Beach Villas",
+    displayText: "Susana Sentral",
     displayType: "Township",
-    displayDescription: "Papar, Sabah",
+    displayDescription: "Papar, Sabah, 50470",
   },
 ];
 

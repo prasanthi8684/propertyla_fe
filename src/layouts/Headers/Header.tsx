@@ -3,11 +3,9 @@ import Image from "next/image";
 import React from "react";
 import logoWhite from "../../../public/assets/img/logo/logo-white.png";
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
+import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-//import { CartIconSvg } from "@/components/SVG/CartIconSvg";
-//import useShoppingCartMetrics from "@/hooks/useCart";
 import useGlobalContext from "@/hooks/useContext";
-//import { WishlistIconSvg } from "@/components/SVG";
 import NavMenus from "../subComponents/NavMenus";
 import UserSvg from "@/components/SVG/UserSvg";
 import useSticky from "@/hooks/useSticky";
@@ -16,10 +14,6 @@ import Link from "next/link";
 export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
-  //cart quantity
-  //const { useWishlstQuantity } = useShoppingCartMetrics();
-  //const TotalCartQuantity = useCartProductQuantity();
-  //const TotalWishlistQuantity = useWishlstQuantity();
 
   const renderHeaderContent = () => (
     <div className="container container-large">
@@ -60,31 +54,38 @@ export default function HeaderOne() {
         </div>
         <div className="col-xl-2 col-lg-2 col-md-5 col-3">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-right-user d-none d-md-flex align-items-center">
-              {/* <div className="tp-header-right-wishlist mr-30 d-none d-xxl-block">
-                <Link href="/wishlist">
-                  <span>
-                    <WishlistIconSvg color="currentColor" />
-                  </span>
-                  <em>{TotalWishlistQuantity}</em>
-                </Link>
-              </div> */}
-              <div className="tp-header-right-user-icon">
-                <Link href="/sign-in">
-                  <span>
-                    <UserSvg />
-                  </span>
-                </Link>
-              </div>
-              <div className="tp-header-right-user-content">
+            <div className="tp-header-right-user d-md-flex align-items-center">
+              {(() => {
+                const username =
+                  typeof window !== "undefined"
+                    ? localStorage.getItem("loginUser")
+                    : null;
+                return username ? (
+                  <div className="tp-header-dashboard-user ml-20">
+                    <Image src={userImg} alt="user image" />
+                  </div>
+                ) : (
+                  <div className="tp-header-right-user-icon">
+                    <Link href="/sign-in">
+                      <span>
+                        <UserSvg />
+                      </span>
+                    </Link>
+                  </div>
+                );
+              })()}
+
+              <div
+                className="tp-header-right-user-content d-show"
+                style={{ paddingLeft: "5px" }}
+              >
                 {(() => {
                   const username =
                     typeof window !== "undefined"
-                      ? localStorage.getItem("username")
+                      ? localStorage.getItem("loginUser")
                       : null;
                   return username ? <p>Hi, {username}</p> : <p>Hi, Sign In</p>;
                 })()}
-                {/* <span>Your Account</span> */}
               </div>
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">

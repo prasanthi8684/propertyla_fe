@@ -30,7 +30,7 @@ export default function FooterContact() {
                     fill="currentColor"
                   ></path>
                 </svg>{" "}
-                +624 423 26 72
+                +60 11 2636 8426
               </span>
             </Link>
             <p>support@propertyla.com.my</p>

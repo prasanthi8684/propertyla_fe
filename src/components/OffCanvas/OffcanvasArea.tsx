@@ -88,7 +88,7 @@ export default function OffcanvasArea() {
                 </div>
                 <div className="offcanvas__contact-content-content">
                   <Link href="https://www.google.com/maps/search/86+Road+Broklyn+Street,+600+New+York,+USA/@40.6897806,-74.0278086,12z/data=!3m1!4b1">
-                    86 Road Broklyn Street, 600{" "}
+                    86 Jalan Berhla, Brickfields{" "}
                   </Link>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default function OffcanvasArea() {
                 <div className="offcanvas__contact-content-content">
                   <Link href="mailto:needhelp@company.com">
                     {" "}
-                    Needhelp@company.com{" "}
+                    support@propertyla.com.my{" "}
                   </Link>
                 </div>
               </div>
@@ -108,7 +108,7 @@ export default function OffcanvasArea() {
                   <i className="fa-solid fa-phone"></i>
                 </div>
                 <div className="offcanvas__contact-content-content">
-                  <Link href="tel:01310-069824"> +92 666 888 0000</Link>
+                  <Link href="tel:01310-069824"> +60 11 2636 8426</Link>
                 </div>
               </div>
             </div>

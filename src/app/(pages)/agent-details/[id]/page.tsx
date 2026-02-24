@@ -1,4 +1,3 @@
-import BreadcrumbArea from "@/components/Breadcrumb/BreadcrumbArea";
 import { propertyData } from "@/data/propertyData";
 import { PageParamsProps } from "@/types/custom-interface";
 
