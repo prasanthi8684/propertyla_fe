@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import logoWhite from "../../../public/assets/img/logo/logo-white.png";
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
+//import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import ProfileDropdown from "./ProfileDropdown";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import useGlobalContext from "@/hooks/useContext";
@@ -72,6 +73,19 @@ export default function HeaderOne() {
                   </div>
                 );
               })()}
+
+              <div
+                className="tp-header-right-user-content d-show"
+                style={{ paddingLeft: "5px" }}
+              >
+                {(() => {
+                  const username =
+                    typeof window !== "undefined"
+                      ? localStorage.getItem("loginUser")
+                      : null;
+                  return username ? <p></p> : <p>Hi, Sign In</p>;
+                })()}
+              </div>
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">
               <button onClick={toggleOffcanvas} className="hamburger-btn">
