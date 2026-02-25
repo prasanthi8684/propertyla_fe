@@ -107,6 +107,7 @@ export default function SignInForm() {
       }
       console.log("token", token);
       console.log("login response", response);
+      localStorage.setItem("loginUser", response?.data?.data?.user?.username);
       toast.success("Login successful!");
     } catch (error: any) {
       const errorMessage =

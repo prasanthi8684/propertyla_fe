@@ -17,11 +17,15 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
       {items.map((item, index) => (
         <span key={index} className="crumb">
           {item.href ? (
-            <Link href={item.href}>{item.label}</Link>
-          ) : (
-            <span className="active" style={{ borderBottom: "1px solid #000" }}>
+            <Link
+              href={item.href}
+              className="active"
+              style={{ borderBottom: "1px solid #000", fontWeight: "bold" }}
+            >
               {item.label}
-            </span>
+            </Link>
+          ) : (
+            <span>{item.label}</span>
           )}
 
           {index < items.length - 1 && <span className="separator"> / </span>}

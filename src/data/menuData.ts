@@ -159,6 +159,7 @@ const menu_data_one = [
       { id: 11, label: "Sign In", url: "/sign-in" },
       { id: 12, label: "Error", url: "/error" },
       { id: 13, label: "Contact", url: "/contact" },
+      { id: 14, label: "Logout", url: "/contact" },
     ],
   },
 ];

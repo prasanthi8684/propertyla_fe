@@ -4,9 +4,6 @@ import propertyBg from "../../../public/assets/img/rent/property-bg.jpg";
 import PropertyFilterWidget from "./subComponents/PropertyFilterWidget";
 import SidebarPropertyItem from "./subComponents/SidebarPropertyItem";
 import DiscountOfferCard from "./subComponents/DiscountOfferCard";
-import { propertyStates } from "@/data/dropdownData";
-import NiceSelect from "../UI/NiceSelect";
-import PlaceSearch from "../../components/HeroBanner/subComponents/PlaceSearch";
 import { useSearchParams } from "next/navigation";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
@@ -69,12 +66,12 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
       return;
     }
     //call get list API and update the list
-    console.log("updated place ", place);
+    console.log("updated place ", setPlace(place));
   };
 
-  const handleSelect = (selected: string) => {
-    setPlace(selected);
-  };
+  // const handleSelect = (selected: string) => {
+  //   setPlace(selected);
+  // };
   useEffect(() => {
     if (!query) return setResults([]);
     setResults(

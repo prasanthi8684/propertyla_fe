@@ -116,7 +116,13 @@
   padding: 20px 5px 0px 20px;
   background-color: var(--tp-common-white);
 }
+.d-show {
+  display: inline;
+}
 @media only screen and (max-width: 767px) {
+  .d-show {
+    display: none;
+  }
   .marTop20 {
     margin-top: 20px;
   }
