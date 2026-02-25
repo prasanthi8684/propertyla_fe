@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
@@ -11,6 +12,23 @@ export default function BasicDetails() {
     formState: { errors },
   } = useFormContext<PropertyFormData>();
 
+  const [listingType, setListingType] = useState<string>("");
+
+  useEffect(() => {
+    const updateValue = () => {
+      const value = sessionStorage.getItem("listingType") || "";
+      setListingType(value);
+    };
+
+    // initial load
+    updateValue();
+
+    // listen for updates
+    window.addEventListener("listingTypeChanged", updateValue);
+
+    return () => window.removeEventListener("listingTypeChanged", updateValue);
+  }, []);
+
   return (
     <div className="tp-dashboard-new-property mb-15">
       <h5 className="tp-dashboard-new-title">Property Details</h5>
@@ -18,12 +36,20 @@ export default function BasicDetails() {
         <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
-              <label>Price</label>
+              {listingType === "rent" && <label>Monthly Rent</label>}
+              {listingType === "sale" && <label>Selling Price</label>}
               <input
                 className="textBox"
-                type="number"
+                type="text"
+                inputMode="numeric"
+                placeholder="Enter amount"
                 {...register("price")}
-                placeholder="Enter price"
+                onInput={(e) => {
+                  e.currentTarget.value = e.currentTarget.value.replace(
+                    /\D/g,
+                    "",
+                  );
+                }}
               />
               {errors?.price && (
                 <ErrorMessage message={errors?.price?.message || ""} />
@@ -36,8 +62,15 @@ export default function BasicDetails() {
               <input
                 className="textBox"
                 type="text"
-                {...register("builtUpArea")}
+                inputMode="numeric"
                 placeholder="Enter build up area"
+                {...register("builtUpArea")}
+                onInput={(e) => {
+                  e.currentTarget.value = e.currentTarget.value.replace(
+                    /\D/g,
+                    "",
+                  );
+                }}
               />
               {errors?.builtUpArea && (
                 <ErrorMessage message={errors?.builtUpArea?.message || ""} />
@@ -124,30 +157,40 @@ export default function BasicDetails() {
         <div className="row">
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
-              <label>Floor Level</label>
-              <input
-                className="textBox"
-                type="number"
-                {...register("floorLevel")}
-                placeholder="Enter floor number"
-              />
-              {errors?.floorLevel && (
-                <ErrorMessage message={errors?.floorLevel?.message || ""} />
-              )}
+              <label>Floor</label>
+              <div className="tp-property-tabs-select tp-select">
+                <select {...register("floorLevel")} className="listDropDown">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="2">3</option>
+                  <option value="2">4</option>
+                  <option value="2">5</option>
+                  <option value="2">6</option>
+                </select>
+              </div>
+              <div>
+                {errors?.floorLevel && (
+                  <ErrorMessage message={errors?.floorLevel?.message || ""} />
+                )}
+              </div>
             </div>
           </div>
           <div className="col-lg-4">
             <div className="tp-dashboard-new-input">
-              <label>Year Of Built</label>
-              <input
-                className="textBox"
-                type="number"
-                {...register("yearBuilt")}
-                placeholder="Enter built year"
-              />
-              {errors?.yearBuilt && (
-                <ErrorMessage message={errors?.yearBuilt?.message || ""} />
-              )}
+              <label>Property Age</label>
+              <div className="tp-property-tabs-select tp-select">
+                <select {...register("propertyAge")} className="listDropDown">
+                  <option value="1">1 to 3 years</option>
+                  <option value="2">3 to 5 years</option>
+                  <option value="2">5 to 10 years</option>
+                  <option value="2">More than 10 years</option>
+                </select>
+              </div>
+              <div>
+                {errors?.propertyAge && (
+                  <ErrorMessage message={errors?.propertyAge?.message || ""} />
+                )}
+              </div>
             </div>
           </div>
           <div className="col-lg-4">

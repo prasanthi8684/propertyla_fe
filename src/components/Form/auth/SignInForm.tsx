@@ -127,11 +127,7 @@ export default function SignInForm() {
         <div className="col-12">
           <div className="tp-sign-in-input-box">
             <div className="tp-sign-in-input p-relative">
-              <input
-                {...register("email")}
-                type="text"
-                placeholder="Email or Phone number"
-              />
+              <input {...register("email")} type="text" placeholder="Email" />
               <i>
                 <AuthUserSvg />
               </i>
