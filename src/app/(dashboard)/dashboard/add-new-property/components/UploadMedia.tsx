@@ -1,7 +1,6 @@
 import Image from "next/image";
 import image1 from "../../../../../../public/assets/img/listing/home-2/listing-2-1.jpg";
 
-
 //const uploadedImages = [image1, image2, image3, image4];
 
 export default function UploadMedia() {
@@ -42,8 +41,10 @@ export default function UploadMedia() {
                         token = cookieMatch ? cookieMatch.split("=")[1] : null;
                       }
                     }
-                    console.log(token)
-                    const headers: Record<string, string> = { "Content-Type": "application/json" };
+                    console.log(token);
+                    const headers: Record<string, string> = {
+                      "Content-Type": "application/json",
+                    };
                     if (token) headers.Authorization = `Bearer ${token}`;
 
                     // send as multipart/form-data like your Python requests example
@@ -53,8 +54,10 @@ export default function UploadMedia() {
                     // remove JSON content-type so the browser can set the multipart boundary
                     const formHeaders = { ...headers };
                     delete formHeaders["Content-Type"];
- const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
-        const uploadUrl = `${API_BASE}/api/images/upload-single`;
+                    const API_BASE =
+                      process.env.NEXT_PUBLIC_API_BASE ??
+                      "http://159.203.68.169";
+                    const uploadUrl = `${API_BASE}/api/images/upload-single`;
                     const presignRes = await fetch(uploadUrl, {
                       method: "POST",
                       headers: formHeaders,
@@ -67,11 +70,12 @@ export default function UploadMedia() {
                     let finalUrl: string | null = null;
 
                     try {
-                      const contentType = presignRes.headers.get("content-type") || "";
+                      const contentType =
+                        presignRes.headers.get("content-type") || "";
 
                       if (contentType.includes("application/json")) {
                         const json = await presignRes.json().catch(() => null);
-                        console.log(json)
+                        console.log(json);
                         // If backend already returned a public URL
                         finalUrl =
                           json?.data?.publicUrl ??
@@ -81,25 +85,36 @@ export default function UploadMedia() {
                           json?.data?.image_url ??
                           json?.data?.url ??
                           null;
-console.log(finalUrl)
+                        console.log(finalUrl);
                         // If backend returned presigned upload URL (uploadUrl) do the actual PUT
-                        const uploadUrl = json?.uploadUrl ?? json?.upload_url ?? json?.putUrl ?? json?.put_url ?? null;
+                        const uploadUrl =
+                          json?.uploadUrl ??
+                          json?.upload_url ??
+                          json?.putUrl ??
+                          json?.put_url ??
+                          null;
                         if (!finalUrl && uploadUrl) {
                           const putRes = await fetch(uploadUrl, {
                             method: "PUT",
                             headers: {
-                              "Content-Type": file.type || "application/octet-stream",
+                              "Content-Type":
+                                file.type || "application/octet-stream",
                             },
                             body: file,
                           });
-                          if (!putRes.ok) throw new Error("Failed to upload file to presigned URL");
+                          if (!putRes.ok)
+                            throw new Error(
+                              "Failed to upload file to presigned URL",
+                            );
 
                           // Many S3/Spaces presigned PUT URLs are public at the same path without the query string
                           finalUrl = uploadUrl.split("?")[0];
                         }
                       } else {
                         // If response is plain text, it might be the public URL
-                        const text = (await presignRes.text().catch(() => "")).trim();
+                        const text = (
+                          await presignRes.text().catch(() => "")
+                        ).trim();
                         if (text && /^https?:\/\//i.test(text)) {
                           finalUrl = text;
                         }
@@ -110,12 +125,17 @@ console.log(finalUrl)
 
                     // Fallback: if presignRes was OK but we couldn't detect a URL, try to treat the response as text URL
                     if (!finalUrl && presignRes.ok) {
-                      const maybeText = (await presignRes.text().catch(() => "")).trim();
-                      if (maybeText && /^https?:\/\//i.test(maybeText)) finalUrl = maybeText;
+                      const maybeText = (
+                        await presignRes.text().catch(() => "")
+                      ).trim();
+                      if (maybeText && /^https?:\/\//i.test(maybeText))
+                        finalUrl = maybeText;
                     }
 
                     if (!finalUrl) {
-                      console.error("Could not determine public URL for uploaded file");
+                      console.error(
+                        "Could not determine public URL for uploaded file",
+                      );
                       continue;
                     }
 
@@ -124,7 +144,9 @@ console.log(finalUrl)
 
                     // Immediately append a preview to the DOM so the user sees the uploaded image without a React state change
                     try {
-                      const previewContainer = document.querySelector(".tp-dashboard-new-um-img-box.d-flex") as HTMLElement | null;
+                      const previewContainer = document.querySelector(
+                        ".tp-dashboard-new-um-img-box.d-flex",
+                      ) as HTMLElement | null;
                       if (previewContainer) {
                         const wrapper = document.createElement("div");
                         wrapper.className = "tp-dashboard-new-um-img";
@@ -139,10 +161,14 @@ console.log(finalUrl)
                         // optional: wire up delete to remove preview and remove from hidden input value
                         btn.addEventListener("click", () => {
                           wrapper.remove();
-                          const hiddenEl = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
+                          const hiddenEl = document.getElementById(
+                            "uploaded-images-input",
+                          ) as HTMLInputElement | null;
                           if (hiddenEl && hiddenEl.value) {
                             try {
-                              const arr = JSON.parse(hiddenEl.value) as string[];
+                              const arr = JSON.parse(
+                                hiddenEl.value,
+                              ) as string[];
                               const idx = arr.indexOf(finalUrl!);
                               if (idx !== -1) {
                                 arr.splice(idx, 1);
@@ -165,7 +191,8 @@ console.log(finalUrl)
                     // Use Response.clone() so the existing parsing logic below can still read the original response.
                     try {
                       const clone = presignRes.clone();
-                      const contentType = presignRes.headers.get("content-type") || "";
+                      const contentType =
+                        presignRes.headers.get("content-type") || "";
 
                       if (contentType.includes("application/json")) {
                         const json = await clone.json().catch(() => null);
@@ -177,13 +204,15 @@ console.log(finalUrl)
                           json?.image_url ??
                           json?.data?.url ??
                           null;
-                        console.log(immediateUrl)
+                        console.log(immediateUrl);
                         if (immediateUrl && typeof immediateUrl === "string") {
                           uploadedUrls.push(immediateUrl);
                           continue; // skip the presigned PUT upload since the image is already hosted
                         }
                       } else {
-                        const text = (await clone.text().catch(() => "")).trim();
+                        const text = (
+                          await clone.text().catch(() => "")
+                        ).trim();
                         if (text && /^https?:\/\//i.test(text)) {
                           uploadedUrls.push(text);
                           continue;
@@ -191,41 +220,46 @@ console.log(finalUrl)
                       }
                     } catch (err) {
                       // If detection fails, fall back to the existing presign + upload flow below.
-                      console.warn("Could not auto-detect immediate URL from upload response:", err);
+                      console.warn(
+                        "Could not auto-detect immediate URL from upload response:",
+                        err,
+                      );
                     }
-                    console.log('Presign fetch response:', presignRes);
+                    console.log("Presign fetch response:", presignRes);
                     if (!presignRes.ok) {
                       const errText = await presignRes.text().catch(() => null);
-                      console.error('Presign error body:', errText);
-                      throw new Error('Failed to get upload URL');
+                      console.error("Presign error body:", errText);
+                      throw new Error("Failed to get upload URL");
                     }
-
                   } catch (err) {
-                    console.error('Image upload error:', err);
+                    console.error("Image upload error:", err);
                     // optionally surface error to user
                   }
                 }
 
                 // Upload URL / publicUrl handling removed — backend now returns final public URLs directly.
                 // uploadedUrls already contains the final accessible image URLs.
-                let hidden = document.getElementById('uploaded-images-input') as HTMLInputElement | null;
+                let hidden = document.getElementById(
+                  "uploaded-images-input",
+                ) as HTMLInputElement | null;
                 if (!hidden) {
-                  hidden = document.createElement('input');
-                  hidden.type = 'hidden';
-                  hidden.id = 'uploaded-images-input';
-                  hidden.name = 'uploadedImages';
-                  (input.closest('form') ?? document.body).appendChild(hidden);
+                  hidden = document.createElement("input");
+                  hidden.type = "hidden";
+                  hidden.id = "uploaded-images-input";
+                  hidden.name = "uploadedImages";
+                  (input.closest("form") ?? document.body).appendChild(hidden);
                 }
                 hidden.value = JSON.stringify(uploadedUrls);
 
                 // reset input so same file can be picked again if needed
-                input.value = '';
+                input.value = "";
               }}
             />
-            <label htmlFor="tp-dashboard-new-um-file-input">Select Image</label>
+            <label htmlFor="tp-dashboard-new-um-file-input">Add Photos</label>
           </span>
           <p>
-            or drag photos here <br /> (Up to 10 photos)
+            Add photos to get 5X more responses.
+            <br /> 90% tenants contact on properties with photos.
           </p>
         </div>
 
@@ -235,13 +269,18 @@ console.log(finalUrl)
             // read any uploaded image URLs stored in the hidden input (set by your onChange handler)
             let extra: string[] = [];
             if (typeof document !== "undefined") {
-              const hidden = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
+              const hidden = document.getElementById(
+                "uploaded-images-input",
+              ) as HTMLInputElement | null;
               if (hidden && hidden.value) {
                 try {
                   const parsed = JSON.parse(hidden.value);
                   if (Array.isArray(parsed)) extra = parsed;
                 } catch (e) {
-                  console.warn("Could not parse uploaded-images-input value", e);
+                  console.warn(
+                    "Could not parse uploaded-images-input value",
+                    e,
+                  );
                 }
               }
             }
@@ -255,7 +294,13 @@ console.log(finalUrl)
                   {isString ? (
                     // Use Next.js Image for external URLs to satisfy the linter; use unoptimized to avoid custom loader configuration
                     // Add a className to match styling
-                    <Image src={img as string} alt={`uploaded-image-${index + 1}`} unoptimized width={800} height={600} />
+                    <Image
+                      src={img as string}
+                      alt={`uploaded-image-${index + 1}`}
+                      unoptimized
+                      width={800}
+                      height={600}
+                    />
                   ) : (
                     // Imported static images include width/height so Next.js Image is fine
                     <Image src={img} alt={`uploaded-image-${index + 1}`} />

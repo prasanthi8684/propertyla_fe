@@ -34,7 +34,7 @@ export default function BasicDetails() {
             <div className="tp-dashboard-new-input">
               <label>Description</label>
               <textarea
-                placeholder="Describe features, nearby schools, shopping malls, transportation, etc."
+                placeholder="Write a few lines about your property something which is special and makes your property stand out. Please do not mention your contact details in any format."
                 {...register("description")}
               ></textarea>
               {errors?.description && (
