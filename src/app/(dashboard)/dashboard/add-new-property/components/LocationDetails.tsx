@@ -1,14 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
+import PlaceSearch from "../../../../../components/HeroBanner/subComponents/PlaceSearch";
 
 export default function LocationDetails() {
   const {
     register,
     formState: { errors },
   } = useFormContext<PropertyFormData>();
+  const [place, setPlace] = useState<string>("");
+
+  const handleSelect = (selected: string) => {
+    setPlace(selected);
+    console.log("Your google location is ", place);
+  };
 
   return (
     <div className="tp-dashboard-new-property mb-15">
@@ -31,6 +39,18 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
+              <label>Property Locality</label>
+              <PlaceSearch
+                onSelect={handleSelect}
+                placeholder="Search location or property name"
+                defaultValue={""}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="tp-dashboard-new-input">
               <label>Street Name</label>
               <input
                 className="textBox"
@@ -43,8 +63,6 @@ export default function LocationDetails() {
               )}
             </div>
           </div>
-        </div>
-        <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
               <label>City Name</label>
@@ -59,6 +77,8 @@ export default function LocationDetails() {
               )}
             </div>
           </div>
+        </div>
+        <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
               <label>State</label>
@@ -77,8 +97,6 @@ export default function LocationDetails() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
               <label>Country</label>
@@ -94,22 +112,29 @@ export default function LocationDetails() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
               <label>Pin Code</label>
               <input
                 className="textBox"
                 type="text"
+                inputMode="numeric"
+                placeholder="Enter Pin Code"
                 {...register("pinCode")}
-                placeholder="Enter property name"
+                onInput={(e) => {
+                  e.currentTarget.value = e.currentTarget.value.replace(
+                    /\D/g,
+                    "",
+                  );
+                }}
               />
               {errors?.pinCode && (
                 <ErrorMessage message={errors?.pinCode?.message || ""} />
               )}
             </div>
           </div>
-        </div>
-        <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
               <label>Landmark</label>

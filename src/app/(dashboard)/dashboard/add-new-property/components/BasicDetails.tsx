@@ -36,6 +36,7 @@ export default function BasicDetails() {
               <textarea
                 placeholder="Write a few lines about your property something which is special and makes your property stand out. Please do not mention your contact details in any format."
                 {...register("description")}
+                style={{ borderRadius: "8px" }}
               ></textarea>
               {errors?.description && (
                 <ErrorMessage message={errors?.description?.message || ""} />
@@ -48,7 +49,15 @@ export default function BasicDetails() {
             <div className="tp-dashboard-new-input">
               <label> Listing Type </label>
               <div className="tp-property-tabs-select tp-select">
-                <select {...register("listingType")} className="listDropDown">
+                <select
+                  {...register("listingType")}
+                  className="listDropDown"
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    sessionStorage.setItem("listingType", value);
+                    window.dispatchEvent(new Event("listingTypeChanged"));
+                  }}
+                >
                   <option value="">Select</option>
                   <option value="rent">Rent</option>
                   <option value="sale">Sale</option>

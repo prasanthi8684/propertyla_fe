@@ -20,7 +20,7 @@ export const signUpSchema = yup.object().shape({
 });
 //Sign in form validation schema
 export const signInSchema = yup.object().shape({
-  email: yup.string().required("Enter email or phone number"),
+  email: yup.string().required("Enter email"),
   password: yup
     .string()
     .required("Enter password")
@@ -41,9 +41,14 @@ export const verifySchema = yup.object().shape({
 export const basicSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
   price: yup
-    .number()
-    .typeError("Price must be a number")
-    .required("Price is required"),
+    .string()
+    .required("Price is required")
+    .matches(/^[0-9]+$/, "Only numbers are allowed")
+    .test(
+      "not-zero",
+      "Price must be greater than 0",
+      (value) => Number(value) > 0,
+    ),
 });
 
 export const propertySchema = yup.object({
@@ -57,14 +62,34 @@ export const propertySchema = yup.object({
   cityName: yup.string().required("City name is required"),
   stateName: yup.string().required("State is required"),
   countryName: yup.string().required("Country is required"),
-  pinCode: yup.string().required("Pin Code is required"),
+  pinCode: yup
+    .string()
+    .required("Pin Code is required")
+    .matches(/^[0-9]+$/, "Only numbers are allowed")
+    .test(
+      "not-zero",
+      "Pin Code must be greater than 4 digits",
+      (value) => Number(value) > 4,
+    ),
   landmark: yup.string().required("Land mark is required"),
   price: yup
-    .number()
-    .typeError("Price must be a number")
-    .positive("Price must be greater than zero")
-    .required("Price is required"),
-  builtUpArea: yup.string().required("Built Up Area is required"),
+    .string()
+    .required("Price is required")
+    .matches(/^[0-9]+$/, "Only numbers are allowed")
+    .test(
+      "not-zero",
+      "Price must be greater than 0",
+      (value) => Number(value) > 0,
+    ),
+  builtUpArea: yup
+    .string()
+    .required("Built Up Area is required")
+    .matches(/^[0-9]+$/, "Only numbers are allowed")
+    .test(
+      "not-zero",
+      "Built Up Area must be greater than 0",
+      (value) => Number(value) > 0,
+    ),
   furnishing: yup.string().required("Furnishing type is required"),
   bedRooms: yup.string().required("Bed rooms are required"),
   bathRooms: yup.string().required("Bath rooms are required"),
@@ -75,7 +100,7 @@ export const propertySchema = yup.object({
     .typeError("Floor Number must be a number")
     .positive("Floor Number must be greater than zero")
     .required("Floor Number is required"),
-  yearBuilt: yup
+  propertyAge: yup
     .number()
     .typeError("Year of build must be a number")
     .positive("Year of build must be greater than zero")
