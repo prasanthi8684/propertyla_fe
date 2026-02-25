@@ -38,7 +38,6 @@ const ProfileDropdown = () => {
 
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
-      {/* Button */}
       <button type="button" className="profile-btn" onClick={handleToggle}>
         <div className="tp-header-dashboard-user ml-20">
           <Image src={userImg} alt="user image" />
@@ -56,11 +55,7 @@ const ProfileDropdown = () => {
                 typeof window !== "undefined"
                   ? localStorage.getItem("loginUser")
                   : null;
-              return username ? (
-                <p>{truncateText(username, 4)}</p>
-              ) : (
-                <p>Hi, Sign In</p>
-              );
+              return username ? <p>{truncateText(username, 4)}</p> : <p></p>;
             })()}
           </div>
 
