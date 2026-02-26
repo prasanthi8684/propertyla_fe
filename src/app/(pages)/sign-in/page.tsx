@@ -35,6 +35,7 @@ export default function SignIn() {
           </div>
         </div>
       </section>
+      {/* sign in area end */}
     </>
   );
 }

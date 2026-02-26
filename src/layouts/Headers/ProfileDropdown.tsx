@@ -5,10 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import { truncateText } from "../../data/truncateText";
+import { useRouter } from "next/navigation";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   // ✅ Close only when clicking OUTSIDE
   useEffect(() => {
@@ -33,7 +35,9 @@ const ProfileDropdown = () => {
   };
 
   const handleLogout = () => {
-    console.log("Logout clicked");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("loginUser");
+    router.push("/sign-in");
   };
 
   return (
@@ -69,7 +73,7 @@ const ProfileDropdown = () => {
       {/* ✅ Dropdown */}
       {open && (
         <div className="profile-dropdown-menu">
-          <Link href="/profile" className="dropdown-item">
+          <Link href="/dashboard/my-profile" className="dropdown-item">
             My Profile
           </Link>
 

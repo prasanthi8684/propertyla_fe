@@ -70,8 +70,7 @@ export default function VerifyForm() {
                           : null;
                       return email;
                     })()}
-                    {/* {localStorage.getItem("registeredEmail")} */}
-                    Registred Email: ram@gmail.com
+                    Registered Email: {localStorage.getItem("registeredEmail")}
                   </label>
                 </div>
               </div>
@@ -82,7 +81,7 @@ export default function VerifyForm() {
                   <input
                     {...register("emailOtp")}
                     type="text"
-                    placeholder="Enter email otp"
+                    placeholder="Enter email OTP"
                   />
                 </div>
                 <div className="col-4">
