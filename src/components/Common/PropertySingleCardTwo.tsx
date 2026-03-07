@@ -22,7 +22,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
     >
       <div className="tp-rent-item p-relative">
         <div className="tp-rent-thumb p-relative">
-          <Link href={`/${item.linkUrl}/${item.id}`}>
+          <Link href={`/property-details-2/${item.id}`}>
             <Image src={item.image} alt="property image" />
           </Link>
 
@@ -39,7 +39,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
         </div>
         <div className="tp-rent-content">
           <h4 className="tp-rent-title">
-            <Link className="textline" href={`/${item.linkUrl}/${item.id}`}>
+            <Link className="textline" href={`/property-details/${item.id}`}>
               {item.title}
             </Link>
           </h4>
@@ -74,7 +74,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
           </div>
           <div className="tp-rent-btn-box d-flex justify-content-between align-items-center">
             <div className="tp-rent-btn">
-              <Link className="tp-btn" href={`/${item.linkUrl}/${item.id}`}>
+              <Link className="tp-btn" href={`/property-details/${item.id}`}>
                 View Details
               </Link>
             </div>
