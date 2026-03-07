@@ -1,5 +1,4 @@
 import apartmentBg from "../../../public/assets/img/apartment/apartment-bg.png";
-import Link from "next/link";
 
 export default function HomeApartmentArea() {
   return (
