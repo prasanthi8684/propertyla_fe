@@ -1,5 +1,4 @@
 "use client";
-//import PropertySingleCard from "../Common/PropertySingleCard";
 import PropertySingleCardTwo from "../Common/PropertySingleCardTwo";
 import { propertyData } from "@/data/propertyData";
 import React from "react";
@@ -10,13 +9,15 @@ import { Pagination } from "swiper/modules";
 
 export default function PropertyHome() {
   return (
-    <section className="tp-rent-area p-relative pt-135 pb-60">
+    <section className="tp-rent-area p-relative pt-80 pb-60">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="tp-rent-heading text-center mb-50">
               <span className="tp-section-title-pre">Featured Listings</span>
-              <h3 className="tp-section-title">Property for sell and rent</h3>
+              <h3 className="tp-section-title">
+                Property for sell and rent123
+              </h3>
             </div>
           </div>
         </div>
@@ -50,7 +51,6 @@ export default function PropertyHome() {
                 >
                   {propertyData.slice(0, 5).map((item) => (
                     <SwiperSlide key={item.id}>
-                      {/* <PropertySingleCard item={item} /> */}
                       <PropertySingleCardTwo item={item} />
                     </SwiperSlide>
                   ))}

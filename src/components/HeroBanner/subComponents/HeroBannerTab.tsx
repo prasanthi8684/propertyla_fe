@@ -37,8 +37,6 @@ const MOCK_RESULTS: SearchItem[] = [
 export default function HeroBannerTabContent({
   id,
   isActive,
-  //onSortChange,
-  //toggleFilter,
 }: ITabContentProps) {
   const router = useRouter();
   const [place] = useState<string>("");
@@ -173,18 +171,6 @@ export default function HeroBannerTabContent({
               </div>
             </div>
           </div>
-          {/* <div className="col-xs-6 col-xl-1 col-lg-1">
-            <div className="tp-hero-tab-filter">
-              <button
-                className="tp-hero-filter-btn filter-btn"
-                onClick={toggleFilter}
-              >
-                <span>
-                  <FilterBtnSvg />
-                </span>
-              </button>
-            </div>
-          </div> */}
           <div
             className="col-xs-6 col-xl-2 col-lg-2"
             style={{ paddingRight: "0px" }}
