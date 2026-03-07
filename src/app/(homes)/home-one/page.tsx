@@ -1,6 +1,6 @@
 //import AboutHomeMain from "@/components/About/AboutHomeMain";
 import HomeApartmentArea from "@/components/Apartment/HomeApartment";
-import HomeApartmentTypes from "@/components/Apartment/HomeApartmentTypes";
+//import HomeApartmentTypes from "@/components/Apartment/HomeApartmentTypes";
 //import BrandAreaOne from "@/components/Barnd/BarndAreaOne";
 import HomeBlogArea from "@/components/Blog/HomeBlogArea";
 //import HomeApproachCounter from "@/components/Counter/HomeApproachCounter";
@@ -8,7 +8,7 @@ import HeroBannerOne from "@/components/HeroBanner/HeroBannerOne";
 import HomePropertiesByCity from "@/components/Neighborhood/HomePropertiesByCity";
 //import HomeNewsletter from "@/components/Newsletter/HomeNewsletter";
 //import FeatureShowcaseCategory from "@/components/Property/FeatureShowcaseCategory";
-import PropertyHome from "@/components/Property/PropertyHomeFour";
+import PropertyHome from "@/components/Property/PropertyHome";
 //import HomeTestimonialArea from "@/components/Testimonial/HomeTestimonialArea";
 //import TextSlide from "@/components/Features/TextSlide";
 import React from "react";
@@ -18,6 +18,7 @@ export default function HomeOnePage() {
     <>
       {/* hero banner  */}
       <HeroBannerOne />
+      <PropertyHome />
       {/* hero banner end */}
       {/*feature area*/}
       {/* <FeatureShowcaseCategory /> */}
@@ -26,16 +27,16 @@ export default function HomeOnePage() {
       {/* <AboutHomeMain /> */}
       {/* about area end */}
       {/* apartment area type*/}
-      <HomeApartmentTypes />
+      {/* <HomeApartmentTypes /> */}
       {/*apartment area type end */}
       {/* newsletter area */}
       {/* <HomeNewsletter /> */}
       {/* newsletter area end */}
       {/* apartment area*/}
-      <HomeApartmentArea />
+
       {/* apartment area end*/}
       {/* rent area */}
-      <PropertyHome />
+
       {/* rent area end */}
 
       {/* explore area */}
@@ -56,8 +57,9 @@ export default function HomeOnePage() {
       {/* <BrandAreaOne /> */}
       {/* barnd area end */}
       {/* blog area */}
-      <HomeBlogArea />
       {/* blog area end */}
+      <HomeApartmentArea />
+      <HomeBlogArea />
     </>
   );
 }

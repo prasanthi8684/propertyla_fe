@@ -154,10 +154,10 @@ export default function HeroBannerTabContent({
                             {item.displayText}
                           </span>
                           <span
-                            className="rounded-full border px-3 text-sm text-gray-600"
+                            className="rounded-full border px-2 text-sm text-gray-600"
                             style={{
                               float: "right",
-                              fontSize: "12px",
+                              fontSize: "11px",
                             }}
                           >
                             {item.displayType}

@@ -1,35 +1,17 @@
-import ActiveWishListSvg from "@/components/SVG/PropertySvg/ActiveWishListSvg";
 import BathsroomTwoSvg from "@/components/SVG/PropertySvg/BathsroomTwoSvg";
 import BedroomsTwoSvg from "@/components/SVG/PropertySvg/BedroomsTwoSvg";
 import LivingTwoSvg from "@/components/SVG/PropertySvg/LivingTwoSvg";
 import MapMarkerSvg from "@/components/SVG/PropertySvg/MapMarkerIcon";
-import WishListSvg from "@/components/SVG/PropertySvg/WishListSvg";
-import { toggle_wishlist } from "@/redux/slices/wishlistSlice";
-import CartSvg from "@/components/SVG/PropertySvg/CartSvg";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
-import { cart_product } from "@/redux/slices/cartSlice";
 import { formatPrice } from "../Utils/formatPrice";
-import { useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 
 interface propertyProps {
   item: IFeaturedPropertyDT;
-  isWishlisted: boolean;
 }
 
-export default function PropertySingleCardTwo({
-  item,
-  isWishlisted,
-}: propertyProps) {
-  const dispatch = useDispatch();
-
-  //handle add to cart
-  const handleAddToCart = (product: IFeaturedPropertyDT) => {
-    if (product) {
-      dispatch(cart_product(product));
-    }
-  };
+export default function PropertySingleCardTwo({ item }: propertyProps) {
   return (
     <div
       className={`tp-listing-2-item ${item.spacing && "mb-30"} ${
@@ -54,20 +36,6 @@ export default function PropertySingleCardTwo({
               )}
             </div>
           )}
-
-          <div className="tp-rent-option d-flex">
-            <button onClick={() => dispatch(toggle_wishlist(item))}>
-              <span>
-                {" "}
-                {isWishlisted ? <ActiveWishListSvg /> : <WishListSvg />}
-              </span>
-            </button>
-            <button onClick={() => handleAddToCart(item)}>
-              <span>
-                <CartSvg />
-              </span>
-            </button>
-          </div>
         </div>
         <div className="tp-rent-content">
           <h4 className="tp-rent-title">
