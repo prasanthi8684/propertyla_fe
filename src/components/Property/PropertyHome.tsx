@@ -1,5 +1,6 @@
 "use client";
-import PropertySingleCard from "../Common/PropertySingleCard";
+//import PropertySingleCard from "../Common/PropertySingleCard";
+import PropertySingleCardTwo from "../Common/PropertySingleCardTwo";
 import { propertyData } from "@/data/propertyData";
 import React from "react";
 
@@ -49,7 +50,8 @@ export default function PropertyHome() {
                 >
                   {propertyData.slice(0, 5).map((item) => (
                     <SwiperSlide key={item.id}>
-                      <PropertySingleCard item={item} />
+                      {/* <PropertySingleCard item={item} /> */}
+                      <PropertySingleCardTwo item={item} />
                     </SwiperSlide>
                   ))}
                 </Swiper>
