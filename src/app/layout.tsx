@@ -30,9 +30,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Property-La - Real Estate React NextJs Template",
+  title: "Property for Sale & Rent in Malaysia | Houses, Condos & Apartments",
   description:
-    "Property-La is a modern, highly customizable Next.js theme designed for real estate businesses, agencies, and property listings, offering a seamless and user-friendly experience.",
+    "Find the latest properties for sale and rent in Malaysia including houses, condos, apartments and commercial properties. Search properties in Kuala Lumpur, Selangor, Penang and across Malaysia.",
+  openGraph: {
+    title: "Propertyl - Find Your Dream Property",
+    description:
+      "Search thousands of verified properties for sale or rent in Malaysia.",
+    url: "https://propertyla.com.my",
+    siteName: "Propertyla",
+    images: [
+      {
+        url: "https://propertyla.com.my/_next/static/media/home-bg.8927b835.jpg",
+        width: 1200,
+        height: 800,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 export default function RootLayout({
   children,
@@ -41,7 +57,9 @@ export default function RootLayout({
 }>) {
   // If children is a plain object (e.g. an error object) stringify it so React doesn't try to render it directly.
   const sanitizedChildren =
-    typeof children === "object" && children !== null && !React.isValidElement(children)
+    typeof children === "object" &&
+    children !== null &&
+    !React.isValidElement(children)
       ? JSON.stringify(children)
       : children;
 
@@ -64,4 +82,3 @@ export default function RootLayout({
     </html>
   );
 }
-
