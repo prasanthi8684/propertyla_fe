@@ -12,8 +12,6 @@ export const quickLinks: IFooterLinkDT[] = [
 
 export const serviceLinks: IFooterLinkDT[] = [
   { label: "Wish List", href: "/wishlist" },
-  { label: "Cart", href: "/cart" },
-  { label: "Checkout", href: "/checkout" },
   { label: "Compare", href: "/compare" },
   { label: "Terms & Conditions", href: "#" },
   { label: "Contact", href: "/contact" },

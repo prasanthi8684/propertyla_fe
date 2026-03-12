@@ -52,6 +52,7 @@
         opacity: 0;
         visibility: hidden;
         padding: 15px 0 25px;
+        border-radius: 8px;
         background: var(--tp-common-white);
         @include transition(0.3s, ease-out, all);
         @include transform-rotateX(-90deg, 0 0);

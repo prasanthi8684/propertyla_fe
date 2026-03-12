@@ -5,7 +5,9 @@ import { propertyData } from "@/data/propertyData";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Favourite - Property-La Real Estate React NextJs Template",
+  title: "Property Agents in Malaysia | Find Trusted Real Estate Agents",
+  description:
+    "Connect with trusted property agents in Malaysia to buy, sell or rent homes. Browse verified real estate agents near you.",
 };
 
 export default function DashboardFavourite() {
