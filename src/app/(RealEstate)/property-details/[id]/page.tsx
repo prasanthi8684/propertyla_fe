@@ -1,4 +1,5 @@
-import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
+//import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
+import PropertyDetailsOneArea2 from "@/components/RealEstate/PropertyDetailsTwo/DetailsTwo";
 import { propertyData } from "@/data/propertyData";
 import Wrapper from "@/layouts/Wrapper";
 import { PageParamsProps } from "@/types/custom-interface";
@@ -20,7 +21,7 @@ export default async function PropertyDetails(props: PageParamsProps) {
     <Wrapper>
       <main>
         {/* property details area start */}
-        <PropertyDetailsOneArea id={id} />
+        <PropertyDetailsOneArea2 id={id} />
         {/* property details area end */}
       </main>
     </Wrapper>
