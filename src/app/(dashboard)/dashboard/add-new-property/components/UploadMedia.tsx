@@ -56,7 +56,7 @@ export default function UploadMedia() {
                     delete formHeaders["Content-Type"];
                     const API_BASE =
                       process.env.NEXT_PUBLIC_API_BASE ??
-                      "http://159.203.68.169";
+                      "http://localhost:3008";
                     const uploadUrl = `${API_BASE}/api/images/upload-single`;
                     const presignRes = await fetch(uploadUrl, {
                       method: "POST",

@@ -1,54 +1,48 @@
 import { CheckSvg } from "@/components/SVG";
 
-interface AmenityItemProps {
-    label: string;
+interface Props {
+  amenities?: { lifestyle?: string[]; facilities?: string[]; security?: string[] };
 }
 
-const amenities: string[] = [
-    "Air conditioning",
-    "Built in robes",
-    "Garage",
-    "Outdoor spa",
-    "Intercom",
-    "Heating",
-    "Parking",
-    "WiFi",
-    "Swimming pool",
-    "Renovation",
-    "Security",
-    "Garden"
-];
+const defaultAmenities = {
+  lifestyle:  ["Air Conditioning", "WiFi", "Swimming Pool", "Gym"],
+  facilities: ["Covered Parking", "24h Security", "CCTV", "Intercom"],
+  security:   ["Gated Community", "Access Card"],
+};
 
-function AmenityItem({ label }: AmenityItemProps) {
-    return (
-        <li>
-            <div className="tp-contact-input-remeber property tp-property-category">
-                <CheckSvg />
-                <span>{label}</span>
-            </div>
-        </li>
-    );
-}
+export default function AmenitiesCategories({ amenities }: Props) {
+  const data = amenities ?? defaultAmenities;
+  const all = [
+    ...(data.lifestyle  || []),
+    ...(data.facilities || []),
+    ...(data.security   || []),
+  ];
 
-export default function AmenitiesCategories() {
-    const chunkSize = 4;
-    const columns = Array.from({ length: Math.ceil(amenities.length / chunkSize) }, (_, i) =>
-        amenities.slice(i * chunkSize, i * chunkSize + chunkSize)
-    );
+  if (all.length === 0) return <p className="text-muted">No amenities listed.</p>;
 
-    return (
-        <div className="tp-property-details-checking">
-            <div className="row">
-                {columns.map((column, columnIndex) => (
-                    <div key={columnIndex} className="col-12 col-md-6 col-lg-4">
-                        <ul>
-                            {column.map((amenity, index) => (
-                                <AmenityItem key={index} label={amenity} />
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+  const chunkSize = 4;
+  const columns = Array.from({ length: Math.ceil(all.length / chunkSize) }, (_, i) =>
+    all.slice(i * chunkSize, i * chunkSize + chunkSize)
+  );
+
+  return (
+    <div className="tp-property-details-checking">
+      <div className="row">
+        {columns.map((col, ci) => (
+          <div key={ci} className="col-12 col-md-6 col-lg-4">
+            <ul>
+              {col.map((item, i) => (
+                <li key={i}>
+                  <div className="tp-contact-input-remeber property tp-property-category">
+                    <CheckSvg />
+                    <span>{item}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

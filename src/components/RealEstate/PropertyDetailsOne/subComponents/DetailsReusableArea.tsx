@@ -1,115 +1,108 @@
-//import PropertyReviewForm from "@/components/Form/PropertyReviewForm";
 import UserContactCard from "@/components/Layout/subComponents/UserContactCard";
-//import PropertyFilterWidget from "@/components/Layout/subComponents/PropertyFilterWidget";
 import SidebarPropertyItem from "@/components/Layout/subComponents/SidebarPropertyItem";
 import DiscountOfferCard from "@/components/Layout/subComponents/DiscountOfferCard";
-import PropertyDetailsVideo from "@/components/Video/VideoAreaThree";
 import RecentlyViewedProperties from "./RecentlyViewedItem";
-import PropertyAttachments from "./PropertyAttachments";
 import AmenitiesCategories from "./AmenitiesCategories";
-import LocationDetailsBox from "./LocationDetailsBox";
 import PropertyDetailsBox from "./PropertyDetailsBox";
-import PropertyFloorPlans from "./PropertyFloorPlans";
-//import CustomersReviews from "./CustomersReviews";
-import PropertyGallery from "./PropertyGallery";
+
+interface ApiProperty {
+  id?: string;
+  description?: string;
+  listingType?: string;
+  propertyType?: string;
+  bedrooms?: number | string;
+  bathrooms?: number | string;
+  buildupArea?: number | string;
+  yearOfBuild?: number;
+  furnishing?: string;
+  streetName?: string;
+  cityName?: string;
+  state?: string;
+  pincode?: string;
+  landmark?: string;
+  amenities?: { lifestyle?: string[]; facilities?: string[]; security?: string[] };
+}
 
 interface IProps {
   spacingClass?: string;
+  property?: ApiProperty;
 }
-export default function DetailsReusableArea({ spacingClass }: IProps) {
+
+export default function DetailsReusableArea({ spacingClass, property }: IProps) {
+  const beds = parseInt(String(property?.bedrooms ?? 0), 10);
+  const baths = parseInt(String(property?.bathrooms ?? 0), 10);
+  const area = parseFloat(String(property?.buildupArea ?? 0));
+  const livingArea = area > 0 ? (Number.isInteger(area) ? `${area} Sq Ft` : `${area.toFixed(1)} Sq Ft`) : undefined;
+
+  const address = [property?.streetName, property?.cityName, property?.state, property?.pincode]
+    .filter(Boolean).join(", ");
+
   return (
-    <>
-      <section className={`tp-property-details-ptb pb-120 ${spacingClass}`}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8">
-              <div className="tp-property-details-left">
-                <div className="tp-property-details-box box-1 mb-30">
-                  <h3 className="tp-property-details-box-title">
-                    Property-La description
-                  </h3>
-                  <div className="tp-property-details-box-desc">
-                    <p>
-                      Years seed fruit you. Divided morning sea day Set earth.
-                      Grass without cattle. Spirit <br />
-                      heaven. Also i grass give fowl wherein cattle spirit
-                      whales rule cattle. Earth fowl giv <br />
-                      -en own you’re, fruit so. Shall was. Called firmament dry
-                      fruitful, set place. <br />
-                      Earth given female man fruit, under thing may to greater
-                      moveth land sea, great be <br />
-                      shall living greater and signs place night after whose us
-                      one, you’ll second our <br />
-                      set had day in greater divided over female first face,
-                      fill form you make <br />
-                      greater upon midst image above image.
-                    </p>
-                  </div>
-                </div>
+    <section className={`tp-property-details-ptb pb-120 ${spacingClass ?? ""}`}>
+      <div className="container">
+        <div className="row">
 
-                <div className="tp-property-details-box box-2 mb-30">
-                  <h3 className="tp-property-details-box-title">Overview</h3>
-                  <PropertyDetailsBox />
-                </div>
+          {/* ── Left column ──────────────────────────────────── */}
+          <div className="col-lg-8">
+            <div className="tp-property-details-left">
 
-                <div className="tp-property-details-box box-3 mb-30">
-                  <h3 className="tp-property-details-box-title">Videos</h3>
-                  <PropertyDetailsVideo />
+              {/* Description */}
+              <div className="tp-property-details-box box-1 mb-30">
+                <h3 className="tp-property-details-box-title">Description</h3>
+                <div className="tp-property-details-box-desc">
+                  <p>{property?.description || "No description available."}</p>
                 </div>
+              </div>
 
-                <div className="tp-property-details-box box-4 mb-30">
-                  <h3 className="tp-property-details-box-title">
-                    Property attachments
-                  </h3>
-                  <PropertyAttachments />
-                  <h3 className="tp-property-details-box-title">Amenities</h3>
-                  <AmenitiesCategories />
-                </div>
+              {/* Overview */}
+              <div className="tp-property-details-box box-2 mb-30">
+                <h3 className="tp-property-details-box-title">Overview</h3>
+                <PropertyDetailsBox
+                  id={property?.id}
+                  propertyType={property?.propertyType}
+                  bedrooms={beds > 0 ? String(beds) : undefined}
+                  bathrooms={baths > 0 ? String(baths) : undefined}
+                  livingArea={livingArea}
+                  yearOfBuild={property?.yearOfBuild}
+                  furnishing={property?.furnishing}
+                  listingType={property?.listingType}
+                />
+              </div>
 
-                <div className="tp-property-details-box box-5 mb-30">
-                  <h3 className="tp-property-details-box-title">
-                    From our gallery
-                  </h3>
-                  <PropertyGallery />
-                </div>
+              {/* Amenities */}
+              <div className="tp-property-details-box box-4 mb-30">
+                <h3 className="tp-property-details-box-title">Amenities</h3>
+                <AmenitiesCategories amenities={property?.amenities} />
+              </div>
 
+              {/* Address */}
+              {address && (
                 <div className="tp-property-details-box box-6 mb-30">
                   <h3 className="tp-property-details-box-title">Address</h3>
-                  <LocationDetailsBox />
+                  <div className="tp-property-details-box-desc">
+                    <p>{address}</p>
+                    {property?.landmark && (
+                      <p><strong>Landmark:</strong> {property.landmark}</p>
+                    )}
+                  </div>
                 </div>
+              )}
 
-                <div className="tp-property-details-box box-7 mb-30">
-                  <h3 className="tp-property-details-box-title">Floor plans</h3>
-                  <PropertyFloorPlans />
-                </div>
-
-                {/* <div className="tp-property-details-box box-8 mb-30">
-                  <h3 className="tp-property-details-box-title">
-                    Customers reviews
-                  </h3>
-                  <CustomersReviews />
-                </div> */}
-
-                {/* <div className="tp-property-details-box box-9 mb-30">
-                  <h3 className="tp-property-details-box-title">
-                    Add your review
-                  </h3>
-                  <PropertyReviewForm />
-                </div> */}
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="tp-property-details-right">
-                <UserContactCard />
-                {/* <PropertyFilterWidget /> */}
-                <SidebarPropertyItem />
-                <RecentlyViewedProperties />
-                <DiscountOfferCard wrapperCls="tp-property-filter-wrap" />
-              </div>
             </div>
           </div>
+
+          {/* ── Right sidebar ─────────────────────────────────── */}
+          <div className="col-lg-4">
+            <div className="tp-property-details-right">
+              <UserContactCard />
+              <SidebarPropertyItem />
+              <RecentlyViewedProperties />
+              <DiscountOfferCard wrapperCls="tp-property-filter-wrap" />
+            </div>
+          </div>
+
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

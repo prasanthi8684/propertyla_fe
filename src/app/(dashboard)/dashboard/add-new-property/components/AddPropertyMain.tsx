@@ -9,6 +9,56 @@ import PropertyDetails from "./PropertyDetails";
 import AmenitiesDetails from "./AmenitiesDetails";
 import UploadMedia from "./UploadMedia";
 
+// Amenity groupings — mirror the FE display groups for categorising on submit
+const AMENITY_GROUPS = {
+  lifestyle: [
+    "Swimming Pool",
+    "Gymnasium",
+    "Playground",
+    "BBQ Area",
+    "Function Room",
+    "Games Room",
+    "Sky Garden",
+    "Reading Room",
+    "Lounge",
+  ],
+  facilities: [
+    "Covered Parking",
+    "Visitor Parking",
+    "Service Lift",
+    "Surau / Prayer Room",
+    "Parcel Locker",
+    "Laundry Room",
+    "Cafeteria",
+  ],
+  security: [
+    "24-hour Security",
+    "CCTV Surveillance",
+    "Access Card System",
+    "Fire Alarm System",
+    "Emergency Exit",
+  ],
+};
+
+/** Map a flat amenities array to the grouped structure the BE expects */
+function groupAmenities(flat: string[] = []) {
+  const result: { lifestyle: string[]; facilities: string[]; security: string[] } = {
+    lifestyle: [],
+    facilities: [],
+    security: [],
+  };
+  for (const amenity of flat) {
+    if (AMENITY_GROUPS.lifestyle.includes(amenity)) {
+      result.lifestyle.push(amenity);
+    } else if (AMENITY_GROUPS.facilities.includes(amenity)) {
+      result.facilities.push(amenity);
+    } else if (AMENITY_GROUPS.security.includes(amenity)) {
+      result.security.push(amenity);
+    }
+  }
+  return result;
+}
+
 export default function AddPropertyPage() {
   const methods = useForm<PropertyFormData & { images?: File[] | FileList }>({
     resolver: yupResolver(propertySchema),
@@ -33,10 +83,12 @@ export default function AddPropertyPage() {
         });
 
         // Upload images to your server API which should upload to your "space"
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+        const rawToken = typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
         const uploadUrl = `${API_BASE}/api/uploads`;
         const uploadRes = await fetch(uploadUrl, {
           method: "POST",
+          headers: rawToken ? { Authorization: `Bearer ${rawToken}` } : {},
           body: formData,
         });
 
@@ -76,6 +128,13 @@ export default function AddPropertyPage() {
             if (Array.isArray(res.uploadedUrls)) {
               return res.uploadedUrls.filter((u): u is string => typeof u === "string");
             }
+            // Handle backend response: { success, data: { imageUrls: [...] } }
+            if (isRecord(res.data)) {
+              if (Array.isArray((res.data as Record<string, unknown>).imageUrls)) {
+                return ((res.data as Record<string, unknown>).imageUrls as unknown[])
+                  .filter((u): u is string => typeof u === "string");
+              }
+            }
             if (Array.isArray(res.data)) {
               return res.data.map(getUrlFromItem).filter(Boolean) as string[];
             }
@@ -91,15 +150,77 @@ export default function AddPropertyPage() {
         imageUrls = extractUrls(uploadResult);
       }
 
+      // ---------------------------------------------------------------
+      // Remap FE field names → BE field names before sending to the API
+      // ---------------------------------------------------------------
+      const flatAmenities = (data.amenities ?? []).filter(
+        (a): a is string => typeof a === "string"
+      );
 
-      // Build payload: replace File objects with uploaded image URLs
-      const payload = { ...data, images: imageUrls };
+      // Convert property age range to actual year of build
+      const getYearFromAgeRange = (ageRange: string | number | undefined): number | undefined => {
+        if (!ageRange) return undefined;
+        const currentYear = new Date().getFullYear();
+        const age = parseInt(String(ageRange), 10);
+        
+        switch (age) {
+          case 1: // 1 to 3 years
+            return currentYear - 2;
+          case 2: // 3 to 5 years
+            return currentYear - 4;
+          case 3: // 5 to 10 years
+            return currentYear - 7;
+          case 4: // More than 10 years
+            return currentYear - 15;
+          default:
+            return undefined;
+        }
+      };
+
+      const payload = {
+        // Pass-through fields that match between FE and BE
+        listingType: data.listingType,
+        propertyType: data.propertyType,
+        propertyName: data.propertyName,
+        tenure: data.tenure,
+        title: data.title,
+        description: data.description,
+        streetName: data.streetName,
+        cityName: data.cityName,
+        landmark: data.landmark,
+        furnishing: data.furnishing,
+        availability: data.availability,
+        floorLevel: data.floorLevel?.toString(),
+        status: "active",
+
+        // Remapped numeric fields (FE stores as string from input/select)
+        price: parseFloat(data.price),
+        buildupArea: data.builtUpArea ? parseFloat(data.builtUpArea) : undefined,
+        bedrooms: data.bedRooms ? parseInt(data.bedRooms, 10) : undefined,
+        bathrooms: data.bathRooms ? parseInt(data.bathRooms, 10) : undefined,
+        yearOfBuild: getYearFromAgeRange(data.propertyAge),
+
+        // Remapped name fields
+        state: data.stateName,
+        county: data.countryName,
+        pincode: data.pinCode,
+
+        // Convert "Yes"/"No" negotiable to boolean
+        negotiable: data.negotiable === "Yes",
+
+        // Group flat amenities array into {lifestyle, facilities, security}
+        amenities: groupAmenities(flatAmenities),
+
+        // Images from upload
+        images: imageUrls,
+      };
+
 
       const rawToken = typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
 
       console.log(localStorage.getItem("authToken"));
       const authHeader = `Bearer ${rawToken ?? ""}`;
-      const API_BASE2 = process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
+      const API_BASE2 = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
       const propertyUrl = `${API_BASE2}/api/properties`;
       const res = await fetch(propertyUrl, {
         method: "POST",
@@ -130,8 +251,6 @@ export default function AddPropertyPage() {
       alert("Network error while submitting the form.");
       }
     })();
-    return;
-    alert("Form submitted successfully!");
   };
 
   return (

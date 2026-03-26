@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import NiceSelect from "@/components/UI/NiceSelect";
-import Link from "next/link";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 
 export default function PropertyFilterWidget() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [sizeRange, setSizeRange] = useState<[number, number]>([50, 800]);
-  const handleSorting = () => {};
+  const [propertyType, setPropertyType] = useState("All");
+  const [minPrice, setMinPrice] = useState("Any");
+  const [maxPrice, setMaxPrice] = useState("Any");
+  const [bedrooms, setBedrooms] = useState("All");
+  const [propertyStatus, setPropertyStatus] = useState("All");
+
   const handleSizeChange = (values: number | number[]) => {
     if (Array.isArray(values)) {
       if (values.length === 2) {
@@ -15,6 +23,32 @@ export default function PropertyFilterWidget() {
     } else {
       setSizeRange([values, values]);
     }
+  };
+
+  const handleUpdateList = () => {
+    // Preserve keyword and listing-type from the current URL
+    const existingQ = searchParams.get("q") || searchParams.get("address") || "";
+    const existingType = searchParams.get("type") || "";
+    const existingCity = searchParams.get("city") || "";
+    const existingPropertyName = searchParams.get("propertyName") || "";
+
+    const filterParams = new URLSearchParams();
+
+    // Carry over search-bar params unchanged
+    if (existingQ) filterParams.set("q", existingQ);
+    if (existingType) filterParams.set("type", existingType);
+    if (existingCity) filterParams.set("city", existingCity);
+    if (existingPropertyName) filterParams.set("propertyName", existingPropertyName);
+
+    // Sidebar filter params
+    if (propertyType && propertyType !== "All") filterParams.set("propertyType", propertyType);
+    if (minPrice !== "Any") filterParams.set("minPrice", minPrice);
+    if (maxPrice !== "Any") filterParams.set("maxPrice", maxPrice);
+    if (bedrooms !== "All") filterParams.set("bedrooms", bedrooms);
+    filterParams.set("minSize", String(sizeRange[0]));
+    filterParams.set("maxSize", String(sizeRange[1]));
+
+    router.push(`/search?${filterParams.toString()}`);
   };
   return (
     <div className="tp-property-widget mb-40">
@@ -32,7 +66,7 @@ export default function PropertyFilterWidget() {
               { value: "Office", label: "Office" },
             ]}
             defaultCurrent={0}
-            onChange={() => handleSorting()}
+            onChange={(option) => setPropertyType(option.value as string)}
             name="Sorting"
             cls="select wide"
           />
@@ -49,7 +83,7 @@ export default function PropertyFilterWidget() {
               { value: "600k", label: "600k" },
             ]}
             defaultCurrent={0}
-            onChange={() => handleSorting()}
+            onChange={(option) => setMinPrice(option.value as string)}
             name="Sorting"
             cls="select wide"
           />
@@ -66,7 +100,7 @@ export default function PropertyFilterWidget() {
               { value: "3M", label: "3M" },
             ]}
             defaultCurrent={0}
-            onChange={() => handleSorting()}
+            onChange={(option) => setMaxPrice(option.value as string)}
             name="Sorting"
             cls="select wide"
           />
@@ -83,7 +117,7 @@ export default function PropertyFilterWidget() {
               { value: "5", label: "5" },
             ]}
             defaultCurrent={0}
-            onChange={() => handleSorting()}
+            onChange={(option) => setBedrooms(option.value as string)}
             name="Sorting"
             cls="select wide"
           />
@@ -97,7 +131,7 @@ export default function PropertyFilterWidget() {
               { value: "Auction", label: "Auction" },
             ]}
             defaultCurrent={0}
-            onChange={() => handleSorting()}
+            onChange={(option) => setPropertyStatus(option.value as string)}
             name="Sorting"
             cls="select wide"
           />
@@ -114,7 +148,7 @@ export default function PropertyFilterWidget() {
                     <span className="input-range">
                       <input
                         type="text"
-                        value={`$${sizeRange[0]} - $${sizeRange[1]}`}
+                        value={`${sizeRange[0]} - ${sizeRange[1]} sq ft`}
                         readOnly
                       />
                     </span>
@@ -136,12 +170,16 @@ export default function PropertyFilterWidget() {
         {/* slider range */}
         {/* <RangeFilter /> */}
         <div className="tp-property-filter-item-btn text-center">
-          <Link className="tp-btn w-100" href="/search">
+          <button
+            className="tp-btn w-100"
+            onClick={handleUpdateList}
+            type="button"
+          >
             <span className="btn-wrap">
               <b className="text-1">Update List</b>
               <b className="text-2">Update List</b>
             </span>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
