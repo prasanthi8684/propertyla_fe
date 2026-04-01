@@ -14,31 +14,25 @@ const menu_data_one = [
     submenu: [
       {
         id: 1,
-        label: "Kuala Lumpur",
+        label: "Residential",
         url: "/search",
         img: "",
       },
       {
         id: 2,
-        label: "Penang",
+        label: "Commercial",
         url: "/search",
         img: "",
       },
       {
         id: 3,
-        label: "Johor",
+        label: "New Launch",
         url: "/search",
         img: "",
       },
       {
         id: 4,
-        label: "Ipoh",
-        url: "/search",
-        img: "",
-      },
-      {
-        id: 5,
-        label: "Malacca",
+        label: "Auction",
         url: "/search",
         img: "",
       },
@@ -53,31 +47,25 @@ const menu_data_one = [
     submenu: [
       {
         id: 1,
-        label: "Kuala Lumpur",
+        label: "Residential",
         url: "/search",
         img: "",
       },
       {
         id: 2,
-        label: "Penang",
+        label: "Commercial",
         url: "/search",
         img: "",
       },
       {
         id: 3,
-        label: "Johor",
+        label: "New Launch",
         url: "/search",
         img: "",
       },
       {
         id: 4,
-        label: "Ipoh",
-        url: "/search",
-        img: "",
-      },
-      {
-        id: 5,
-        label: "Malacca",
+        label: "Auction",
         url: "/search",
         img: "",
       },
@@ -92,31 +80,13 @@ const menu_data_one = [
     submenu: [
       {
         id: 1,
-        label: "Kuala Lumpur",
+        label: "New Residential",
         url: "/search",
         img: "",
       },
       {
         id: 2,
-        label: "Penang",
-        url: "/search",
-        img: "",
-      },
-      {
-        id: 3,
-        label: "Johor",
-        url: "/search",
-        img: "",
-      },
-      {
-        id: 4,
-        label: "Ipoh",
-        url: "/search",
-        img: "",
-      },
-      {
-        id: 5,
-        label: "Malacca",
+        label: "New Commercial",
         url: "/search",
         img: "",
       },
@@ -137,15 +107,8 @@ const menu_data_one = [
   // },
   {
     id: 4,
-    label: "Dashboard",
-    url: "/dashboard",
-    submenu: [
-      { id: 1, label: "Add New Listing", url: "/dashboard/add-new-property" },
-      { id: 2, label: "My Profile", url: "/dashboard/my-profile" },
-      { id: 3, label: "My Properties", url: "/dashboard/property" },
-      { id: 4, label: "Favourites", url: "/dashboard/favourite" },
-      { id: 5, label: "Reviews", url: "/dashboard/review" },
-    ],
+    label: "For Agents",
+    url: "/error",
   },
   {
     id: 5,
