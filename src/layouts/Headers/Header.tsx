@@ -3,7 +3,6 @@ import Image from "next/image";
 import React from "react";
 //import logoWhite from "../../../public/assets/img/logo/logo-white.png";
 import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
-import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 //import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import ProfileDropdown from "./ProfileDropdown";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
