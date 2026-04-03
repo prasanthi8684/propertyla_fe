@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import logoWhite from "../../../public/assets/img/logo/logo-white.png";
+//import logoWhite from "../../../public/assets/img/logo/logo-white.png";
+import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 //import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import ProfileDropdown from "./ProfileDropdown";
@@ -19,16 +20,20 @@ export default function HeaderOne() {
   const renderHeaderContent = () => (
     <div className="container container-large">
       <div className="row align-items-center">
-        <div className="col-xl-2 col-lg-4 col-md-3 col-6">
+        <div className="col-xl-2 col-lg-4 col-md-3 col-8">
           <div className="tp-header-logo">
             <Link href="/">
               {sticky ? (
                 <>
-                  <Image className="logo-header" src={logoBlack} alt="image" />
+                  <span className="logo-icon-black">Property</span>{" "}
+                  <Image className="logo-header" src={logoIcon} alt="image" />
+                  <span className="logo-icon-black">La</span>
                 </>
               ) : (
                 <>
-                  <Image className="logo-header" src={logoWhite} alt="image" />
+                  <span className="logo-icon-white">Property</span>{" "}
+                  <Image className="logo-header" src={logoIcon} alt="image" />
+                  <span className="logo-icon-white">La</span>
                 </>
               )}
             </Link>
@@ -43,7 +48,7 @@ export default function HeaderOne() {
             </div>
           </div>
         </div>
-        <div className="col-xl-2 col-lg-2 col-md-4 col-3">
+        <div className="col-xl-2 col-lg-2 col-md-4 col-2">
           <div className="tp-header-dashboard-btn d-none d-md-block">
             <Link className="tp-btn" href="/dashboard/add-new-property">
               <span className="btn-wrap">
@@ -53,7 +58,7 @@ export default function HeaderOne() {
             </Link>
           </div>
         </div>
-        <div className="col-xl-2 col-lg-2 col-md-5 col-3">
+        <div className="col-xl-2 col-lg-2 col-md-5 col-2">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
             <div className="tp-header-right-user d-md-flex align-items-center">
               {(() => {
