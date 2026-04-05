@@ -53,8 +53,8 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
     >
       <div className="col-xl-6 tp-rent-thumb p-relative">
         <Link href={`/${item.linkUrl}/${item.id}`}>
-          <Image
-            src={item.image}
+          <img
+            src={typeof item.image === "string" ? item.image : (item.image as { src: string }).src}
             style={{ width: "100%", height: "auto" }}
             alt={item.title}
           />

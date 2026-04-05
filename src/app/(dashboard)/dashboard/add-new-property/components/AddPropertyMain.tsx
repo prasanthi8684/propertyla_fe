@@ -60,94 +60,27 @@ function groupAmenities(flat: string[] = []) {
 }
 
 export default function AddPropertyPage() {
-  const methods = useForm<PropertyFormData & { images?: File[] | FileList }>({
+  const methods = useForm<PropertyFormData>({
     resolver: yupResolver(propertySchema),
     mode: "onSubmit",
   });
 
   const { handleSubmit } = methods;
 
-  const onSubmit: SubmitHandler<PropertyFormData & { images?: File[] | FileList }> = (data) => {
+  const onSubmit: SubmitHandler<PropertyFormData> = (data) => {
     (async () => {
       try {
-      // assume images come from the form as `data.images` (FileList or File[])
-      const files = data.images as File[] | FileList | undefined;
+      // UploadMedia already uploaded the files and stored their public URLs
+      // in the hidden DOM input "#uploaded-images-input" — just read from it.
       let imageUrls: string[] = [];
-
-      if (files && files.length) {
-        const formData = new FormData();
-        // Append under common keys — some backends expect "files", others "images"
-        Array.from(files).forEach((file) => {
-          formData.append("files", file as File);
-          formData.append("images", file as File);
-        });
-
-        // Upload images to your server API which should upload to your "space"
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
-        const rawToken = typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
-        const uploadUrl = `${API_BASE}/api/uploads`;
-        const uploadRes = await fetch(uploadUrl, {
-          method: "POST",
-          headers: rawToken ? { Authorization: `Bearer ${rawToken}` } : {},
-          body: formData,
-        });
-
-        if (!uploadRes.ok) {
-          const errText = await uploadRes.text().catch(() => uploadRes.statusText);
-          console.error("Upload error:", errText);
-          alert("Failed to upload images.");
-          return;
+      if (typeof document !== "undefined") {
+        const hiddenEl = document.getElementById("uploaded-images-input") as HTMLInputElement | null;
+        if (hiddenEl?.value) {
+          try {
+            const parsed = JSON.parse(hiddenEl.value);
+            if (Array.isArray(parsed)) imageUrls = parsed.filter((u): u is string => typeof u === "string");
+          } catch {}
         }
-        console.log("Upload response:", uploadRes);
-
-        const uploadResult = await uploadRes.json();
-        console.log("Upload result:", uploadResult);
-
-        // Use unknown + type guards instead of `any`
-        const isRecord = (v: unknown): v is Record<string, unknown> =>
-          typeof v === "object" && v !== null;
-
-        const getUrlFromItem = (item: unknown): string | undefined => {
-          if (typeof item === "string") return item;
-          if (!isRecord(item)) return undefined;
-          if (typeof item.url === "string") return item.url;
-          if (typeof item.path === "string") return item.path;
-          if (typeof item.location === "string") return item.location;
-          return undefined;
-        };
-
-        const extractUrls = (res: unknown): string[] => {
-          if (!res) return [];
-          if (Array.isArray(res)) {
-            return res.map(getUrlFromItem).filter(Boolean) as string[];
-          }
-          if (isRecord(res)) {
-            if (Array.isArray(res.urls)) {
-              return res.urls.map(getUrlFromItem).filter(Boolean) as string[];
-            }
-            if (Array.isArray(res.uploadedUrls)) {
-              return res.uploadedUrls.filter((u): u is string => typeof u === "string");
-            }
-            // Handle backend response: { success, data: { imageUrls: [...] } }
-            if (isRecord(res.data)) {
-              if (Array.isArray((res.data as Record<string, unknown>).imageUrls)) {
-                return ((res.data as Record<string, unknown>).imageUrls as unknown[])
-                  .filter((u): u is string => typeof u === "string");
-              }
-            }
-            if (Array.isArray(res.data)) {
-              return res.data.map(getUrlFromItem).filter(Boolean) as string[];
-            }
-            if (isRecord(res.file)) {
-              if (typeof res.file.url === "string") return [res.file.url];
-              if (typeof res.file.path === "string") return [res.file.path];
-            }
-            if (typeof res.url === "string") return [res.url];
-          }
-          return [];
-        };
-
-        imageUrls = extractUrls(uploadResult);
       }
 
       // ---------------------------------------------------------------
