@@ -3,7 +3,8 @@ import CheckoutArea from "@/components/shop/CheckoutArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Checkout - Property-La Real Estate React NextJs Template",
+  title: "Checkout - New property launch Malaysia",
+  description: "Houses & Condos for Sale in Selangor | PropertyKL",
 };
 
 export default function Checkout() {
