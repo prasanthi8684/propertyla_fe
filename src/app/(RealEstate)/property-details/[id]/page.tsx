@@ -2,9 +2,14 @@ import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/D
 import Wrapper from "@/layouts/Wrapper";
 import { PageParamsProps } from "@/types/custom-interface";
 
-export const metadata = {
-  title: "Property Details - PropertyLa",
-};
+export async function generateMetadata(props: PageParamsProps) {
+  const resolvedParams = await props.params;
+  const { id } = resolvedParams;
+  const property = propertyData.find((item) => item.id == Number(id));
+  return {
+    title: property?.title ? property.title : "Property Details",
+  };
+}
 
 export default async function PropertyDetails(props: PageParamsProps) {
   const resolvedParams = await props.params;
@@ -14,7 +19,7 @@ export default async function PropertyDetails(props: PageParamsProps) {
     <Wrapper>
       <main>
         {/* property details area start */}
-        <PropertyDetailsOneArea id={id} />
+        <PropertyDetailsOneArea2 id={id} />
         {/* property details area end */}
       </main>
     </Wrapper>

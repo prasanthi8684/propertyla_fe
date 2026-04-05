@@ -6,7 +6,10 @@ import CommonFooter from "@/layouts/Footers/CommonFooter";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Best property website in Kuala lumpur, Malaysia",
+  title:
+    "Properties for Sale in Malaysia | Houses, Condos & Apartments Listings",
+  description:
+    "Browse thousands of properties for sale in Malaysia. Discover houses, condos, apartments and new developments across Kuala Lumpur, Selangor, Penang and Johor.",
 };
 
 const Home = () => {

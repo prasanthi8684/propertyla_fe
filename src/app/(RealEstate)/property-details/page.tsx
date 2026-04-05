@@ -1,4 +1,5 @@
-import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
+//import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
+import PropertyDetailsOneArea2 from "@/components/RealEstate/PropertyDetailsTwo/DetailsTwo";
 import Wrapper from "@/layouts/Wrapper";
 import { Metadata } from "next";
 
@@ -11,7 +12,7 @@ export default async function PropertyDetails() {
     <Wrapper>
       <main>
         {/* property details area start */}
-        <PropertyDetailsOneArea id={1} />
+        <PropertyDetailsOneArea2 id={1} />
         {/* property details area end */}
       </main>
     </Wrapper>

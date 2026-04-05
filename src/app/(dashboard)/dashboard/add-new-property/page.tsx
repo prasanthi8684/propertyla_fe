@@ -3,7 +3,9 @@ import AddPropertyMain from "./components/AddPropertyMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Add New Property - Property-La Real Estate React NextJs Template",
+  title: "Commercial Properties for Sale & Rent in Malaysia",
+  description:
+    "Browse commercial properties in Malaysia including offices, retail shops, warehouses and industrial buildings for sale or rent.",
 };
 
 export default function AddProperty() {

@@ -78,11 +78,31 @@ export default function SignUpForm() {
     }
   };
 
+  const formatNum = (phone: string): string => {
+    if (!phone) return "";
+
+    const num = phone.replace(/\D/g, "");
+
+    if (num.startsWith("60")) {
+      return `+${num}`;
+    }
+
+    if (num.startsWith("6")) {
+      return `+${num}`;
+    }
+
+    if (num.startsWith("0")) {
+      return `+6${num}`;
+    }
+
+    return `+60${num}`;
+  };
+
   const onSubmit = async (data: ISignUpFormData) => {
     const requestBody = {
       username: data.displayname,
       email: data.email,
-      phone: data.phone,
+      phone: formatNum(data.phone),
       renNumber: data.renNumber,
       password: data.password,
       confirmPassword: data.confirmPassword,
@@ -100,11 +120,7 @@ export default function SignUpForm() {
         userType: selectedValue,
       };
 
-      const response = await axios.post(
-        signupUrl,
-        payload,
-        { headers }
-      );
+      const response = await axios.post(signupUrl, payload, { headers });
       // Persist the registered email so the verify page can read it via localStorage.getItem("registeredEmail")
       try {
         console.log("Registration response:", response);
@@ -124,7 +140,10 @@ export default function SignUpForm() {
       let message = "Sign-up failed";
       if (axios.isAxiosError(err)) {
         const respData = err.response?.data as
-          | { errors?: Array<{ path?: string; msg?: string; message?: string }>; message?: string }
+          | {
+              errors?: Array<{ path?: string; msg?: string; message?: string }>;
+              message?: string;
+            }
           | undefined;
         // If server returned structured validation errors array, map them into form fields
         if (respData?.errors && Array.isArray(respData.errors)) {
@@ -136,14 +155,16 @@ export default function SignUpForm() {
               // add additional mappings here if server uses different names
             };
             const mappedField = serverPath
-              ? (fieldMap[serverPath as string] ?? (serverPath as keyof ISignUpFormData))
+              ? (fieldMap[serverPath as string] ??
+                (serverPath as keyof ISignUpFormData))
               : undefined;
             if (mappedField) {
               // set field error in the form so it shows next to the input
               try {
                 setError(mappedField as keyof ISignUpFormData, {
                   type: "server",
-                  message: serverErr.msg || serverErr.message || "Invalid value",
+                  message:
+                    serverErr.msg || serverErr.message || "Invalid value",
                 });
               } catch {
                 // ignore if mapping doesn't match a registered field
@@ -250,12 +271,18 @@ export default function SignUpForm() {
             <div className="tp-sign-in-input p-relative">
               <input
                 type="text"
-                placeholder="Enter phone number"
+                inputMode="numeric"
+                maxLength={12}
+                placeholder="Enter Phone Number"
+                onInput={(e: React.FormEvent<HTMLInputElement>) => {
+                  const target = e.currentTarget;
+                  target.value = target.value.replace(/\D/g, "");
+                }}
                 {...register("phone", {
                   required: "Phone number is required",
                   pattern: {
-                    value: /^[0-9]{10,15}$/,
-                    message: "Invalid number format",
+                    value: /^[0-9]{10,12}$/,
+                    message: "Phone number must be between 10 and 12 digits",
                   },
                 })}
               />

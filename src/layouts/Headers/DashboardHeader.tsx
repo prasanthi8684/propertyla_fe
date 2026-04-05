@@ -3,6 +3,7 @@
 import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
+import UserSvg from "@/components/SVG/UserSvg";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
@@ -35,8 +36,24 @@ export default function DashboardHeader() {
         </div>
         <div className="col-xl-3 col-lg-4 col-md-9 col-6">
           <div className="tp-header-dashboard-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-dashboard-user ml-20">
-              <Image src={userImg} alt="user image" />
+            <div className="tp-header-right-user ml-20">
+              {(() => {
+                const username =
+                  typeof window !== "undefined"
+                    ? localStorage.getItem("loginUser")
+                    : null;
+                return username ? (
+                  <Image src={userImg} alt="user image" />
+                ) : (
+                  <div className="tp-header-right-user-icon">
+                    <Link href="/sign-in">
+                      <span>
+                        <UserSvg />
+                      </span>
+                    </Link>
+                  </div>
+                );
+              })()}
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">
               <button onClick={toggleOffcanvas} className="hamburger-btn">

@@ -36,10 +36,10 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
   };
   //handle wishlist
   const wishlist = useSelector(
-    (state: RootState) => state.wishlist.wishlistProducts
+    (state: RootState) => state.wishlist.wishlistProducts,
   );
   const isWishlisted = wishlist?.some(
-    (wishlistItem) => wishlistItem.id === item.id
+    (wishlistItem) => wishlistItem.id === item.id,
   );
 
   return (
@@ -51,7 +51,10 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
       data-wow-duration={item.wowDelay ? "1s" : undefined}
       data-wow-delay={item.wowDelay ? item.wowDelay : undefined}
     >
-      <div className="col-xl-6 tp-rent-thumb p-relative">
+      <div
+        className="col-xl-6 tp-rent-thumb p-relative"
+        style={{ padding: "0px" }}
+      >
         <Link href={`/${item.linkUrl}/${item.id}`}>
           <img
             src={typeof item.image === "string" ? item.image : (item.image as { src: string }).src}

@@ -62,13 +62,13 @@
 /* hamburger btn */
 
 .hamburger-btn {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 0;
   outline: 0;
   border-radius: 8px;
   transform: translateX(0%);
-  //background: var(--tp-common-white);
+  background: var(--tp-theme-primary);
   &:hover {
     background-color: var(--tp-theme-primary);
     & span {
@@ -85,16 +85,16 @@
     opacity: 1;
     z-index: 1;
     @include transition();
-    transform: translate(-50%, -50%);
+    transform: translate(-30%, -40%);
     background: var(--tp-common-white);
     &:nth-child(1) {
-      top: 20px;
+      top: 15px;
     }
     &:nth-child(2) {
-      top: 25px;
+      top: 20px;
     }
     &:nth-child(3) {
-      top: 30px;
+      top: 25px;
     }
   }
 }

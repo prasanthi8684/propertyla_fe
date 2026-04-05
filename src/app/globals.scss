@@ -4,13 +4,27 @@
 @forward "../../public/assets/scss/main.scss";
 @forward "../../public/assets/css/font-awesome-pro.css";
 
+.logo-icon-white {
+  font-size: 28px;
+  font-weight: 400;
+  color: #fff;
+  padding-left: 3px;
+}
+.logo-icon-black {
+  font-size: 28px;
+  font-weight: 400;
+  color: #000;
+  padding-left: 3px;
+}
 .tp-hero-tab-input {
   margin-right: 0px !important;
   margin-bottom: 20px;
 }
 .logo-header {
-  width: 167px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-bottom: 12px;
 }
 .tp-header-1-menu nav > ul {
   text-align: start;
@@ -178,6 +192,18 @@
 .logout {
   color: #e74c3c;
 }
+.tp-header-pinned .tp-header-1-main .tp-header-right-user-icon span {
+  color: var(--tp-common-white);
+  background-color: #5758d6;
+}
+.tp-header-pinned .tp-header-1-main .hamburger-btn {
+  background: var(--tp-theme-primary);
+}
+.tp-header-right-user-icon span {
+  height: 42px !important;
+  width: 42px !important;
+  margin-top: -8px;
+}
 @media only screen and (max-width: 767px) {
   .d-show {
     display: none;
@@ -232,5 +258,11 @@
   .tp-property-ptb {
     padding-top: 0px !important;
     padding-bottom: 77px;
+  }
+}
+@media (min-width: 768px) {
+  .d-md-block {
+    display: block !important;
+    margin-top: 8px;
   }
 }
