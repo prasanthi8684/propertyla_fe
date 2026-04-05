@@ -3,7 +3,8 @@ import WishlistArea from "@/components/shop/WishlistArea";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Wishlist - Property-La Real Estate React NextJs Template",
+  title: "Wishlist - Real estate website in Malaysia",
+  description: "Property for Sale in Kuala Lumpur | Condos & Houses",
 };
 
 export default function Wishlist() {
