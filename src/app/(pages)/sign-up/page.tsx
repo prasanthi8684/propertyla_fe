@@ -4,7 +4,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sign Up - Property-La Real Estate React NextJs Template",
+  title: "Sign Up - PropertyLa today",
+  description: "houses for sale in Kuala Lumpur under 500k",
 };
 
 export default function SignUp() {
