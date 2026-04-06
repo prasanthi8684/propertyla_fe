@@ -4,7 +4,8 @@ import VerifyForm from "@/components/Form/auth/VerifyForm";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sign In - Property-La Real Estate React NextJs Template",
+  title: "Sign In - Property near MRT Kuala Lumpur",
+  description: "property near international school KL",
 };
 
 export default function Verify() {
