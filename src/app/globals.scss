@@ -5,13 +5,13 @@
 @forward "../../public/assets/css/font-awesome-pro.css";
 
 .logo-icon-white {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 400;
   color: #fff;
   padding-left: 3px;
 }
 .logo-icon-black {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 400;
   color: #000;
   padding-left: 3px;
@@ -21,8 +21,8 @@
   margin-bottom: 20px;
 }
 .logo-header {
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
   border-radius: 100%;
   margin-bottom: 12px;
 }
@@ -83,7 +83,7 @@
   padding: 15px;
 }
 .tp-main-menu ul li > a {
-  font-size: 14px;
+  font-size: 16px;
 }
 .tp-dashboard-new-title {
   font-size: 22px;
@@ -194,14 +194,13 @@
 }
 .tp-header-pinned .tp-header-1-main .tp-header-right-user-icon span {
   color: var(--tp-common-white);
-  background-color: #5758d6;
 }
 .tp-header-pinned .tp-header-1-main .hamburger-btn {
-  background: var(--tp-theme-primary);
+  background: var(--tp-heading-primary);
 }
 .tp-header-right-user-icon span {
-  height: 42px !important;
-  width: 42px !important;
+  height: 40px !important;
+  width: 40px !important;
   margin-top: -8px;
 }
 @media only screen and (max-width: 767px) {

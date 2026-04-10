@@ -1,6 +1,6 @@
 // Contact details component
 import { FooterSocialLinks } from "@/components/UI/SocialLinks";
-import LogoWhite from "../../../../public/assets/img/logo/logo-white.png";
+import logoIcon from "../../../../public/assets/img/logo/logo-icon.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +10,11 @@ export default function FooterContact() {
       <div className="tp-footer-widget tp-footer-col-1 mb-50">
         <div className="tp-footer-logo mb-35">
           <Link href="/">
-            <Image src={LogoWhite} alt="logo" />
+            <>
+              <span className="logo-icon-white">Property</span>{" "}
+              <Image className="logo-header" src={logoIcon} alt="image" />
+              <span className="logo-icon-white">La</span>
+            </>
           </Link>
         </div>
         <div className="tp-footer-widget-content">

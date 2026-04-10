@@ -1,4 +1,4 @@
-import logoWhite from "../../../public/assets/img/logo/logo-white.png";
+import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import useGlobalContext from "@/hooks/useContext";
 import OffcanvasMenus from "./OffcanvasMenus";
 import Image from "next/image";
@@ -48,7 +48,11 @@ export default function OffcanvasArea() {
             <div className="offcanvas__top mb-40" onClick={toggleOffcanvas}>
               <div className="offcanvas__logo">
                 <Link href="/">
-                  <Image src={logoWhite} alt="logo" />
+                  <>
+                    <span className="logo-icon-white">Property</span>{" "}
+                    <Image className="logo-header" src={logoIcon} alt="image" />
+                    <span className="logo-icon-white">La</span>
+                  </>
                 </Link>
               </div>
             </div>
