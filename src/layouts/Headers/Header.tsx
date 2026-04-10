@@ -1,9 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-//import logoWhite from "../../../public/assets/img/logo/logo-white.png";
 import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
-//import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import ProfileDropdown from "./ProfileDropdown";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import useGlobalContext from "@/hooks/useContext";
@@ -20,7 +18,7 @@ export default function HeaderOne() {
     <div className="container container-large">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-8">
-          <div className="tp-header-logo">
+          <div className="tp-header-logo" style={{ paddingTop: "10px" }}>
             <Link href="/">
               {sticky ? (
                 <>
@@ -49,7 +47,11 @@ export default function HeaderOne() {
         </div>
         <div className="col-xl-2 col-lg-2 col-md-4 col-2">
           <div className="tp-header-dashboard-btn d-none d-md-block">
-            <Link className="tp-btn" href="/dashboard/add-new-property">
+            <Link
+              className="tp-btn"
+              href="/dashboard/add-new-property"
+              style={{ padding: "12px 20px 7px" }}
+            >
               <span className="btn-wrap">
                 <b className="text-1">Post Property</b>
                 <b className="text-2">Post Property</b>

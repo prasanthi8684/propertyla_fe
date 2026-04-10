@@ -1,6 +1,7 @@
 "use client";
 
-import logoBlack from "../../../public/assets/img/logo/logo-black.png";
+//import logoBlack from "../../../public/assets/img/logo/logo-black.png";
+import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import UserSvg from "@/components/SVG/UserSvg";
@@ -19,9 +20,21 @@ export default function DashboardHeader() {
     <div className="container-fluid">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-6">
-          <div className="tp-header-logo">
+          <div className="tp-header-logo" style={{ paddingTop: "10px" }}>
             <Link href="/">
-              <Image className="logo-header" src={logoBlack} alt="image" />
+              {sticky ? (
+                <>
+                  <span className="logo-icon-black">Property</span>{" "}
+                  <Image className="logo-header" src={logoIcon} alt="image" />
+                  <span className="logo-icon-black">La</span>
+                </>
+              ) : (
+                <>
+                  <span className="logo-icon-white">Property</span>{" "}
+                  <Image className="logo-header" src={logoIcon} alt="image" />
+                  <span className="logo-icon-white">La</span>
+                </>
+              )}
             </Link>
           </div>
         </div>

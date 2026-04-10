@@ -1,10 +1,8 @@
 "use client";
-import logoBlack from "../../../public/assets/img/logo/logo-black.png";
+import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import UserSvg from "@/components/SVG/UserSvg";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-//import WishlistIconSvg from "@/components/SVG/WishlistIconSvg";
-//import useShoppingCartMetrics from "@/hooks/useCart";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
@@ -13,10 +11,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function CommonHeader({ wrapClass = "" }) {
-  //const { useWishlstQuantity } = useShoppingCartMetrics();
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
-  //const TotalWishlistQuantity = useWishlstQuantity();
 
   // Header Content Component
   const renderHeaderContent = ({
@@ -27,9 +23,21 @@ export default function CommonHeader({ wrapClass = "" }) {
     <div className="container container-large">
       <div className="row align-items-center">
         <div className="col-xl-2 col-lg-4 col-md-3 col-6">
-          <div className="tp-header-logo">
+          <div className="tp-header-logo" style={{ paddingTop: "10px" }}>
             <Link href="/">
-              <Image className="logo-header" src={logoBlack} alt="image" />
+              {sticky ? (
+                <>
+                  <span className="logo-icon-black">Property</span>{" "}
+                  <Image className="logo-header" src={logoIcon} alt="image" />
+                  <span className="logo-icon-black">La</span>
+                </>
+              ) : (
+                <>
+                  <span className="logo-icon-black">Property</span>{" "}
+                  <Image className="logo-header" src={logoIcon} alt="image" />
+                  <span className="logo-icon-black">La</span>
+                </>
+              )}
             </Link>
           </div>
         </div>
@@ -55,7 +63,12 @@ export default function CommonHeader({ wrapClass = "" }) {
                 ) : (
                   <div className="tp-header-right-user-icon">
                     <Link href="/sign-in">
-                      <span>
+                      <span
+                        style={{
+                          background: "var(--tp-heading-primary)",
+                          color: "#fff",
+                        }}
+                      >
                         <UserSvg />
                       </span>
                     </Link>
@@ -64,7 +77,11 @@ export default function CommonHeader({ wrapClass = "" }) {
               })()}
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">
-              <button onClick={toggleOffcanvas} className="hamburger-btn">
+              <button
+                onClick={toggleOffcanvas}
+                className="hamburger-btn"
+                style={{ background: "var(--tp-heading-primary)" }}
+              >
                 <span></span>
                 <span></span>
                 <span></span>
