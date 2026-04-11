@@ -27,10 +27,12 @@ export default function VerifyForm() {
 
     if (otp) {
       try {
+        const API_BASE =
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
         // read the registered email saved at registration (fallback to the previous hardcoded email)
         const user_id = localStorage.getItem("user_id");
 
-        const res = await fetch("http://159.203.68.169/api/auth/verify-otp", {
+        const res = await fetch(`${API_BASE}/api/auth/verify-otp`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user_id: user_id, otp }),

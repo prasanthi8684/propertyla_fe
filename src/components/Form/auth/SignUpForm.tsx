@@ -102,7 +102,7 @@ export default function SignUpForm() {
     const requestBody = {
       username: data.displayname,
       email: data.email,
-      phone: formatNum(data.phone),
+      phone_number: formatNum(data.phone),
       renNumber: data.renNumber,
       password: data.password,
       confirmPassword: data.confirmPassword,
@@ -113,7 +113,7 @@ export default function SignUpForm() {
       "X-Request-Source": "react-client",
     };
     const API_BASE =
-      process.env.NEXT_PUBLIC_API_BASE ?? "http://159.203.68.169";
+      process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
     const signupUrl = `${API_BASE}/api/auth/register`;
     try {
       const payload = {
