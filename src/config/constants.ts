@@ -17,12 +17,12 @@ export const API_BASE_URL = (() => {
   
   switch (env) {
     case 'production':
-      return process.env.NEXT_PUBLIC_API_BASE ? `${process.env.NEXT_PUBLIC_API_BASE}/api` : 'http://136.115.64.96:3008/api';
+      return process.env.NEXT_PUBLIC_API_BASE ? `${process.env.NEXT_PUBLIC_API_BASE}/api` : 'http://34.42.177.70:3008/api';
     case 'development':
-      return 'http://136.115.64.96:3008/api';
+      return 'http://34.42.177.70:3008/api';
     case 'local':
     default:
-      return 'http://136.115.64.96:3008/api';
+      return 'http://34.42.177.70:3008/api';
   }
 })();
 

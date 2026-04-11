@@ -33,7 +33,7 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
     if (!query.trim()) { setSuggestions([]); return; }
     const timer = setTimeout(async () => {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         const res = await fetch(
           `${API_BASE}/api/properties/search?q=${encodeURIComponent(query)}&type=${id || "rent"}`
         );

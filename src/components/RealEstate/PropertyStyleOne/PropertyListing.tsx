@@ -116,7 +116,7 @@ export default function PropertyListing() {
       setResultCount(null);
 
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         let url: string;
 
         if (keyword.trim()) {

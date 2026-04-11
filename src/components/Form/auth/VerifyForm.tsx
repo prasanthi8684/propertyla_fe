@@ -30,7 +30,7 @@ export default function VerifyForm() {
         // read the registered email saved at registration (fallback to the previous hardcoded email)
         const user_id = localStorage.getItem("user_id");
 
-        const res = await fetch("http://localhost:3008/api/auth/verify-otp", {
+        const res = await fetch("http://34.42.177.70:3008/api/auth/verify-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user_id: user_id, otp }),

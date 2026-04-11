@@ -112,7 +112,7 @@ export default function SignUpForm() {
       "Content-Type": "application/json",
       "X-Request-Source": "react-client",
     };
-     const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+     const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         const signupUrl = `${API_BASE}/api/auth/register`;
       try {
       const payload = {
