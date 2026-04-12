@@ -1,186 +1,179 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ITabContentProps } from "@/types/banner-d-t";
+
 type SearchItem = {
-  objectId: string;
-  objectType: "PROPERTY" | "AREA";
+  id: string;
   displayText: string;
   displayType: string;
   displayDescription: string;
 };
 
-const MOCK_RESULTS: SearchItem[] = [
-  {
-    objectId: "21794",
-    objectType: "PROPERTY",
-    displayText: "Palm court conodiminium",
-    displayType: "Condominium",
-    displayDescription: "Jalan Desa Ria, Bandar Country Homes 48000, Selangor",
-  },
-  {
-    objectId: "1239",
-    objectType: "PROPERTY",
-    displayText: "Sentral Suites",
-    displayType: "Serviced Apartment",
-    displayDescription: "1 Jalan PJU 3/29 41050, Selangor",
-  },
-  {
-    objectId: "9egrz",
-    objectType: "AREA",
-    displayText: "Susana Sentral",
-    displayType: "Township",
-    displayDescription: "Papar, Sabah, 50470",
-  },
-];
-
-// TabContent Component
-export default function HeroBannerTabContent({
-  id,
-  isActive,
-}: ITabContentProps) {
+export default function HeroBannerTabContent({ id, isActive }: ITabContentProps) {
   const router = useRouter();
-  const [place] = useState<string>("");
-  const [city] = useState<string>("");
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchItem[]>([]);
+  const [suggestions, setSuggestions] = useState<SearchItem[]>([]);
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const getProperties = () => {
-    console.log("place", place);
-    const query = new URLSearchParams({
-      address: place,
-      city: city,
-      type: id,
-    });
-    router.push(`/search?${query.toString()}`);
+  // Search button handler
+  const handleSearch = () => {
+    if (!query.trim()) return;
+    const params = new URLSearchParams({ address: query.trim(), type: id || "rent" });
+    router.push(`/search?${params}`);
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleSearch();
+  };
+
+  // Live suggestions from API
   useEffect(() => {
-    if (!query) return setResults([]);
-    setResults(
-      MOCK_RESULTS.filter(
-        (i) =>
-          i.displayText.toLowerCase().includes(query.toLowerCase()) ||
-          i.displayDescription.toLowerCase().includes(query.toLowerCase()),
-      ),
-    );
-  }, [query]);
+    if (!query.trim()) { setSuggestions([]); return; }
+    const timer = setTimeout(async () => {
+      try {
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+        const res = await fetch(
+          `${API_BASE}/api/properties/search?q=${encodeURIComponent(query)}&type=${id || "rent"}`
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        const items: SearchItem[] = (data?.data || []).map((p: {
+          id?: string; title?: string; propertyName?: string;
+          propertyType?: string; cityName?: string; streetName?: string;
+        }) => ({
+          id: p.id || "",
+          displayText: p.propertyName || p.title || "",
+          displayType: p.propertyType || "Property",
+          displayDescription: [p.streetName, p.cityName].filter(Boolean).join(", "),
+        }));
+        setSuggestions(items);
+        setOpen(items.length > 0);
+      } catch { setSuggestions([]); }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [query, id]);
+
+  // Close dropdown on outside click
   useEffect(() => {
-    const close = (e: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(e.target as Node)
-      ) {
+    const handler = (e: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node))
         setOpen(false);
-      }
     };
-    document.addEventListener("mousedown", close);
-    return () => document.removeEventListener("mousedown", close);
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, []);
+
   return (
     <div
-      className={`tab-pane fade ${isActive ? "show active" : ""}`}
+      className={`tab-pane fade${isActive ? " show active" : ""}`}
       id={id}
       role="tabpanel"
     >
-      <div className="tp-hero-tab-box d-flex align-items-center">
-        <div className="row" style={{ width: "100%" }}>
-          <div className="col-xs-12 col-xl-10 col-lg-10">
-            <div className="tp-hero-tab-input1 p-relative">
-              <div
-                ref={wrapperRef}
-                className="relative flex w-full flex-col gap-3 sm:flex-row"
-              >
-                <div className="relative w-full max-w-md">
-                  <input
-                    value={query}
-                    onChange={(e) => {
-                      setQuery(e.target.value);
-                      setOpen(true);
-                    }}
-                    placeholder={`Search property`}
-                    style={{
-                      width: "103%",
-                      border: "1px solid #000",
-                      borderRadius: "8px",
-                      paddingLeft: "15px",
-                      height: "50px",
-                      marginBottom: "10px",
-                    }}
-                    className="
-          w-full rounded-full border border-gray-300
-          py-3 pl-4 pr-10
-          focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  {query && (
-                    <button
-                      onClick={() => setQuery("")}
-                      style={{ marginLeft: "-30px" }}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-xl text-gray-400 hover:text-gray-600"
-                    >
-                      ✕
-                    </button>
-                  )}
-                </div>
-                {open && results.length > 0 && (
-                  <div
-                    style={{
-                      borderRadius: "8px",
-                      width: "104%",
-                      marginBottom: "8px",
-                    }}
-                    className="absolute left-0 top-[72px] z-50 w-full rounded-2xl border bg-white shadow-2xl"
-                  >
-                    {results.map((item) => (
-                      <div
-                        style={{
-                          borderBottom: "1px solid #ddd",
-                          cursor: "pointer",
-                        }}
-                        key={item.objectId}
-                        className="cursor-pointer border-b px-3 py-2 hover:bg-gray-50 last:border-none"
-                        onClick={() => {
-                          setQuery(item.displayText);
-                          setOpen(false);
-                        }}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span
-                            className="text-lg font-semibold text-blue-600"
-                            style={{ color: "#000" }}
-                          >
-                            {item.displayText}
-                          </span>
-                          <span
-                            className="rounded-full border px-2 text-sm text-gray-600"
-                            style={{
-                              float: "right",
-                              fontSize: "11px",
-                            }}
-                          >
-                            {item.displayType}
-                          </span>
-                        </div>
-                        <p className="mt-1 text-gray-600">
-                          {item.displayDescription}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+      <div className="tp-hero-tab-box">
+        <div className="row g-0 align-items-stretch" ref={wrapperRef} style={{ position: "relative" }}>
+
+          {/* Search Input */}
+          <div className="col-9 col-sm-10">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
+              onKeyDown={handleKeyDown}
+              placeholder="Search by property name, city, area…"
+              style={{
+                width: "100%",
+                height: "52px",
+                border: "none",
+                borderRadius: "8px 0 0 8px",
+                padding: "0 16px",
+                fontSize: "15px",
+                outline: "none",
+                background: "#fff",
+              }}
+            />
+          </div>
+
+          {/* Search Button */}
+          <div className="col-3 col-sm-2">
+            <button
+              type="button"
+              onClick={handleSearch}
+              style={{
+                width: "100%",
+                height: "52px",
+                background: "#5758d6",
+                color: "#fff",
+                border: "none",
+                borderRadius: "0 8px 8px 0",
+                fontSize: "15px",
+                fontWeight: 600,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Search
+            </button>
+          </div>
+
+          {/* Suggestions Dropdown */}
+          {open && suggestions.length > 0 && (
+            <div
+              style={{
+                position: "absolute",
+                top: "54px",
+                left: 0,
+                right: 0,
+                background: "#fff",
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+                zIndex: 9999,
+                maxHeight: "320px",
+                overflowY: "auto",
+              }}
+            >
+              <div style={{ padding: "8px 16px", borderBottom: "1px solid #f0f0f0", fontSize: "12px", color: "#888", fontWeight: 600, textTransform: "uppercase" }}>
+                {suggestions.length} result{suggestions.length !== 1 ? "s" : ""} found
               </div>
+              {suggestions.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => {
+                    setQuery(item.displayText);
+                    setOpen(false);
+                  }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    padding: "12px 16px",
+                    border: "none",
+                    borderBottom: "1px solid #f5f5f5",
+                    background: "#fff",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    gap: "12px",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#f5f6ff")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
+                >
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "14px", color: "#222" }}>{item.displayText}</div>
+                    {item.displayDescription && (
+                      <div style={{ fontSize: "12px", color: "#888", marginTop: "2px" }}>{item.displayDescription}</div>
+                    )}
+                  </div>
+                  <span style={{ background: "#eef0ff", color: "#5758d6", borderRadius: "20px", padding: "3px 10px", fontSize: "11px", fontWeight: 600, whiteSpace: "nowrap" }}>
+                    {item.displayType}
+                  </span>
+                </button>
+              ))}
             </div>
-          </div>
-          <div
-            className="col-xs-6 col-xl-2 col-lg-2"
-            style={{ paddingRight: "0px" }}
-          >
-            <div className="tp-hero-tab-search">
-              <button style={{ width: "100%" }} onClick={() => getProperties()}>
-                Search
-              </button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

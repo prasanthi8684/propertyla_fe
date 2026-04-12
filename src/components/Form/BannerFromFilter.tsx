@@ -277,7 +277,7 @@ const BannerFromFilter = () => {
                 <span>
                   <SearchSvg />
                 </span>{" "}
-                Search Property
+                Search Property ww
               </button>
             </div>
             <div className="tp-from-button-box d-flex">

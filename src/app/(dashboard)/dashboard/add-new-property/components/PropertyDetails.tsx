@@ -103,10 +103,10 @@ export default function BasicDetails() {
                 <select {...register("bedRooms")} className="listDropDown">
                   <option value="1">1</option>
                   <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                  <option value="2">5</option>
-                  <option value="2">6</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
                 </select>
               </div>
               <div>
@@ -123,10 +123,10 @@ export default function BasicDetails() {
                 <select {...register("bathRooms")} className="listDropDown">
                   <option value="1">1</option>
                   <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                  <option value="2">5</option>
-                  <option value="2">6</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
                 </select>
               </div>
               <div>
@@ -142,7 +142,7 @@ export default function BasicDetails() {
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("availability")} className="listDropDown">
                   <option value="Immediate">Immediate</option>
-                  <option value="Next Month">Next Month</option>
+                  <option value="Next month">Next Month</option>
                   <option value="Under Construction">Under Construction</option>
                 </select>
               </div>
@@ -199,10 +199,11 @@ export default function BasicDetails() {
               <label>Property Age</label>
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("propertyAge")} className="listDropDown">
+                  <option value="">Select property age</option>
                   <option value="1">1 to 3 years</option>
                   <option value="2">3 to 5 years</option>
-                  <option value="2">5 to 10 years</option>
-                  <option value="2">More than 10 years</option>
+                  <option value="3">5 to 10 years</option>
+                  <option value="4">More than 10 years</option>
                 </select>
               </div>
               <div>

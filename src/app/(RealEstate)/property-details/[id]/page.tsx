@@ -1,6 +1,4 @@
-//import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
-import PropertyDetailsOneArea2 from "@/components/RealEstate/PropertyDetailsTwo/DetailsTwo";
-import { propertyData } from "@/data/propertyData";
+import PropertyDetailsOneArea from "@/components/RealEstate/PropertyDetailsOne/Details";
 import Wrapper from "@/layouts/Wrapper";
 import { PageParamsProps } from "@/types/custom-interface";
 

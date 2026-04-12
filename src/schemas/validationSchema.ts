@@ -166,6 +166,26 @@ export const propertyReviewSchema = yup.object().shape({
   message: yup.string().required("Message is required"),
 });
 
+//Profile information validation schema
+export const profileSchema = yup.object().shape({
+  fullName: yup.string().required("Full name is required"),
+  aboutYou: yup.string(),
+  companyName: yup.string(),
+  icPassport: yup.string(),
+  designation: yup.string(),
+  experience: yup.number().typeError("Must be a number").min(0, "Must be 0 or more"),
+});
+
+//Change password validation schema
+export const changePasswordSchema = yup.object().shape({
+  oldPassword: yup.string().required("Old password is required"),
+  newPassword: yup.string().required("New password is required").min(6, "At least 6 characters"),
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf([yup.ref("newPassword")], "Passwords do not match"),
+});
+
 //leave message validation schema
 export const leaveMessageSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
