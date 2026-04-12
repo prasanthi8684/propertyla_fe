@@ -102,7 +102,7 @@ export default function SignUpForm() {
     const requestBody = {
       username: data.displayname,
       email: data.email,
-      phone: formatNum(data.phone),
+      phone_number: formatNum(data.phone),
       renNumber: data.renNumber,
       password: data.password,
       confirmPassword: data.confirmPassword,
