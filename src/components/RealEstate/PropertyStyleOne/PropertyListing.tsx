@@ -58,7 +58,7 @@ function mapApiProperty(item: ApiProperty, index: number): Property {
   }
 
   return {
-    id: item.id as unknown as number,   // real UUID — used in the details page link
+    id: item.id as unknown as number, // real UUID — used in the details page link
     title: item.propertyName || item.title || "Property",
     address: address || "Address not available",
     linkUrl: "property-details",
@@ -116,7 +116,8 @@ export default function PropertyListing() {
       setResultCount(null);
 
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+        const API_BASE =
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         let url: string;
 
         if (keyword.trim()) {
@@ -126,7 +127,8 @@ export default function PropertyListing() {
           params.set("q", keyword.trim());
           if (type) params.set("type", type);
           if (city.trim()) params.set("city", city.trim());
-          if (propertyName.trim()) params.set("propertyName", propertyName.trim());
+          if (propertyName.trim())
+            params.set("propertyName", propertyName.trim());
           url = `${API_BASE}/api/properties/search?${params}`;
         } else {
           // ── Filter-only: /api/properties ────────────────────────
@@ -184,25 +186,47 @@ export default function PropertyListing() {
     };
 
     fetchProperties();
-  }, [keyword, type, city, propertyName, propertyType, minPriceStr, maxPriceStr, bedroomsFilter, minSize, maxSize]);
+  }, [
+    keyword,
+    type,
+    city,
+    propertyName,
+    propertyType,
+    minPriceStr,
+    maxPriceStr,
+    bedroomsFilter,
+    minSize,
+    maxSize,
+  ]);
 
   // ── Active filter badges ─────────────────────────────────────────
   const hasFilters = !!(
-    keyword || type || city || propertyName ||
-    propertyType !== "All" || minPriceStr !== "Any" ||
-    maxPriceStr !== "Any" || bedroomsFilter !== "All"
+    keyword ||
+    type ||
+    city ||
+    propertyName ||
+    propertyType !== "All" ||
+    minPriceStr !== "Any" ||
+    maxPriceStr !== "Any" ||
+    bedroomsFilter !== "All"
   );
 
   const activeFilters: { label: string; value: string }[] = [];
   if (keyword) activeFilters.push({ label: "Search", value: keyword });
   if (type) activeFilters.push({ label: "Type", value: type });
   if (city) activeFilters.push({ label: "City", value: city });
-  if (propertyName) activeFilters.push({ label: "Property", value: propertyName });
-  if (propertyType !== "All") activeFilters.push({ label: "Category", value: propertyType });
-  if (minPriceStr !== "Any") activeFilters.push({ label: "Min Price", value: minPriceStr });
-  if (maxPriceStr !== "Any") activeFilters.push({ label: "Max Price", value: maxPriceStr });
-  if (bedroomsFilter !== "All") activeFilters.push({ label: "Bedrooms", value: bedroomsFilter });
-  if (minSize > 0) activeFilters.push({ label: "Min Size", value: `${minSize} sq ft` });
+  if (propertyName)
+    activeFilters.push({ label: "Property", value: propertyName });
+  if (propertyType !== "All")
+    activeFilters.push({ label: "Category", value: propertyType });
+  if (minPriceStr !== "Any")
+    activeFilters.push({ label: "Min Price", value: minPriceStr });
+  if (maxPriceStr !== "Any")
+    activeFilters.push({ label: "Max Price", value: maxPriceStr });
+  if (bedroomsFilter !== "All")
+    activeFilters.push({ label: "Bedrooms", value: bedroomsFilter });
+  if (minSize > 0)
+    activeFilters.push({ label: "Min Size", value: `${minSize} sq ft` });
 
   return (
     <div className="tab-content" id="myTabContent">
@@ -214,12 +238,19 @@ export default function PropertyListing() {
       >
         {/* Active Filter Badges */}
         {activeFilters.length > 0 && (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "8px",
+              marginBottom: "20px",
+            }}
+          >
             {activeFilters.map((f) => (
               <span
                 key={f.label}
                 style={{
-                  background: "#5758d6",
+                  background: "#003B5C",
                   color: "#fff",
                   borderRadius: "20px",
                   padding: "4px 14px",
@@ -236,7 +267,11 @@ export default function PropertyListing() {
         {/* Loading */}
         {loading && (
           <div className="text-center py-5">
-            <div className="spinner-border" role="status" style={{ color: "#5758d6" }}>
+            <div
+              className="spinner-border"
+              role="status"
+              style={{ color: "#003B5C" }}
+            >
               <span className="visually-hidden">Loading...</span>
             </div>
             <p className="mt-3 text-muted">Searching properties…</p>
@@ -275,20 +310,21 @@ export default function PropertyListing() {
               {resultCount === 1 ? "property" : "properties"} found
               {keyword && (
                 <>
-                  {" "}for{" "}
+                  {" "}
+                  for{" "}
                   <span style={{ fontWeight: 700 }}>&quot;{keyword}&quot;</span>
                 </>
               )}
               {type && (
                 <>
-                  {" "}· Type:{" "}
-                  <span style={{ fontWeight: 700 }}>{type}</span>
+                  {" "}
+                  · Type: <span style={{ fontWeight: 700 }}>{type}</span>
                 </>
               )}
               {city && (
                 <>
-                  {" "}· City:{" "}
-                  <span style={{ fontWeight: 700 }}>{city}</span>
+                  {" "}
+                  · City: <span style={{ fontWeight: 700 }}>{city}</span>
                 </>
               )}
             </p>
@@ -301,7 +337,9 @@ export default function PropertyListing() {
             <p style={{ fontSize: "16px", color: "#555" }}>
               No properties found matching your search.
             </p>
-            <p style={{ color: "#888" }}>Try adjusting your filters or search terms.</p>
+            <p style={{ color: "#888" }}>
+              Try adjusting your filters or search terms.
+            </p>
           </div>
         )}
 

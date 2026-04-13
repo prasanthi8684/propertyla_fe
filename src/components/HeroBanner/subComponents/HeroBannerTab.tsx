@@ -10,7 +10,10 @@ type SearchItem = {
   displayDescription: string;
 };
 
-export default function HeroBannerTabContent({ id, isActive }: ITabContentProps) {
+export default function HeroBannerTabContent({
+  id,
+  isActive,
+}: ITabContentProps) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<SearchItem[]>([]);
@@ -20,7 +23,10 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
   // Search button handler
   const handleSearch = () => {
     if (!query.trim()) return;
-    const params = new URLSearchParams({ address: query.trim(), type: id || "rent" });
+    const params = new URLSearchParams({
+      address: query.trim(),
+      type: id || "rent",
+    });
     router.push(`/search?${params}`);
   };
 
@@ -30,27 +36,41 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
 
   // Live suggestions from API
   useEffect(() => {
-    if (!query.trim()) { setSuggestions([]); return; }
+    if (!query.trim()) {
+      setSuggestions([]);
+      return;
+    }
     const timer = setTimeout(async () => {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+        const API_BASE =
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         const res = await fetch(
-          `${API_BASE}/api/properties/search?q=${encodeURIComponent(query)}&type=${id || "rent"}`
+          `${API_BASE}/api/properties/search?q=${encodeURIComponent(query)}&type=${id || "rent"}`,
         );
         if (!res.ok) return;
         const data = await res.json();
-        const items: SearchItem[] = (data?.data || []).map((p: {
-          id?: string; title?: string; propertyName?: string;
-          propertyType?: string; cityName?: string; streetName?: string;
-        }) => ({
-          id: p.id || "",
-          displayText: p.propertyName || p.title || "",
-          displayType: p.propertyType || "Property",
-          displayDescription: [p.streetName, p.cityName].filter(Boolean).join(", "),
-        }));
+        const items: SearchItem[] = (data?.data || []).map(
+          (p: {
+            id?: string;
+            title?: string;
+            propertyName?: string;
+            propertyType?: string;
+            cityName?: string;
+            streetName?: string;
+          }) => ({
+            id: p.id || "",
+            displayText: p.propertyName || p.title || "",
+            displayType: p.propertyType || "Property",
+            displayDescription: [p.streetName, p.cityName]
+              .filter(Boolean)
+              .join(", "),
+          }),
+        );
         setSuggestions(items);
         setOpen(items.length > 0);
-      } catch { setSuggestions([]); }
+      } catch {
+        setSuggestions([]);
+      }
     }, 400);
     return () => clearTimeout(timer);
   }, [query, id]);
@@ -72,21 +92,27 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
       role="tabpanel"
     >
       <div className="tp-hero-tab-box">
-        <div className="row g-0 align-items-stretch" ref={wrapperRef} style={{ position: "relative" }}>
-
+        <div
+          className="row g-0 align-items-stretch"
+          ref={wrapperRef}
+          style={{ position: "relative" }}
+        >
           {/* Search Input */}
           <div className="col-9 col-sm-10">
             <input
               type="text"
               value={query}
-              onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setOpen(true);
+              }}
               onKeyDown={handleKeyDown}
               placeholder="Search by property name, city, area…"
               style={{
                 width: "100%",
                 height: "52px",
                 border: "none",
-                borderRadius: "8px 0 0 8px",
+                borderRadius: "8px",
                 padding: "0 16px",
                 fontSize: "15px",
                 outline: "none",
@@ -103,10 +129,10 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
               style={{
                 width: "100%",
                 height: "52px",
-                background: "#5758d6",
-                color: "#fff",
+                background: "#D4AF37",
+                color: "#003B5C",
                 border: "none",
-                borderRadius: "0 8px 8px 0",
+                borderRadius: "8px",
                 fontSize: "15px",
                 fontWeight: 600,
                 cursor: "pointer",
@@ -134,8 +160,18 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
                 overflowY: "auto",
               }}
             >
-              <div style={{ padding: "8px 16px", borderBottom: "1px solid #f0f0f0", fontSize: "12px", color: "#888", fontWeight: 600, textTransform: "uppercase" }}>
-                {suggestions.length} result{suggestions.length !== 1 ? "s" : ""} found
+              <div
+                style={{
+                  padding: "8px 16px",
+                  borderBottom: "1px solid #f0f0f0",
+                  fontSize: "12px",
+                  color: "#888",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                }}
+              >
+                {suggestions.length} result{suggestions.length !== 1 ? "s" : ""}{" "}
+                found
               </div>
               {suggestions.map((item) => (
                 <button
@@ -158,16 +194,46 @@ export default function HeroBannerTabContent({ id, isActive }: ITabContentProps)
                     textAlign: "left",
                     gap: "12px",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#f5f6ff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "#f5f6ff")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "#fff")
+                  }
                 >
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: "14px", color: "#222" }}>{item.displayText}</div>
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        color: "#222",
+                      }}
+                    >
+                      {item.displayText}
+                    </div>
                     {item.displayDescription && (
-                      <div style={{ fontSize: "12px", color: "#888", marginTop: "2px" }}>{item.displayDescription}</div>
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          color: "#888",
+                          marginTop: "2px",
+                        }}
+                      >
+                        {item.displayDescription}
+                      </div>
                     )}
                   </div>
-                  <span style={{ background: "#eef0ff", color: "#5758d6", borderRadius: "20px", padding: "3px 10px", fontSize: "11px", fontWeight: 600, whiteSpace: "nowrap" }}>
+                  <span
+                    style={{
+                      background: "#eef0ff",
+                      color: "#003B5C",
+                      borderRadius: "20px",
+                      padding: "3px 10px",
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
                     {item.displayType}
                   </span>
                 </button>

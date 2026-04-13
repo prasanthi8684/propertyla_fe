@@ -2,13 +2,17 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { truncateText } from "../../data/truncateText";
 import { useRouter } from "next/navigation";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  const truncateUsername = (value: string, maxLength: number) => {
+    if (value.length <= maxLength) return value;
+    return value.slice(0, maxLength) + "…";
+  };
 
   // ✅ Close only when clicking OUTSIDE
   useEffect(() => {
@@ -61,15 +65,22 @@ const ProfileDropdown = () => {
             paddingLeft: "15px",
             paddingRight: "5px",
             paddingTop: "10px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          <div className="tp-header-right-user-content">
+          <div className="tp-header-right-user-content" style={{ margin: 0 }}>
             {(() => {
               const username =
                 typeof window !== "undefined"
                   ? localStorage.getItem("loginUser")
                   : null;
-              return username ? <p>{truncateText(username, 4)}</p> : <p></p>;
+              return username ? (
+                <p style={{ margin: 0 }}>{`Hi, ${truncateUsername(username, 10)}`}</p>
+              ) : (
+                <p style={{ margin: 0 }}></p>
+              );
             })()}
           </div>
 

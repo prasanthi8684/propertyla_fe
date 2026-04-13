@@ -6,7 +6,7 @@ export default function LocationDetailsBox() {
     <>
       <div className="tp-property-details-maps-wrap">
         <span>
-          <MapMarkerSvg color="#5758d6" /> 30 Pitt Street, Sydney
+          <MapMarkerSvg color="#003B5C" /> 30 Pitt Street, Sydney
         </span>
         <span>
           <UnitedStatesSvg /> United states, USA
