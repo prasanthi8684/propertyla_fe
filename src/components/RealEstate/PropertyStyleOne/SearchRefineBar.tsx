@@ -5,133 +5,137 @@ import { useRouter, useSearchParams } from "next/navigation";
 const LISTING_TYPES = ["", "rent", "buy", "new"];
 
 export default function SearchRefineBar() {
-    const router = useRouter();
-    const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-    // Fall back to "address" param (sent by homepage search bar)
-    const [q, setQ] = useState(searchParams.get("q") || searchParams.get("address") || "");
-    const [type, setType] = useState(searchParams.get("type") || "");
-    const [city, setCity] = useState(searchParams.get("city") || "");
-    const [propertyName, setPropertyName] = useState(searchParams.get("propertyName") || "");
+  // Fall back to "address" param (sent by homepage search bar)
+  const [q, setQ] = useState(
+    searchParams.get("q") || searchParams.get("address") || "",
+  );
+  const [type, setType] = useState(searchParams.get("type") || "");
+  const [city, setCity] = useState(searchParams.get("city") || "");
+  const [propertyName, setPropertyName] = useState(
+    searchParams.get("propertyName") || "",
+  );
 
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault();
-        const params = new URLSearchParams();
-        if (q.trim()) params.set("q", q.trim());
-        if (type) params.set("type", type);
-        if (city.trim()) params.set("city", city.trim());
-        if (propertyName.trim()) params.set("propertyName", propertyName.trim());
-        router.push(`/search?${params.toString()}`);
-    };
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (q.trim()) params.set("q", q.trim());
+    if (type) params.set("type", type);
+    if (city.trim()) params.set("city", city.trim());
+    if (propertyName.trim()) params.set("propertyName", propertyName.trim());
+    router.push(`/search?${params.toString()}`);
+  };
 
-    const inputStyle: React.CSSProperties = {
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        padding: "10px 14px",
-        fontSize: "14px",
-        width: "100%",
-        outline: "none",
-        background: "#fff",
-    };
+  const inputStyle: React.CSSProperties = {
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "10px 14px",
+    fontSize: "14px",
+    width: "100%",
+    outline: "none",
+    background: "#fff",
+  };
 
-    const labelStyle: React.CSSProperties = {
-        fontSize: "12px",
-        fontWeight: 600,
-        color: "#555",
-        textTransform: "uppercase",
-        letterSpacing: "0.5px",
-        marginBottom: "6px",
-        display: "block",
-    };
+  const labelStyle: React.CSSProperties = {
+    fontSize: "12px",
+    fontWeight: 600,
+    color: "#555",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
+    marginBottom: "6px",
+    display: "block",
+  };
 
-    return (
-        <div
-            style={{
-                background: "#f8f9ff",
-                border: "1px solid #e8e8f0",
-                borderRadius: "12px",
-                padding: "20px 24px",
-                marginBottom: "32px",
-            }}
-        >
-            <form onSubmit={handleSearch}>
-                <div className="row g-3 align-items-end">
+  return (
+    <div
+      style={{
+        background: "#f8f9ff",
+        border: "1px solid #e8e8f0",
+        borderRadius: "12px",
+        padding: "20px 24px",
+        marginBottom: "32px",
+      }}
+    >
+      <form onSubmit={handleSearch}>
+        <div className="row g-3 align-items-end">
+          {/* Keyword / Property */}
+          <div className="col-lg-3 col-md-6">
+            <label style={labelStyle}>Keyword</label>
+            <input
+              type="text"
+              style={inputStyle}
+              placeholder="e.g. luxury, studio..."
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </div>
 
-                    {/* Keyword / Property */}
-                    <div className="col-lg-3 col-md-6">
-                        <label style={labelStyle}>Keyword</label>
-                        <input
-                            type="text"
-                            style={inputStyle}
-                            placeholder="e.g. luxury, studio..."
-                            value={q}
-                            onChange={(e) => setQ(e.target.value)}
-                        />
-                    </div>
+          {/* Property Name */}
+          <div className="col-lg-3 col-md-6">
+            <label style={labelStyle}>Property Name</label>
+            <input
+              type="text"
+              style={inputStyle}
+              placeholder="e.g. Greenfield Villas"
+              value={propertyName}
+              onChange={(e) => setPropertyName(e.target.value)}
+            />
+          </div>
 
-                    {/* Property Name */}
-                    <div className="col-lg-3 col-md-6">
-                        <label style={labelStyle}>Property Name</label>
-                        <input
-                            type="text"
-                            style={inputStyle}
-                            placeholder="e.g. Greenfield Villas"
-                            value={propertyName}
-                            onChange={(e) => setPropertyName(e.target.value)}
-                        />
-                    </div>
+          {/* City */}
+          <div className="col-lg-2 col-md-6">
+            <label style={labelStyle}>City</label>
+            <input
+              type="text"
+              style={inputStyle}
+              placeholder="e.g. Kuala Lumpur"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
 
-                    {/* City */}
-                    <div className="col-lg-2 col-md-6">
-                        <label style={labelStyle}>City</label>
-                        <input
-                            type="text"
-                            style={inputStyle}
-                            placeholder="e.g. Kuala Lumpur"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                        />
-                    </div>
+          {/* Type */}
+          <div className="col-lg-2 col-md-6">
+            <label style={labelStyle}>Listing Type</label>
+            <select
+              style={{ ...inputStyle, appearance: "auto" }}
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            >
+              {LISTING_TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {t === ""
+                    ? "All Types"
+                    : t.charAt(0).toUpperCase() + t.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
 
-                    {/* Type */}
-                    <div className="col-lg-2 col-md-6">
-                        <label style={labelStyle}>Listing Type</label>
-                        <select
-                            style={{ ...inputStyle, appearance: "auto" }}
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                        >
-                            {LISTING_TYPES.map((t) => (
-                                <option key={t} value={t}>
-                                    {t === "" ? "All Types" : t.charAt(0).toUpperCase() + t.slice(1)}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Submit */}
-                    <div className="col-lg-2 col-md-12">
-                        <button
-                            type="submit"
-                            style={{
-                                width: "100%",
-                                background: "#5758d6",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "8px",
-                                padding: "11px 16px",
-                                fontSize: "14px",
-                                fontWeight: 600,
-                                cursor: "pointer",
-                                letterSpacing: "0.3px",
-                            }}
-                        >
-                            🔍 Search
-                        </button>
-                    </div>
-
-                </div>
-            </form>
+          {/* Submit */}
+          <div className="col-lg-2 col-md-12">
+            <button
+              type="submit"
+              style={{
+                width: "100%",
+                background: "#003B5C",
+                color: "#fff",
+                border: "none",
+                borderRadius: "8px",
+                padding: "11px 16px",
+                fontSize: "14px",
+                fontWeight: 600,
+                cursor: "pointer",
+                letterSpacing: "0.3px",
+              }}
+            >
+              🔍 Search
+            </button>
+          </div>
         </div>
-    );
+      </form>
+    </div>
+  );
 }

@@ -43,12 +43,11 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
                     Property search{" "}
                     {subtitle !== "all locations" && (
                       <>
-                        for{" "}
-                        <span style={{ color: "#5758d6" }}>{subtitle}</span>
+                        for <span style={{ color: "#003B5C" }}>{subtitle}</span>
                       </>
                     )}
                     {subtitle === "all locations" && (
-                      <span style={{ color: "#5758d6" }}>all locations</span>
+                      <span style={{ color: "#003B5C" }}>all locations</span>
                     )}
                   </span>
                 </div>

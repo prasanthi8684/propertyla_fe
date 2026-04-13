@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import heroBg from "../../../public/assets/img/hero/home-bg.jpg";
 import HeroBannerTabContent from "./subComponents/HeroBannerTab";
 //import BannerFromFilter from "../Form/BannerFromFilter";
 //import SearchAutocomplete from "./subComponents/SearchAutocomplete";
@@ -18,12 +17,9 @@ export default function HeroBannerOne() {
       <section
         className="tp-hero-ptb tp-hero-hight pt-325 p-relative"
         style={{
-          background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroBg.src})`,
-          backgroundAttachment: "fixed",
+          background:
+            "radial-gradient(circle at 20% 10%, rgba(212, 175, 55, 0.18) 0%, rgba(0, 59, 92, 0) 45%), linear-gradient(135deg, #003B5C 0%, #0B4A6F 45%, #021526 100%)",
           padding: "154px 0 258px",
-          backgroundSize: "cover",
-          backgroundPosition: "50%",
-          backgroundColor: "rgba(0, 0, 0, .3)",
         }}
       >
         <div className="container">

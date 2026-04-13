@@ -39,7 +39,7 @@ export default function RangeFilter() {
                       ...props.style,
                       height: "7px",
                       width: "100%",
-                      background: `linear-gradient(to right, #ffffff ${left}%, #5758d6 ${left}%, #5758d6 ${right}%, #ffffff ${right}%)`,
+                      background: `linear-gradient(to right, #ffffff ${left}%, #003B5C ${left}%, #003B5C ${right}%, #ffffff ${right}%)`,
                       boxShadow: "0px 0px 4px 0px rgba(192, 204, 231, 0.6)",
                       marginTop: "12px",
                     }}
@@ -56,7 +56,7 @@ export default function RangeFilter() {
                     ...props.style,
                     height: "12px",
                     width: "8px",
-                    backgroundColor: "#5758d6",
+                    backgroundColor: "#003B5C",
                   }}
                 />
               )}
@@ -96,7 +96,7 @@ export default function RangeFilter() {
                       ...props.style,
                       height: "7px",
                       width: "100%",
-                      background: `linear-gradient(to right, #ffffff ${left}%, #5758d6 ${left}%, #5758d6 ${right}%, #ffffff ${right}%)`,
+                      background: `linear-gradient(to right, #ffffff ${left}%, #003B5C ${left}%, #003B5C ${right}%, #ffffff ${right}%)`,
                       boxShadow: "0px 0px 4px 0px rgba(192, 204, 231, 0.6)",
                       marginTop: "12px",
                     }}
@@ -113,7 +113,7 @@ export default function RangeFilter() {
                     ...props.style,
                     height: "12px",
                     width: "8px",
-                    backgroundColor: "#5758d6",
+                    backgroundColor: "#003B5C",
                   }}
                 />
               )}
