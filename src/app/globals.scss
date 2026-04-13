@@ -261,7 +261,13 @@
   width: 40px !important;
   margin-top: -8px;
 }
+.filt {
+  padding-left: 0px;
+}
 @media only screen and (max-width: 767px) {
+  .filt {
+    padding-left: 15px;
+  }
   .d-show {
     display: none;
   }

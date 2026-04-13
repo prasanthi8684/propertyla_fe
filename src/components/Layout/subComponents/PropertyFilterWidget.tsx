@@ -27,7 +27,8 @@ export default function PropertyFilterWidget() {
 
   const handleUpdateList = () => {
     // Preserve keyword and listing-type from the current URL
-    const existingQ = searchParams.get("q") || searchParams.get("address") || "";
+    const existingQ =
+      searchParams.get("q") || searchParams.get("address") || "";
     const existingType = searchParams.get("type") || "";
     const existingCity = searchParams.get("city") || "";
     const existingPropertyName = searchParams.get("propertyName") || "";
@@ -38,10 +39,12 @@ export default function PropertyFilterWidget() {
     if (existingQ) filterParams.set("q", existingQ);
     if (existingType) filterParams.set("type", existingType);
     if (existingCity) filterParams.set("city", existingCity);
-    if (existingPropertyName) filterParams.set("propertyName", existingPropertyName);
+    if (existingPropertyName)
+      filterParams.set("propertyName", existingPropertyName);
 
     // Sidebar filter params
-    if (propertyType && propertyType !== "All") filterParams.set("propertyType", propertyType);
+    if (propertyType && propertyType !== "All")
+      filterParams.set("propertyType", propertyType);
     if (minPrice !== "Any") filterParams.set("minPrice", minPrice);
     if (maxPrice !== "Any") filterParams.set("maxPrice", maxPrice);
     if (bedrooms !== "All") filterParams.set("bedrooms", bedrooms);
@@ -52,7 +55,7 @@ export default function PropertyFilterWidget() {
   };
   return (
     <div className="tp-property-widget mb-40">
-      <div className="tp-property-filter-wrap">
+      <div className="tp-property-filter-wrap" style={{ borderRadius: "8px" }}>
         <h4 className="tp-team-details-item-title">Applied Filters</h4>
         <div className="tp-team-contact-select tp-select">
           <NiceSelect
