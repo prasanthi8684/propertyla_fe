@@ -5,9 +5,8 @@ import { PageParamsProps } from "@/types/custom-interface";
 export async function generateMetadata(props: PageParamsProps) {
   const resolvedParams = await props.params;
   const { id } = resolvedParams;
-  const property = propertyData.find((item) => item.id == Number(id));
   return {
-    title: property?.title ? property.title : "Property Details",
+    title: id ? `Property Details - ${id}` : "Property Details",
   };
 }
 
@@ -19,7 +18,7 @@ export default async function PropertyDetails(props: PageParamsProps) {
     <Wrapper>
       <main>
         {/* property details area start */}
-        <PropertyDetailsOneArea2 id={id} />
+        <PropertyDetailsOneArea id={id} />
         {/* property details area end */}
       </main>
     </Wrapper>

@@ -82,7 +82,7 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
       setLoading(true);
       setError("");
       try {
-        const base = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+        const base = process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         const res  = await fetch(`${base}/api/properties/${id}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();

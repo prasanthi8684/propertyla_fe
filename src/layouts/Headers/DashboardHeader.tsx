@@ -3,11 +3,11 @@
 //import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import UserSvg from "@/components/SVG/UserSvg";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
+import ProfileDropdown from "./ProfileDropdown";
 import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/Form/auth/SignInForm";
@@ -56,7 +56,7 @@ export default function DashboardHeader() {
                     ? localStorage.getItem("loginUser")
                     : null;
                 return username ? (
-                  <Image src={userImg} alt="user image" />
+                  <ProfileDropdown />
                 ) : (
                   <div className="tp-header-right-user-icon">
                     <Link href="/sign-in">

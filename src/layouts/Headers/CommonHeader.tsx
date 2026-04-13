@@ -1,11 +1,11 @@
 "use client";
 import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
-import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import UserSvg from "@/components/SVG/UserSvg";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
+import ProfileDropdown from "./ProfileDropdown";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,7 +59,7 @@ export default function CommonHeader({ wrapClass = "" }) {
                     ? localStorage.getItem("loginUser")
                     : null;
                 return username ? (
-                  <Image src={userImg} alt="user image" />
+                  <ProfileDropdown />
                 ) : (
                   <div className="tp-header-right-user-icon">
                     <Link href="/sign-in">

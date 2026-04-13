@@ -2,8 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import userImg from "../../../public/assets/img/shop/user-1.jpg";
 import { truncateText } from "../../data/truncateText";
 import { useRouter } from "next/navigation";
 
@@ -43,9 +41,21 @@ const ProfileDropdown = () => {
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
       <button type="button" className="profile-btn" onClick={handleToggle}>
-        <div className="tp-header-dashboard-user ml-20">
-          <Image src={userImg} alt="user image" />
-        </div>
+        <span
+          style={{
+            display: "inline-block",
+            width: 36,
+            height: 36,
+            minWidth: 36,
+            maxWidth: 36,
+            borderRadius: "50%",
+            backgroundImage: "url('/assets/img/shop/user-1.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            flexShrink: 0,
+          }}
+          aria-label="user avatar"
+        />
         <div
           style={{
             paddingLeft: "15px",

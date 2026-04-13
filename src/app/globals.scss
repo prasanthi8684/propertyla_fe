@@ -90,6 +90,27 @@
 }
 .tp-dashboard-new-input label {
   font-size: 15px;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.tp-dashboard-new-input input,
+.tp-dashboard-new-input textarea {
+  width: 100%;
+}
+.tp-dashboard-new-input {
+  margin-bottom: 0;
+}
+.gap-20 {
+  gap: 20px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.tp-dashboard-profile-top {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
 }
 .tp-sign-in-register-box {
   border-radius: 8px;
@@ -191,6 +212,10 @@
 
 .logout {
   color: #e74c3c;
+}
+.profile-btn {
+  align-items: center;
+  gap: 8px;
 }
 .tp-header-pinned .tp-header-1-main .tp-header-right-user-icon span {
   color: var(--tp-common-white);
