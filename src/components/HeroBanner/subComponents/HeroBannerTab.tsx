@@ -95,7 +95,13 @@ export default function HeroBannerTabContent({
         <div
           className="row g-0 align-items-stretch"
           ref={wrapperRef}
-          style={{ position: "relative" }}
+          style={{
+            position: "relative",
+            width: "100%",
+            marginLeft: 0,
+            marginRight: 0,
+            boxSizing: "border-box",
+          }}
         >
           {/* Search Input */}
           <div className="col-9 col-sm-10">
@@ -107,12 +113,12 @@ export default function HeroBannerTabContent({
                 setOpen(true);
               }}
               onKeyDown={handleKeyDown}
-              placeholder="Search by property name, city, area…"
+              placeholder="Search by property name"
               style={{
                 width: "100%",
                 height: "52px",
                 border: "none",
-                borderRadius: "8px",
+                borderRadius: "8px 0 0 8px",
                 padding: "0 16px",
                 fontSize: "15px",
                 outline: "none",
@@ -148,9 +154,9 @@ export default function HeroBannerTabContent({
             <div
               style={{
                 position: "absolute",
-                top: "54px",
+                top: "calc(100% + 20px)",
                 left: 0,
-                right: 0,
+                width: "100%",
                 background: "#fff",
                 border: "1px solid #ddd",
                 borderRadius: "8px",
@@ -158,6 +164,7 @@ export default function HeroBannerTabContent({
                 zIndex: 9999,
                 maxHeight: "320px",
                 overflowY: "auto",
+                boxSizing: "border-box",
               }}
             >
               <div

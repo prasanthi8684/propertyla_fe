@@ -39,10 +39,10 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>Property Locality</label>
+              <label>Property Location</label>
               <PlaceSearch
                 onSelect={handleSelect}
-                placeholder="Search location or property name"
+                placeholder="Search property location"
                 defaultValue={""}
               />
             </div>
