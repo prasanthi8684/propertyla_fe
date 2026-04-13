@@ -5,6 +5,7 @@ import ErrorMessage from "../ErrorMassage";
 import { useForm } from "react-hook-form";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface FormData {
   emailOtp: string;
@@ -27,6 +28,8 @@ export default function VerifyForm() {
 
     if (otp) {
       try {
+        const API_BASE =
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
         // read the registered email saved at registration (fallback to the previous hardcoded email)
         const user_id = localStorage.getItem("user_id");
 
@@ -37,19 +40,32 @@ export default function VerifyForm() {
         });
 
         if (!res.ok) {
-          const errBody = await res
+          const errBody = (await res
             .json()
-            .catch(() => ({ message: res.statusText }));
-          console.error("OTP verification failed:", errBody);
+            .catch(() => ({ message: res.statusText }))) as
+            | { error?: string; message?: string }
+            | undefined;
+
+          const serverMessage = errBody?.error || errBody?.message || "";
+          if (
+            res.status === 400 ||
+            serverMessage.toLowerCase().includes("otp") ||
+            serverMessage.toLowerCase().includes("invalid") ||
+            serverMessage.toLowerCase().includes("expired")
+          ) {
+            toast.error("OTP does not match, please check the email.");
+          } else {
+            toast.error(serverMessage || "Verification failed");
+          }
           return;
         }
 
-        const resData = await res.json();
-        console.log("OTP verified:", resData);
+        await res.json().catch(() => null);
+        toast.success("OTP verified successfully");
         // on successful verification you can navigate or mark verified
         router.push("/sign-in");
-      } catch (error) {
-        console.error("Error verifying OTP:", error);
+      } catch {
+        toast.error("OTP does not match, please check the email.");
       }
     }
   };
@@ -70,7 +86,8 @@ export default function VerifyForm() {
                           : null;
                       return email;
                     })()}
-                    Registered Email: {localStorage.getItem("registeredEmail")}
+                    We have sent OTP to your registered email id{" "}
+                    {localStorage.getItem("registeredEmail")}
                   </label>
                 </div>
               </div>
