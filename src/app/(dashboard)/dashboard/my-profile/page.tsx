@@ -1,7 +1,6 @@
 import UserProfileForm from "@/components/Form/UserProfileForm";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Malaysia Property News, Guides & Investment Tips",
@@ -25,9 +24,6 @@ export default function MyProfile() {
             <h5 className="tp-dashboard-new-title" style={{ margin: 0 }}>
               Account Settings
             </h5>
-            <div className="tp-dashboard-profile-btn">
-              <Link href="/sign-in">Logout</Link>
-            </div>
           </div>
 
           <UserProfileForm />

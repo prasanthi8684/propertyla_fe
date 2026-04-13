@@ -53,7 +53,7 @@ export default function SearchRefineBar() {
       style={{
         background: "#f8f9ff",
         border: "1px solid #e8e8f0",
-        borderRadius: "12px",
+        borderRadius: "8px",
         padding: "20px 24px",
         marginBottom: "32px",
       }}
@@ -78,7 +78,7 @@ export default function SearchRefineBar() {
             <input
               type="text"
               style={inputStyle}
-              placeholder="e.g. Greenfield Villas"
+              placeholder="Ex. Susana Sentral"
               value={propertyName}
               onChange={(e) => setPropertyName(e.target.value)}
             />
@@ -90,7 +90,7 @@ export default function SearchRefineBar() {
             <input
               type="text"
               style={inputStyle}
-              placeholder="e.g. Kuala Lumpur"
+              placeholder="Ex. Kuala Lumpur"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />

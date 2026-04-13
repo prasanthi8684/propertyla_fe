@@ -18,16 +18,22 @@ export default function HeroBannerTabContent({
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<SearchItem[]>([]);
   const [open, setOpen] = useState(false);
+  const [searched, setSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Search button handler
-  const handleSearch = () => {
-    if (!query.trim()) return;
+  const runSearch = (value: string) => {
+    if (!value.trim()) return;
     const params = new URLSearchParams({
-      address: query.trim(),
+      address: value.trim(),
       type: id || "rent",
     });
     router.push(`/search?${params}`);
+  };
+
+  // Search button handler
+  const handleSearch = () => {
+    runSearch(query);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -38,8 +44,13 @@ export default function HeroBannerTabContent({
   useEffect(() => {
     if (!query.trim()) {
       setSuggestions([]);
+      setOpen(false);
+      setSearched(false);
+      setLoading(false);
       return;
     }
+    setLoading(true);
+    setSearched(false);
     const timer = setTimeout(async () => {
       try {
         const API_BASE =
@@ -47,7 +58,13 @@ export default function HeroBannerTabContent({
         const res = await fetch(
           `${API_BASE}/api/properties/search?q=${encodeURIComponent(query)}&type=${id || "rent"}`,
         );
-        if (!res.ok) return;
+        if (!res.ok) {
+          setSuggestions([]);
+          setOpen(true);
+          setSearched(true);
+          setLoading(false);
+          return;
+        }
         const data = await res.json();
         const items: SearchItem[] = (data?.data || []).map(
           (p: {
@@ -67,9 +84,14 @@ export default function HeroBannerTabContent({
           }),
         );
         setSuggestions(items);
-        setOpen(items.length > 0);
+        setOpen(true);
+        setSearched(true);
+        setLoading(false);
       } catch {
         setSuggestions([]);
+        setOpen(true);
+        setSearched(true);
+        setLoading(false);
       }
     }, 400);
     return () => clearTimeout(timer);
@@ -150,7 +172,7 @@ export default function HeroBannerTabContent({
           </div>
 
           {/* Suggestions Dropdown */}
-          {open && suggestions.length > 0 && (
+          {open && query.trim() && (loading || searched || suggestions.length > 0) && (
             <div
               style={{
                 position: "absolute",
@@ -177,9 +199,17 @@ export default function HeroBannerTabContent({
                   textTransform: "uppercase",
                 }}
               >
-                {suggestions.length} result{suggestions.length !== 1 ? "s" : ""}{" "}
-                found
+                {loading
+                  ? "Searching…"
+                  : suggestions.length === 0
+                    ? "No results found"
+                    : `${suggestions.length} result${suggestions.length !== 1 ? "s" : ""} found`}
               </div>
+              {!loading && suggestions.length === 0 && (
+                <div style={{ padding: "12px 16px", fontSize: "13px", color: "#666" }}>
+                  Try searching with a different keyword.
+                </div>
+              )}
               {suggestions.map((item) => (
                 <button
                   key={item.id}
@@ -187,6 +217,7 @@ export default function HeroBannerTabContent({
                   onClick={() => {
                     setQuery(item.displayText);
                     setOpen(false);
+                    runSearch(item.displayText);
                   }}
                   style={{
                     display: "flex",

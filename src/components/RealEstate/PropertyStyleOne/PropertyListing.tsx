@@ -345,7 +345,10 @@ export default function PropertyListing() {
 
         {/* Property cards */}
         {!loading && properties.length > 0 && (
-          <div className="row">
+          <div
+            className="row"
+            style={{ paddingLeft: "15px", paddingRight: "15px" }}
+          >
             {properties.map((item) => (
               <div className="col-xl-12 col-sm-12" key={item.id}>
                 <PropertySingleCard item={item} />

@@ -57,8 +57,12 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
       >
         <Link href={`/${item.linkUrl}/${item.id}`}>
           <img
-            src={typeof item.image === "string" ? item.image : (item.image as { src: string }).src}
-            style={{ width: "100%", height: "auto" }}
+            src={
+              typeof item.image === "string"
+                ? item.image
+                : (item.image as { src: string }).src
+            }
+            style={{ width: "100%", height: "280px" }}
             alt={item.title}
           />
         </Link>

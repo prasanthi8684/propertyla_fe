@@ -80,13 +80,13 @@ const menu_data_one = [
     submenu: [
       {
         id: 1,
-        label: "New Residential",
+        label: "Residential",
         url: "/search",
         img: "",
       },
       {
         id: 2,
-        label: "New Commercial",
+        label: "Commercial",
         url: "/search",
         img: "",
       },
@@ -118,11 +118,7 @@ const menu_data_one = [
       { id: 1, label: "About", url: "/about" },
       { id: 4, label: "Faq", url: "/faq" },
       { id: 5, label: "Pricing", url: "/pricing" },
-      { id: 10, label: "Sign up", url: "/sign-up" },
-      { id: 11, label: "Sign In", url: "/sign-in" },
-      { id: 12, label: "Error", url: "/error" },
       { id: 13, label: "Contact", url: "/contact" },
-      { id: 14, label: "Logout", url: "/contact" },
     ],
   },
 ];

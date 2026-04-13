@@ -61,15 +61,23 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
       </section>
 
       {/* Main Content */}
-      <section className="tp-property-list-section">
+      <section
+        className="tp-property-list-section"
+        style={{ marginTop: "-120px" }}
+      >
         <div className="container">
           <div className="row">
-            <div className="col-lg-3">
+            <div className="col-lg-3 filt">
               <PropertyFilterWidget />
               <SidebarPropertyItem />
               <DiscountOfferCard />
             </div>
-            <div className="col-lg-9">{children}</div>
+            <div
+              className="col-lg-9"
+              style={{ paddingLeft: "0px", paddingRight: "0px" }}
+            >
+              {children}
+            </div>
           </div>
         </div>
       </section>
