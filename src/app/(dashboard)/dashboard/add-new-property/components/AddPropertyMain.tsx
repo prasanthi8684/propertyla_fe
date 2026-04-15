@@ -93,6 +93,11 @@ export default function AddPropertyPage() {
           }
         }
 
+        if (imageUrls.length < 5) {
+          toast.error("Please upload minimum 5 images for better results.");
+          return;
+        }
+
         // ---------------------------------------------------------------
         // Remap FE field names → BE field names before sending to the API
         // ---------------------------------------------------------------
