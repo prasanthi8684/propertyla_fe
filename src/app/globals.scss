@@ -101,6 +101,10 @@
 .tp-dashboard-new-input {
   margin-bottom: 0;
 }
+
+.tp-dashboard-add-property-form .tp-dashboard-new-input {
+  margin-bottom: 18px;
+}
 .gap-20 {
   gap: 20px;
 }
@@ -215,7 +219,7 @@
   background: transparent;
   text-align: left;
   font-size: 15px;
-  color: var(--tp-heading-primary);
+  color: var(--tp-theme-primary);
   cursor: pointer;
 }
 
@@ -254,7 +258,7 @@
   color: var(--tp-common-white);
 }
 .tp-header-pinned .tp-header-1-main .hamburger-btn {
-  background: var(--tp-heading-primary);
+  background: var(--tp-theme-primary);
 }
 .tp-header-right-user-icon span {
   height: 40px !important;

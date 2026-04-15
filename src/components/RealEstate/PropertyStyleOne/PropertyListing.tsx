@@ -65,6 +65,7 @@ function mapApiProperty(item: ApiProperty, index: number): Property {
     image,
     showTags: true,
     isForRent: item.listingType === "rent",
+    isForSale: item.listingType === "sale",
     isFeatured: false,
     bedrooms: beds > 0 ? String(beds) : "0",
     bathrooms: baths > 0 ? String(baths) : "0",

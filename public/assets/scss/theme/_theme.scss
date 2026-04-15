@@ -127,7 +127,7 @@ h6 {
   line-height: 1.2;
   @include transition(color);
   font-family: var(--tp-ff-heading);
-  color: var(--tp-heading-primary);
+  color: var(--tp-theme-primary);
 }
 
 h1 {

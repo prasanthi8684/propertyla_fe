@@ -45,7 +45,7 @@
       font-weight: 600;
       margin-bottom: 2px;
       letter-spacing: -0.4px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
     &-content {
       & p {
@@ -103,7 +103,7 @@
       & a {
         text-decoration-line: underline;
         &:hover {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
         }
       }
     }
@@ -149,7 +149,7 @@
       font-weight: 500;
       border-radius: 50px;
       padding: 7px 16px 9px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       background-color: var(--tp-common-white);
       display: inline-block;
       & svg {

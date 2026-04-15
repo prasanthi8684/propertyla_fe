@@ -107,6 +107,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
         {item.showTags && (
           <div className="tp-rent-tags">
             {item.isForRent === true ? <Link href="#">FOR RENT</Link> : ""}{" "}
+            {item.isForSale === true ? <Link href="#">FOR SALE</Link> : ""}{" "}
             {item.isFeatured === true ? (
               <Link className="two" href="#">
                 FEATURED

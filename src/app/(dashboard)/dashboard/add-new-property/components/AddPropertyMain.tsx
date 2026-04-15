@@ -214,7 +214,10 @@ export default function AddPropertyPage() {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="tp-dashboard-add-property-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <BasicDetails />
         <LocationDetails />
         <PropertyDetails />

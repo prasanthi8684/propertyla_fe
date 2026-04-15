@@ -21,7 +21,7 @@
       &:hover {
         & span {
           color: var(--tp-common-white);
-          background-color: var(--tp-heading-primary);
+          background-color: var(--tp-theme-primary);
         }
       }
     }
@@ -38,7 +38,7 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 22px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         &:hover {
           color: var(--tp-theme-primary);
         }
@@ -160,7 +160,7 @@
       padding: 15px 41px;
       &:hover {
         color: var(--tp-common-white);
-        background-color: var(--tp-heading-primary);
+        background-color: var(--tp-theme-primary);
       }
     }
   }
@@ -180,7 +180,7 @@
   }
   &-box {
     margin-right: 70px;
-    background-color: var(--tp-heading-primary);
+    background-color: var(--tp-theme-primary);
     @media #{$xs} {
       margin-right: 0;
     }
@@ -276,7 +276,7 @@
         display: block;
         margin-bottom: 10px;
         letter-spacing: -0.32px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         & span {
           display: inline-block;
           margin-right: 8px;

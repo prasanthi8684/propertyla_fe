@@ -106,7 +106,7 @@
       margin-right: 4px;
 
       &.two {
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         background-color: var(--tp-theme-secondary);
       }
     }
@@ -205,7 +205,7 @@
         font-size: 14px;
         font-weight: 500;
         letter-spacing: -0.4px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
       }
     }
   }
@@ -220,7 +220,7 @@
   &-btn {
     & .tp-btn {
       padding: 13px 24px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       background-color: var(--tp-theme-secondary);
 
       &:hover {
@@ -235,7 +235,7 @@
       font-size: 14px;
       font-weight: 600;
       line-height: 14px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
   }
 
@@ -351,7 +351,7 @@
         font-weight: 500;
         width: 100%;
         letter-spacing: -0.4px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
 
         & svg {
           margin-right: 5px;
@@ -364,7 +364,7 @@
   &-btn {
     & .tp-btn {
       margin-top: -1px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       border: 1px solid #e6e6e6;
       background-color: transparent;
 

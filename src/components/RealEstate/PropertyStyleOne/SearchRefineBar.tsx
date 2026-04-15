@@ -9,19 +9,25 @@ export default function SearchRefineBar() {
   const searchParams = useSearchParams();
 
   // Fall back to "address" param (sent by homepage search bar)
-  const [q, setQ] = useState(
-    searchParams.get("q") || searchParams.get("address") || "",
+  const [keyWord, setKeyWord] = useState(
+    searchParams.get("q") ||
+      searchParams.get("address") ||
+      searchParams.get("keyWord") ||
+      "",
   );
   const [type, setType] = useState(searchParams.get("type") || "");
   const [city, setCity] = useState(searchParams.get("city") || "");
   const [propertyName, setPropertyName] = useState(
-    searchParams.get("propertyName") || "",
+    searchParams.get("propertyName") ||
+      searchParams.get("q") ||
+      searchParams.get("address") ||
+      "",
   );
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (q.trim()) params.set("q", q.trim());
+    if (keyWord.trim()) params.set("q", keyWord.trim());
     if (type) params.set("type", type);
     if (city.trim()) params.set("city", city.trim());
     if (propertyName.trim()) params.set("propertyName", propertyName.trim());
@@ -66,9 +72,9 @@ export default function SearchRefineBar() {
             <input
               type="text"
               style={inputStyle}
-              placeholder="e.g. luxury, studio..."
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
+              placeholder="Ex. luxury, studio..."
+              value={keyWord}
+              onChange={(e) => setKeyWord(e.target.value)}
             />
           </div>
 
@@ -131,7 +137,7 @@ export default function SearchRefineBar() {
                 letterSpacing: "0.3px",
               }}
             >
-              🔍 Search
+              Update
             </button>
           </div>
         </div>

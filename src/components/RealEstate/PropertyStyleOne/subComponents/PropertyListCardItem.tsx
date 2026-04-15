@@ -36,12 +36,12 @@ export default function PropertyListCardItem({ item }: IFeatureListProps) {
   };
   // Access wishlist from Redux store
   const wishlist = useSelector(
-    (state: RootState) => state.wishlist.wishlistProducts
+    (state: RootState) => state.wishlist.wishlistProducts,
   );
 
   // Check if the current property is already in the wishlist
   const isWishlisted = wishlist?.some(
-    (wishlistItem) => wishlistItem.id === item.id
+    (wishlistItem) => wishlistItem.id === item.id,
   );
 
   return (
@@ -83,6 +83,7 @@ export default function PropertyListCardItem({ item }: IFeatureListProps) {
           {item.showTags && (
             <div className="tp-rent-tags">
               {item.isForRent === true ? <Link href="#">FOR RENT</Link> : ""}{" "}
+              {item.isForSale === true ? <Link href="#">FOR SALE</Link> : ""}{" "}
               {item.isFeatured === true ? (
                 <Link className="two" href="#">
                   FEATURED
