@@ -18,9 +18,18 @@ import { formatPrice } from "../Utils/formatPrice";
 import { RootState } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function PropertySingleCard({ item }: IFeatureListProps) {
   const dispatch = useDispatch();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const fromUrl =
+    pathname === "/search" ? `/search?${searchParams.toString()}` : null;
+  const detailsHref = fromUrl
+    ? `/${item.linkUrl}/${item.id}?from=${encodeURIComponent(fromUrl)}`
+    : `/${item.linkUrl}/${item.id}`;
 
   //handle add to cart
   const handleAddToCart = (product: IFeaturedPropertyDT) => {
@@ -55,10 +64,14 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
         className="col-xl-6 tp-rent-thumb p-relative"
         style={{ padding: "0px" }}
       >
-        <Link href={`/${item.linkUrl}/${item.id}`}>
+        <Link href={detailsHref}>
           <img
-            src={typeof item.image === "string" ? item.image : (item.image as { src: string }).src}
-            style={{ width: "100%", height: "auto" }}
+            src={
+              typeof item.image === "string"
+                ? item.image
+                : (item.image as { src: string }).src
+            }
+            style={{ width: "100%", height: "280px" }}
             alt={item.title}
           />
         </Link>
@@ -106,7 +119,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
       </div>
       <div className="col-xl-6 tp-rent-content">
         <h4 className="tp-rent-title">
-          <Link className="textline" href={`/${item.linkUrl}/${item.id}`}>
+          <Link className="textline" href={detailsHref}>
             {item.title}
           </Link>
         </h4>
@@ -142,7 +155,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
         </div>
         <div className="tp-rent-btn-box d-flex justify-content-between align-items-center">
           <div className="tp-rent-btn">
-            <Link className="tp-btn" href={`/${item.linkUrl}/${item.id}`}>
+            <Link className="tp-btn" href={detailsHref}>
               View Details
             </Link>
           </div>

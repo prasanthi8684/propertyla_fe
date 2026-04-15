@@ -15,6 +15,10 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
   const q = params.get("q") || "";
   const type = params.get("type") || "";
   const city = params.get("city") || "";
+  const address = params.get("address") || "";
+  const propertyName = params.get("propertyName") || "";
+
+  const breadcrumbLabel = propertyName || q || address || "Search";
 
   // Build a human-readable subtitle
   const subtitleParts: string[] = [];
@@ -33,7 +37,7 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
       >
         <div className="container">
           <Breadcrumb
-            items={[{ label: "Home", href: "/" }, { label: "Search" }]}
+            items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]}
           />
           <div className="row align-items-center gsrch">
             <div className="col-lg-12 padLR0">
@@ -43,12 +47,11 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
                     Property search{" "}
                     {subtitle !== "all locations" && (
                       <>
-                        for{" "}
-                        <span style={{ color: "#5758d6" }}>{subtitle}</span>
+                        for <span style={{ color: "#003B5C" }}>{subtitle}</span>
                       </>
                     )}
                     {subtitle === "all locations" && (
-                      <span style={{ color: "#5758d6" }}>all locations</span>
+                      <span style={{ color: "#003B5C" }}>all locations</span>
                     )}
                   </span>
                 </div>
@@ -62,15 +65,23 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
       </section>
 
       {/* Main Content */}
-      <section className="tp-property-list-section">
+      <section
+        className="tp-property-list-section"
+        style={{ marginTop: "-120px" }}
+      >
         <div className="container">
           <div className="row">
-            <div className="col-lg-3">
+            <div className="col-lg-3 filt">
               <PropertyFilterWidget />
               <SidebarPropertyItem />
               <DiscountOfferCard />
             </div>
-            <div className="col-lg-9">{children}</div>
+            <div
+              className="col-lg-9"
+              style={{ paddingLeft: "0px", paddingRight: "0px" }}
+            >
+              {children}
+            </div>
           </div>
         </div>
       </section>

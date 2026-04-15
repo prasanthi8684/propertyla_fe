@@ -2,13 +2,18 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { truncateText } from "../../data/truncateText";
 import { useRouter } from "next/navigation";
+import UserSvg from "@/components/SVG/UserSvg";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  const truncateUsername = (value: string, maxLength: number) => {
+    if (value.length <= maxLength) return value;
+    return value.slice(0, maxLength) + "…";
+  };
 
   // ✅ Close only when clicking OUTSIDE
   useEffect(() => {
@@ -35,6 +40,7 @@ const ProfileDropdown = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("loginUser");
+    setOpen(false);
     router.push("/sign-in");
   };
 
@@ -43,38 +49,65 @@ const ProfileDropdown = () => {
       <button type="button" className="profile-btn" onClick={handleToggle}>
         <span
           style={{
-            display: "inline-block",
+            position: "relative",
+            display: "inline-flex",
             width: 36,
             height: 36,
             minWidth: 36,
             maxWidth: 36,
             borderRadius: "50%",
-            backgroundImage: "url('/assets/img/shop/user-1.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(212, 175, 55, 0.18)",
+            border: "1px solid rgba(212, 175, 55, 0.75)",
+            color: "#D4AF37",
             flexShrink: 0,
           }}
-          aria-label="user avatar"
-        />
+          aria-label="Logged in user"
+        >
+          <UserSvg />
+          <span
+            style={{
+              position: "absolute",
+              right: -1,
+              bottom: -1,
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: "#22C55E",
+              border: "2px solid #003B5C",
+            }}
+            aria-hidden="true"
+          />
+        </span>
         <div
           style={{
-            paddingLeft: "15px",
+            paddingLeft: "0px",
             paddingRight: "5px",
             paddingTop: "10px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          <div className="tp-header-right-user-content">
+          <div className="tp-header-right-user-content" style={{ margin: 0 }}>
             {(() => {
               const username =
                 typeof window !== "undefined"
                   ? localStorage.getItem("loginUser")
                   : null;
-              return username ? <p>{truncateText(username, 4)}</p> : <p></p>;
+
+              return username ? (
+                <p
+                  style={{ margin: 0 }}
+                >{`Hi, ${truncateUsername(username, 10)}`}</p>
+              ) : (
+                <p style={{ margin: 0 }}></p>
+              );
             })()}
           </div>
 
           <span className={`arrow ${open ? "rotate" : ""}`}>
-            {" "}
             <i className="far fa-chevron-down" style={{ color: "#fff" }}></i>
           </span>
         </div>
@@ -82,19 +115,18 @@ const ProfileDropdown = () => {
 
       {/* ✅ Dropdown */}
       {open && (
-        <div className="profile-dropdown-menu">
-          <Link href="/dashboard/my-profile" className="dropdown-item">
-            My Profile
-          </Link>
-
-          <button
-            type="button"
-            className="dropdown-item logout"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
+        <ul className="sub-menu">
+          <li>
+            <Link href="/dashboard/my-profile" onClick={() => setOpen(false)}>
+              <span>My Profile</span>
+            </Link>
+          </li>
+          <li>
+            <button type="button" onClick={handleLogout}>
+              <span>Logout</span>
+            </button>
+          </li>
+        </ul>
       )}
     </div>
   );

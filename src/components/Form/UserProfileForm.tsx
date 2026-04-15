@@ -7,6 +7,7 @@ import { ClosedEyeSvg, OpenEyeSvg } from "../SVG";
 import ErrorMessage from "./ErrorMassage";
 import { toast } from "sonner";
 import apiClient from "@/config/axios";
+import UserSvg from "@/components/SVG/UserSvg";
 
 const profileSchema = yup.object().shape({
   fullName: yup.string().required("Full name is required"),
@@ -188,19 +189,36 @@ export default function UserProfileForm() {
         }}
       >
         <div style={{ position: "relative", width: 90, height: 90, flexShrink: 0 }}>
-          <span
-            style={{
-              display: "block",
-              width: 90,
-              height: 90,
-              borderRadius: "50%",
-              backgroundImage: profileImageUrl
-                ? `url('${profileImageUrl}')`
-                : "url('/assets/img/shop/user-1.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
+          {profileImageUrl ? (
+            <span
+              style={{
+                display: "block",
+                width: 90,
+                height: 90,
+                borderRadius: "50%",
+                backgroundImage: `url('${profileImageUrl}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          ) : (
+            <span
+              style={{
+                display: "flex",
+                width: 90,
+                height: 90,
+                borderRadius: "50%",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "rgba(212, 175, 55, 0.18)",
+                border: "1px solid rgba(212, 175, 55, 0.75)",
+                color: "#D4AF37",
+              }}
+              aria-label="default profile icon"
+            >
+              <UserSvg />
+            </span>
+          )}
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
