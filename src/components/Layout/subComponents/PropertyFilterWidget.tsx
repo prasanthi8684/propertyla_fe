@@ -48,6 +48,7 @@ export default function PropertyFilterWidget() {
     if (minPrice !== "Any") filterParams.set("minPrice", minPrice);
     if (maxPrice !== "Any") filterParams.set("maxPrice", maxPrice);
     if (bedrooms !== "All") filterParams.set("bedrooms", bedrooms);
+    if (propertyStatus !== "All") filterParams.set("status", propertyStatus);
     filterParams.set("minSize", String(sizeRange[0]));
     filterParams.set("maxSize", String(sizeRange[1]));
 

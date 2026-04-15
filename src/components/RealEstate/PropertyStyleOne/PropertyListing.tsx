@@ -199,18 +199,6 @@ export default function PropertyListing() {
     maxSize,
   ]);
 
-  // ── Active filter badges ─────────────────────────────────────────
-  const hasFilters = !!(
-    keyword ||
-    type ||
-    city ||
-    propertyName ||
-    propertyType !== "All" ||
-    minPriceStr !== "Any" ||
-    maxPriceStr !== "Any" ||
-    bedroomsFilter !== "All"
-  );
-
   const activeFilters: { label: string; value: string }[] = [];
   if (keyword) activeFilters.push({ label: "Search", value: keyword });
   if (type) activeFilters.push({ label: "Type", value: type });
@@ -350,7 +338,11 @@ export default function PropertyListing() {
             style={{ paddingLeft: "15px", paddingRight: "15px" }}
           >
             {properties.map((item) => (
-              <div className="col-xl-12 col-sm-12" key={item.id}>
+              <div
+                className="col-xl-12 col-sm-12"
+                key={item.id}
+                style={{ marginBottom: "15px" }}
+              >
                 <PropertySingleCard item={item} />
               </div>
             ))}

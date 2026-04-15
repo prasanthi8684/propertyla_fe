@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   ActiveWishListSvg,
   BathroomsSvg,
@@ -20,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IdProps } from "@/types/custom-interface";
 import { RootState } from "@/redux/store";
 import { formatPrice } from "@/components/Utils/formatPrice";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 
 type ApiProperty = {
   id: string;
@@ -84,10 +86,37 @@ function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {
 
 export default function PropertyDetailsOneArea({ id }: IdProps) {
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
   const [apiProperty, setApiProperty] = useState<ApiProperty | null>(null);
   const [display, setDisplay] = useState<IFeaturedPropertyDT | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const fromParam = searchParams.get("from");
+  const listingHref = (() => {
+    if (!fromParam) return "/search";
+    try {
+      return decodeURIComponent(fromParam);
+    } catch {
+      return "/search";
+    }
+  })();
+
+  const listingLabel = (() => {
+    try {
+      const u = new URL(listingHref, "http://localhost");
+      const sp = u.searchParams;
+      return (
+        sp.get("propertyName") ||
+        sp.get("q") ||
+        sp.get("address") ||
+        sp.get("city") ||
+        "Property Listing"
+      );
+    } catch {
+      return "Property Listing";
+    }
+  })();
 
   useEffect(() => {
     if (!id) return;
@@ -142,8 +171,15 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
 
   return (
     <>
-      <section className="tp-property-details-area pt-80 pb-130">
+      <section className="tp-property-details-area pt-30 pb-130">
         <div className="container">
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: listingLabel, href: listingHref },
+              { label: "Details" },
+            ]}
+          />
           <div className="row">
             {/* Left — title / address / meta */}
             <div className="col-lg-8">
@@ -297,7 +333,7 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
         </div>
 
         {/* Image slider */}
-        <div className="container-fluid gx-0">
+        <div className="container">
           <PropertyDetailsSlider images={apiProperty.images} />
         </div>
       </section>

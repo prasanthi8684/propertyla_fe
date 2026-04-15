@@ -15,6 +15,10 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
   const q = params.get("q") || "";
   const type = params.get("type") || "";
   const city = params.get("city") || "";
+  const address = params.get("address") || "";
+  const propertyName = params.get("propertyName") || "";
+
+  const breadcrumbLabel = propertyName || q || address || "Search";
 
   // Build a human-readable subtitle
   const subtitleParts: string[] = [];
@@ -33,7 +37,7 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
       >
         <div className="container">
           <Breadcrumb
-            items={[{ label: "Home", href: "/" }, { label: "Search" }]}
+            items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]}
           />
           <div className="row align-items-center gsrch">
             <div className="col-lg-12 padLR0">
