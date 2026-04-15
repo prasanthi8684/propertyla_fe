@@ -65,7 +65,7 @@ export default function CommonHeader({ wrapClass = "" }) {
                     <Link href="/sign-in">
                       <span
                         style={{
-                          background: "var(--tp-heading-primary)",
+                          background: "var(--tp-theme-primary)",
                           color: "#fff",
                         }}
                       >
@@ -80,7 +80,7 @@ export default function CommonHeader({ wrapClass = "" }) {
               <button
                 onClick={toggleOffcanvas}
                 className="hamburger-btn"
-                style={{ background: "var(--tp-heading-primary)" }}
+                style={{ background: "var(--tp-theme-primary)" }}
               >
                 <span></span>
                 <span></span>

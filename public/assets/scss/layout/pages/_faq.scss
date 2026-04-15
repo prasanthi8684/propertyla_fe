@@ -24,7 +24,7 @@
       font-size: 14px;
       font-weight: 500;
       padding: 18px 30px 18px 20px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       &::after {
         content: none;
       }
@@ -32,7 +32,7 @@
         box-shadow: none;
         font-size: 14px;
         font-weight: 500;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         background: var(--tp-common-white);
       }
       &:not(.collapsed) {
@@ -70,10 +70,10 @@
           border-radius: 2px;
           @include transition();
           @include transform(translate(-50%, -50%));
-          background-color: var(--tp-heading-primary);
+          background-color: var(--tp-theme-primary);
         }
         &::before {
-          background-color: var(--tp-heading-primary);
+          background-color: var(--tp-theme-primary);
           @include transform(translate(-50%, -50%) rotate(90deg));
         }
       }
@@ -192,7 +192,7 @@
           @include transition();
         }
         &.active {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           & span {
             opacity: 1;
             transform: translateX(0px);

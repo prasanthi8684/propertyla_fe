@@ -78,6 +78,11 @@ export default function DashboardPropertyItem({ property }: IProps) {
               ) : (
                 ""
               )}{" "}
+              {property.isForSale === true ? (
+                <Link href="#">FOR SALE</Link>
+              ) : (
+                ""
+              )}
               {property.isFeatured === true ? (
                 <Link className="two" href="#">
                   FEATURED

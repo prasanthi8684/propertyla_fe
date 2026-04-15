@@ -6,25 +6,26 @@ export interface IFeaturedPropertyDT {
   id: number;
   title: string;
   address?: string;
-  linkUrl?:string;
-  image: StaticImageData;
+  linkUrl?: string;
+  image: StaticImageData | string;
   userImage?: StaticImageData;
   showTags?: boolean;
   isForRent?: boolean;
+  isForSale?: boolean;
   isFeatured?: boolean;
   userName?: string;
   userRole?: string;
   bedrooms: string;
   bathrooms: string;
   livingArea: string;
-  city?:string,
-  state?: string,
-  wowAnimation?:boolean;
-  wowDelay?:string;
-  description?:string;
-  spacing?:boolean,
+  city?: string;
+  state?: string;
+  wowAnimation?: boolean;
+  wowDelay?: string;
+  description?: string;
+  spacing?: boolean;
   price: number;
-  quantity:number
+  quantity: number;
 }
 
 // Interface for neighbourhood properties, including city name, property count, and image.
@@ -40,7 +41,7 @@ export interface propertyProps {
   columnClass?: boolean;
   showBtn?: boolean;
   textAlign?: string;
-  textStart?: string
+  textStart?: string;
 }
 //define interface for property Props
 export interface RentMetaItemProps {

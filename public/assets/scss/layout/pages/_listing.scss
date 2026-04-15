@@ -33,7 +33,7 @@
       line-height: 30px;
       margin-bottom: 20px;
       letter-spacing: -0.52px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
     &-thumb {
       overflow: hidden;
@@ -72,10 +72,10 @@
         font-weight: 600;
         padding: 0px 10px;
         border: 1px solid #e6e6e6;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         &:hover {
           color: var(--tp-common-white);
-          background-color: var(--tp-heading-primary);
+          background-color: var(--tp-theme-primary);
         }
       }
     }
@@ -170,7 +170,7 @@
       }
       &-title {
         margin-bottom: 25px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
       }
       &-content {
         & p {
@@ -279,7 +279,7 @@
     font-weight: 600;
     margin-bottom: 20px;
     letter-spacing: -0.3px;
-    color: var(--tp-heading-primary);
+    color: var(--tp-theme-primary);
     & a {
       &:hover {
         color: var(--tp-theme-primary);
@@ -529,7 +529,7 @@
         margin: 0;
         font-size: 14px;
         font-weight: 500;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
       }
     }
   }
@@ -539,7 +539,7 @@
       font-weight: 600;
       border: 1px solid #e6e6e6;
       background-color: transparent;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
   }
   &-slider {

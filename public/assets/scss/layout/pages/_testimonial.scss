@@ -121,7 +121,7 @@
         & a {
           font-weight: 600;
           text-decoration: underline;
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           &:hover {
             color: var(--tp-theme-primary);
           }
@@ -237,7 +237,7 @@
           border-bottom: 1px solid #e6e6e6;
         }
         &-title {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
         }
       }
     }

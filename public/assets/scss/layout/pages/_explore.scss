@@ -57,7 +57,8 @@
     font-weight: 600;
     color: var(--tp-common-white);
     & .textline {
-      background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+      background-image:
+        linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
     }
   }
   &-content {
@@ -138,7 +139,7 @@
     & span {
       font-size: 22px;
       font-weight: 600;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
   }
   &-title {

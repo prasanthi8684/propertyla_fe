@@ -5,7 +5,6 @@ import {
   ActiveWishListSvg,
   BathroomsSvg,
   BedroomsSvg,
-  CartSvg,
   LivingSvg,
   WishListSvg,
 } from "@/components/SVG";
@@ -16,7 +15,6 @@ import PropertyDetailsSlider from "./subComponents/PropertySlider";
 import { toggle_wishlist } from "@/redux/slices/wishlistSlice";
 import { compire_product } from "@/redux/slices/compireSlice";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
-import { cart_product } from "@/redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IdProps } from "@/types/custom-interface";
 import { RootState } from "@/redux/store";
@@ -74,6 +72,7 @@ function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {
     image: "" as unknown as IFeaturedPropertyDT["image"],
     showTags: true,
     isForRent: item.listingType === "rent",
+    isForSale: item.listingType === "sale",
     isFeatured: false,
     bedrooms: beds > 0 ? String(beds) : "0",
     bathrooms: baths > 0 ? String(baths) : "0",
@@ -171,8 +170,8 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
 
   return (
     <>
-      <section className="tp-property-details-area pt-30 pb-130">
-        <div className="container">
+      <section className="tp-property-details-area pb-130">
+        <div className="container tp-property-details-box">
           <Breadcrumb
             items={[
               { label: "Home", href: "/" },
@@ -277,14 +276,6 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
                       ) : (
                         <WishListSvg width="20" height="20" />
                       )}
-                    </span>
-                  </button>
-                  <button
-                    title="Add to cart"
-                    onClick={() => dispatch(cart_product(display))}
-                  >
-                    <span>
-                      <CartSvg width="24" height="24" />
                     </span>
                   </button>
                 </div>

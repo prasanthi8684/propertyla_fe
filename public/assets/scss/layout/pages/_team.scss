@@ -22,7 +22,7 @@
       & a {
         font-size: 14px;
         font-weight: 600;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         & span {
           margin-left: 4px;
           display: inline-block;
@@ -48,7 +48,7 @@
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 0;
-    color: var(--tp-heading-primary);
+    color: var(--tp-theme-primary);
     & a {
       &:hover {
         color: var(--tp-theme-primary);
@@ -124,7 +124,7 @@
           }
         }
         & span {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           background-color: var(--tp-common-white);
         }
         &:hover {
@@ -270,7 +270,7 @@
       font-size: 26px;
       font-weight: 600;
       letter-spacing: -0.52px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
   }
   &-item {
@@ -339,7 +339,7 @@
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 6px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       & a {
         &:hover {
           color: var(--tp-theme-primary);
@@ -362,7 +362,7 @@
         width: 50px;
         text-align: center;
         line-height: 50px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         background-color: var(--tp-common-white);
         &:not(:last-child) {
           margin-right: 8px;
@@ -452,7 +452,7 @@
     & a {
       font-weight: 600;
       text-decoration: underline;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       &:hover {
         color: var(--tp-theme-primary);
       }
@@ -526,7 +526,7 @@
       text-align: center;
       border-radius: 50%;
       background-color: #f0f4fd;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       &:not(:last-child) {
         margin-right: 2px;
       }
@@ -570,7 +570,7 @@
           font-weight: 600;
           margin-right: 20px;
           display: inline-block;
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           @media #{$xl} {
             margin-right: 10px;
           }
@@ -644,7 +644,7 @@
         font-weight: 500;
         display: block;
         letter-spacing: -0.32px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         &:not(:last-child) {
           margin-bottom: 10px;
         }
@@ -663,7 +663,7 @@
         font-size: 14px;
         font-weight: 500;
         margin-bottom: 25px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
       }
     }
     &-input {
@@ -701,11 +701,11 @@
         font-weight: 600;
         padding: 9px 24px;
         display: inline-block;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         background-color: var(--tp-common-white);
         &:hover {
           color: var(--tp-common-white);
-          background-color: var(--tp-heading-primary);
+          background-color: var(--tp-theme-primary);
         }
       }
     }
