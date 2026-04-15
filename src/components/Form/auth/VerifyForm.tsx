@@ -29,7 +29,7 @@ export default function VerifyForm() {
     if (otp) {
       try {
         const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3008";
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
         // read the registered email saved at registration (fallback to the previous hardcoded email)
         const user_id = localStorage.getItem("user_id");
 
