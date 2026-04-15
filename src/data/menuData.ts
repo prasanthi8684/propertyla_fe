@@ -107,8 +107,13 @@ const menu_data_one = [
   // },
   {
     id: 4,
-    label: "For Agents",
-    url: "/error",
+    label: "Services",
+    url: "#",
+    submenu: [
+      { id: 1, label: "Home loan", url: "/error" },
+      { id: 4, label: "EMI calculator", url: "/error" },
+      { id: 5, label: "Interior design", url: "/error" },
+    ],
   },
   {
     id: 5,
