@@ -1,21 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { PropertyFormData } from "@/schemas/validationSchema";
 import ErrorMessage from "../../../../../components/Form/ErrorMassage";
-import PlaceSearch from "../../../../../components/HeroBanner/subComponents/PlaceSearch";
+import PlaceSearch, { PlaceResult } from "../../../../../components/HeroBanner/subComponents/PlaceSearch";
 
 export default function LocationDetails() {
   const {
     register,
+    setValue,
+    watch,
     formState: { errors },
   } = useFormContext<PropertyFormData>();
-  const [place, setPlace] = useState<string>("");
 
-  const handleSelect = (selected: string) => {
-    setPlace(selected);
-    console.log("Your google location is ", place);
+  const locationValue = watch("location");
+
+  const handleSelect = (result: PlaceResult) => {
+    setValue("location", result.address, { shouldValidate: true });
+    setValue("latitude", result.lat ?? undefined, { shouldValidate: true });
+    setValue("longitude", result.lng ?? undefined, { shouldValidate: true });
   };
 
   return (
@@ -25,7 +28,7 @@ export default function LocationDetails() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>Property Name</label>
+              <label>Property Name <span style={{ color: "red" }}>*</span></label>
               <input
                 className="textBox"
                 type="text"
@@ -39,19 +42,31 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>Property Location</label>
+              <label>Property Location <span style={{ color: "red" }}>*</span></label>
               <PlaceSearch
                 onSelect={handleSelect}
                 placeholder="Search property location"
-                defaultValue={""}
+                defaultValue={locationValue ?? ""}
               />
+              {/* Hidden inputs so react-hook-form tracks lat/lng */}
+              <input type="hidden" {...register("location")} />
+              <input type="hidden" {...register("latitude")} />
+              <input type="hidden" {...register("longitude")} />
+              {errors?.location && (
+                <ErrorMessage message={errors?.location?.message || ""} />
+              )}
+              {!errors?.location && locationValue && (
+                <p style={{ fontSize: 12, color: "#888", marginTop: 4 }}>
+                  {locationValue}
+                </p>
+              )}
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>Street Name</label>
+              <label>Street Name <span style={{ color: "red" }}>*</span></label>
               <input
                 className="textBox"
                 type="text"
@@ -65,7 +80,7 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>City Name</label>
+              <label>City Name <span style={{ color: "red" }}>*</span></label>
               <input
                 className="textBox"
                 type="text"
@@ -81,7 +96,7 @@ export default function LocationDetails() {
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>State</label>
+              <label>State <span style={{ color: "red" }}>*</span></label>
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("stateName")} className="listDropDown">
                   <option value="">Select</option>
@@ -101,11 +116,9 @@ export default function LocationDetails() {
                   <option value="Terengganu">Terengganu</option>
                 </select>
               </div>
-              <div>
-                {errors?.stateName && (
-                  <ErrorMessage message={errors?.stateName?.message || ""} />
-                )}
-              </div>
+              {errors?.stateName && (
+                <ErrorMessage message={errors?.stateName?.message || ""} />
+              )}
             </div>
           </div>
           <div className="col-lg-6">
@@ -113,21 +126,19 @@ export default function LocationDetails() {
               <label>Country</label>
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("countryName")} className="listDropDown">
-                  <option value="Kuala Lumpur">Malaysia</option>
+                  <option value="Malaysia">Malaysia</option>
                 </select>
               </div>
-              <div>
-                {errors?.countryName && (
-                  <ErrorMessage message={errors?.countryName?.message || ""} />
-                )}
-              </div>
+              {errors?.countryName && (
+                <ErrorMessage message={errors?.countryName?.message || ""} />
+              )}
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>Pin Code</label>
+              <label>Pin Code <span style={{ color: "red" }}>*</span></label>
               <input
                 className="textBox"
                 type="text"
@@ -135,10 +146,7 @@ export default function LocationDetails() {
                 placeholder="Enter Pin Code"
                 {...register("pinCode")}
                 onInput={(e) => {
-                  e.currentTarget.value = e.currentTarget.value.replace(
-                    /\D/g,
-                    "",
-                  );
+                  e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
                 }}
               />
               {errors?.pinCode && (
@@ -148,7 +156,7 @@ export default function LocationDetails() {
           </div>
           <div className="col-lg-6">
             <div className="tp-dashboard-new-input">
-              <label>Landmark</label>
+              <label>Landmark <span style={{ color: "red" }}>*</span></label>
               <input
                 className="textBox"
                 type="text"

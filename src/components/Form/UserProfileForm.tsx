@@ -6,11 +6,30 @@ import {
   profileSchema,
   changePasswordSchema,
 } from "@/schemas/validationSchema";
+import * as yup from "yup";
 import { ClosedEyeSvg, OpenEyeSvg } from "../SVG";
 import ErrorMessage from "./ErrorMassage";
 import { toast } from "sonner";
 import apiClient from "@/config/axios";
 import UserSvg from "@/components/SVG/UserSvg";
+
+const profileSchema = yup.object().shape({
+  fullName: yup.string().required("Full name is required"),
+  aboutYou: yup.string(),
+  companyName: yup.string(),
+  icPassport: yup.string(),
+  designation: yup.string(),
+  experience: yup.number().typeError("Must be a number").min(0, "Must be 0 or more"),
+});
+
+const changePasswordSchema = yup.object().shape({
+  oldPassword: yup.string().required("Old password is required"),
+  newPassword: yup.string().required("New password is required").min(6, "At least 6 characters"),
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf([yup.ref("newPassword")], "Passwords do not match"),
+});
 
 interface ProfileFormData {
   fullName: string;
@@ -180,7 +199,6 @@ export default function UserProfileForm() {
           profile.imageUrl ||
           "";
 
-        // Populate profile form fields
         resetProfile({
           fullName,
           aboutYou,
@@ -199,9 +217,13 @@ export default function UserProfileForm() {
 
         // Set display name in header
         setDisplayName(fullName || "My Profile");
+        if (profile.profileImage) {
+          setProfileImageUrl(profile.profileImage);
+        }
+
+        setDisplayName(profile.fullName ?? profile.username ?? "My Profile");
       } catch (err: unknown) {
         const error = err as { response?: { status?: number } };
-        // 401 = not logged in, silently skip
         if (error?.response?.status !== 401) {
           toast.error("Failed to load profile data");
         }
@@ -213,7 +235,6 @@ export default function UserProfileForm() {
     fetchProfile();
   }, [resetProfile]);
 
-  // ── Profile image upload ──
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -233,7 +254,6 @@ export default function UserProfileForm() {
     }
   };
 
-  // ── PATCH /api/users/profile ──
   const onProfileSubmit = async (data: ProfileFormData) => {
     try {
       const normalizedPhone = data.phone?.trim() ? formatNum(data.phone) : "";
@@ -261,7 +281,6 @@ export default function UserProfileForm() {
     }
   };
 
-  // ── POST /api/auth/change-password ──
   const onPasswordSubmit = async (data: PasswordFormData) => {
     try {
       await apiClient.post("/auth/change-password", {
@@ -293,7 +312,7 @@ export default function UserProfileForm() {
 
   return (
     <>
-      {/* ── Profile Image + Name ── */}
+      {/* Profile Image + Name */}
       <div
         style={{
           display: "flex",
@@ -379,7 +398,7 @@ export default function UserProfileForm() {
         </div>
       </div>
 
-      {/* ── Profile Information Form ── */}
+      {/* Profile Information Form */}
       <form onSubmit={handleProfileSubmit(onProfileSubmit)}>
         <div className="tp-dashboard-profile-information pb-50">
           <h5 className="tp-dashboard-new-title">Personal Information</h5>
@@ -517,7 +536,7 @@ export default function UserProfileForm() {
         </div>
       </form>
 
-      {/* ── Change Password Form ── */}
+      {/* Change Password Form */}
       <form onSubmit={handlePasswordSubmit(onPasswordSubmit)}>
         <div className="tp-dashboard-profile-information mb-40">
           <h5 className="tp-dashboard-new-title">Change Password</h5>
