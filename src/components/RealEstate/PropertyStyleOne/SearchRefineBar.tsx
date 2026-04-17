@@ -37,7 +37,7 @@ export default function SearchRefineBar() {
   const inputStyle: React.CSSProperties = {
     border: "1px solid #ddd",
     borderRadius: "8px",
-    padding: "10px 14px",
+    padding: "15px 14px",
     fontSize: "14px",
     width: "100%",
     outline: "none",
