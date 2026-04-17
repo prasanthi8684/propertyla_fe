@@ -3,8 +3,14 @@
 import React, { useRef, useEffect } from "react";
 import { Autocomplete } from "@react-google-maps/api";
 
+export interface PlaceResult {
+  address: string;
+  lat: number | null;
+  lng: number | null;
+}
+
 interface PlaceSearchProps {
-  onSelect: (place: string) => void;
+  onSelect: (result: PlaceResult) => void;
   placeholder?: string;
   defaultValue?: string;
 }
@@ -24,9 +30,11 @@ const PlaceSearch: React.FC<PlaceSearchProps> = ({
   const handlePlaceChanged = () => {
     const place = autocompleteRef.current?.getPlace();
     if (place?.formatted_address) {
-      onSelect(place.formatted_address);
+      const lat = place.geometry?.location?.lat() ?? null;
+      const lng = place.geometry?.location?.lng() ?? null;
+      onSelect({ address: place.formatted_address, lat, lng });
     } else {
-      onSelect("");
+      onSelect({ address: "", lat: null, lng: null });
     }
   };
 
