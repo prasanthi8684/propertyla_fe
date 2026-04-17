@@ -12,6 +12,8 @@ interface propertyProps {
 }
 
 export default function PropertySingleCardTwo({ item }: propertyProps) {
+  const detailsHref = `/property-details/${item.id}`;
+
   return (
     <div
       className={`tp-listing-2-item ${item.spacing && "mb-30"} ${
@@ -22,15 +24,28 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
     >
       <div className="tp-rent-item p-relative">
         <div className="tp-rent-thumb p-relative">
-          <Link href={`/property-details-2/${item.id}`}>
-            <Image src={item.image} alt="property image" />
+          <Link href={detailsHref}>
+            {typeof item.image === "string" ? (
+              <img
+                src={item.image}
+                alt="property image"
+                style={{ width: "100%", height: "250px", objectFit: "cover" }}
+              />
+            ) : (
+              <Image src={item.image} alt="property image" />
+            )}
           </Link>
 
           {item.showTags && (
             <div className="tp-rent-tags">
-              {item.isForRent && <Link href="#">FOR RENT</Link>}
+              {item.isForRent && <Link href={detailsHref}>FOR RENT</Link>}
+              {item.isForSale && (
+                <Link className="two" href={detailsHref}>
+                  FOR SALE
+                </Link>
+              )}
               {item.isFeatured && (
-                <Link className="two" href="#">
+                <Link className="two" href={detailsHref}>
                   FEATURED
                 </Link>
               )}
@@ -39,7 +54,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
         </div>
         <div className="tp-rent-content">
           <h4 className="tp-rent-title">
-            <Link className="textline" href={`/property-details/${item.id}`}>
+            <Link className="textline" href={detailsHref}>
               {item.title}
             </Link>
           </h4>
@@ -74,7 +89,7 @@ export default function PropertySingleCardTwo({ item }: propertyProps) {
           </div>
           <div className="tp-rent-btn-box d-flex justify-content-between align-items-center">
             <div className="tp-rent-btn">
-              <Link className="tp-btn" href={`/property-details/${item.id}`}>
+              <Link className="tp-btn" href={detailsHref}>
                 View Details
               </Link>
             </div>

@@ -52,6 +52,18 @@ export default function CommonHeader({ wrapClass = "" }) {
         </div>
         <div className="col-xl-4 col-lg-4 col-md-9 col-6">
           <div className="tp-header-5-main-right d-flex align-items-center justify-content-end">
+            <div className="tp-header-dashboard-btn d-none d-md-block">
+              <Link
+                className="tp-btn"
+                href="/dashboard/add-new-property"
+                style={{ padding: "12px 20px 7px" }}
+              >
+                <span className="btn-wrap">
+                  <b className="text-1">Post Property</b>
+                  <b className="text-2">Post Property</b>
+                </span>
+              </Link>
+            </div>
             <div className="tp-header-right-user ml-20">
               {(() => {
                 const username =
@@ -65,7 +77,7 @@ export default function CommonHeader({ wrapClass = "" }) {
                     <Link href="/sign-in">
                       <span
                         style={{
-                          background: "var(--tp-heading-primary)",
+                          background: "var(--tp-theme-primary)",
                           color: "#fff",
                         }}
                       >
@@ -80,7 +92,7 @@ export default function CommonHeader({ wrapClass = "" }) {
               <button
                 onClick={toggleOffcanvas}
                 className="hamburger-btn"
-                style={{ background: "var(--tp-heading-primary)" }}
+                style={{ background: "var(--tp-theme-primary)" }}
               >
                 <span></span>
                 <span></span>

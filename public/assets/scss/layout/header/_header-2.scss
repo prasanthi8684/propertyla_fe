@@ -14,7 +14,7 @@
   }
   &-btn {
     & .tp-btn {
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       background-color: var(--tp-common-white);
     }
   }
@@ -51,7 +51,7 @@
     line-height: 1;
     & .tp-btn {
       color: var(--tp-common-white);
-      background-color: var(--tp-heading-primary);
+      background-color: var(--tp-theme-primary);
       @media #{$lg,$md,$xs} {
         padding: 17px 40px;
       }

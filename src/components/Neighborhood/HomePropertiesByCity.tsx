@@ -28,19 +28,28 @@ export default function HomePropertiesByCity() {
                 index === 0 ? 6 : index === 3 ? 4 : index === 4 ? 5 : 3
               }`}
             >
+              {(() => {
+                const params = new URLSearchParams();
+                params.set("q", property.name);
+                params.set("city", property.name);
+                const href = `/search?${params.toString()}`;
+
+                return (
               <div className="tp-explore-item text-center mb-30">
                 <div className="tp-explore-thumb p-relative">
-                  <Image src={property.image} alt={property.name} />
+                  <Link href={href}>
+                    <Image src={property.image} alt={property.name} />
+                  </Link>
                   <div className="tp-explore-content">
                     <h4 className="tp-explore-title">
-                      <Link className="textline" href="/search">
+                      <Link className="textline" href={href}>
                         {property.name}
                       </Link>
                     </h4>
                     <span>{property.count} Property</span>
                   </div>
                   <div className="tp-explore-btn">
-                    <Link href="/search">
+                    <Link href={href}>
                       <span>
                         <NavigateArrowSvg />
                       </span>
@@ -48,6 +57,8 @@ export default function HomePropertiesByCity() {
                   </div>
                 </div>
               </div>
+                );
+              })()}
             </div>
           ))}
         </div>

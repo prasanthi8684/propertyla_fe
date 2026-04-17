@@ -86,7 +86,7 @@
       font-weight: 600;
       line-height: 26px;
       margin-bottom: 114px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       @media #{$xs} {
         margin-bottom: 65px;
       }
@@ -107,7 +107,7 @@
     font-size: 60px;
     font-weight: 600;
     letter-spacing: -1.2px;
-    color: var(--tp-heading-primary);
+    color: var(--tp-theme-primary);
   }
 }
 

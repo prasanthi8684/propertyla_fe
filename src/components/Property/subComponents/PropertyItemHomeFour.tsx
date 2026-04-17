@@ -39,10 +39,10 @@ export default function PropertyItemHomeFour({
 
   // Check if product is already in wishlist
   const wishlist = useSelector(
-    (state: RootState) => state.wishlist.wishlistProducts
+    (state: RootState) => state.wishlist.wishlistProducts,
   );
   const isWishlisted = wishlist?.some(
-    (wishlistItem) => wishlistItem.id === item.id
+    (wishlistItem) => wishlistItem.id === item.id,
   );
 
   return (
@@ -82,6 +82,7 @@ export default function PropertyItemHomeFour({
         {item.showTags && (
           <div className="tp-rent-tags">
             {item.isForRent === true ? <Link href="#">FOR RENT</Link> : ""}{" "}
+            {item.isForSale === true ? <Link href="#">FOR SALE</Link> : ""}{" "}
             {item.isFeatured === true ? (
               <Link className="two" href="#">
                 FEATURED

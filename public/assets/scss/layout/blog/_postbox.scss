@@ -364,7 +364,7 @@
           font-size: 17px;
           font-weight: 500;
           margin-bottom: 18px;
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           & span {
             display: inline-block;
             height: 20px;
@@ -454,7 +454,9 @@
           &:hover {
             background: var(--tp-theme-primary);
             color: var(--tp-common-white);
-            box-shadow: 0 0 1px 0 #1438b5, 0 1px 2px 0 rgba(20, 56, 181, 0.25);
+            box-shadow:
+              0 0 1px 0 #1438b5,
+              0 1px 2px 0 rgba(20, 56, 181, 0.25);
           }
           @media #{$xs} {
             display: inline-block;
@@ -521,7 +523,7 @@
           right: -2px;
           height: 4px;
           width: 4px;
-          background: var(--tp-heading-primary);
+          background: var(--tp-theme-primary);
           content: "";
         }
       }

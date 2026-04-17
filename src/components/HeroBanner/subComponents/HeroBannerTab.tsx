@@ -25,7 +25,7 @@ export default function HeroBannerTabContent({
   const runSearch = (value: string) => {
     if (!value.trim()) return;
     const params = new URLSearchParams({
-      address: value.trim(),
+      q: value.trim(),
       type: id || "rent",
     });
     router.push(`/search?${params}`);
@@ -157,10 +157,10 @@ export default function HeroBannerTabContent({
               style={{
                 width: "100%",
                 height: "52px",
-                background: "#D4AF37",
-                color: "#003B5C",
+                background: "var(--tp-theme-primary)",
+                color: "#fff",
                 border: "none",
-                borderRadius: "8px",
+                borderRadius: "8px 8px 8px 8px",
                 fontSize: "15px",
                 fontWeight: 600,
                 cursor: "pointer",
@@ -172,112 +172,120 @@ export default function HeroBannerTabContent({
           </div>
 
           {/* Suggestions Dropdown */}
-          {open && query.trim() && (loading || searched || suggestions.length > 0) && (
-            <div
-              style={{
-                position: "absolute",
-                top: "calc(100% + 20px)",
-                left: 0,
-                width: "100%",
-                background: "#fff",
-                border: "1px solid #ddd",
-                borderRadius: "8px",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
-                zIndex: 9999,
-                maxHeight: "320px",
-                overflowY: "auto",
-                boxSizing: "border-box",
-              }}
-            >
+          {open &&
+            query.trim() &&
+            (loading || searched || suggestions.length > 0) && (
               <div
                 style={{
-                  padding: "8px 16px",
-                  borderBottom: "1px solid #f0f0f0",
-                  fontSize: "12px",
-                  color: "#888",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
+                  position: "absolute",
+                  top: "calc(100% + 20px)",
+                  left: 0,
+                  width: "100%",
+                  background: "#fff",
+                  border: "1px solid #ddd",
+                  borderRadius: "8px",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+                  zIndex: 9999,
+                  maxHeight: "320px",
+                  overflowY: "auto",
+                  boxSizing: "border-box",
                 }}
               >
-                {loading
-                  ? "Searching…"
-                  : suggestions.length === 0
-                    ? "No results found"
-                    : `${suggestions.length} result${suggestions.length !== 1 ? "s" : ""} found`}
-              </div>
-              {!loading && suggestions.length === 0 && (
-                <div style={{ padding: "12px 16px", fontSize: "13px", color: "#666" }}>
-                  Try searching with a different keyword.
-                </div>
-              )}
-              {suggestions.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => {
-                    setQuery(item.displayText);
-                    setOpen(false);
-                    runSearch(item.displayText);
-                  }}
+                <div
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    width: "100%",
-                    padding: "12px 16px",
-                    border: "none",
-                    borderBottom: "1px solid #f5f5f5",
-                    background: "#fff",
-                    cursor: "pointer",
-                    textAlign: "left",
-                    gap: "12px",
+                    padding: "8px 16px",
+                    borderBottom: "1px solid #f0f0f0",
+                    fontSize: "12px",
+                    color: "#888",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = "#f5f6ff")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = "#fff")
-                  }
                 >
-                  <div>
-                    <div
-                      style={{
-                        fontWeight: 600,
-                        fontSize: "14px",
-                        color: "#222",
-                      }}
-                    >
-                      {item.displayText}
-                    </div>
-                    {item.displayDescription && (
-                      <div
-                        style={{
-                          fontSize: "12px",
-                          color: "#888",
-                          marginTop: "2px",
-                        }}
-                      >
-                        {item.displayDescription}
-                      </div>
-                    )}
-                  </div>
-                  <span
+                  {loading
+                    ? "Searching…"
+                    : suggestions.length === 0
+                      ? "No results found"
+                      : `${suggestions.length} result${suggestions.length !== 1 ? "s" : ""} found`}
+                </div>
+                {!loading && suggestions.length === 0 && (
+                  <div
                     style={{
-                      background: "#eef0ff",
-                      color: "#003B5C",
-                      borderRadius: "20px",
-                      padding: "3px 10px",
-                      fontSize: "11px",
-                      fontWeight: 600,
-                      whiteSpace: "nowrap",
+                      padding: "12px 16px",
+                      fontSize: "13px",
+                      color: "#666",
                     }}
                   >
-                    {item.displayType}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
+                    Try searching with a different keyword.
+                  </div>
+                )}
+                {suggestions.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      setQuery(item.displayText);
+                      setOpen(false);
+                      runSearch(item.displayText);
+                    }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                      padding: "12px 16px",
+                      border: "none",
+                      borderBottom: "1px solid #f5f5f5",
+                      background: "#fff",
+                      cursor: "pointer",
+                      textAlign: "left",
+                      gap: "12px",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background = "#f5f6ff")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background = "#fff")
+                    }
+                  >
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: 600,
+                          fontSize: "14px",
+                          color: "#222",
+                        }}
+                      >
+                        {item.displayText}
+                      </div>
+                      {item.displayDescription && (
+                        <div
+                          style={{
+                            fontSize: "12px",
+                            color: "#888",
+                            marginTop: "2px",
+                          }}
+                        >
+                          {item.displayDescription}
+                        </div>
+                      )}
+                    </div>
+                    <span
+                      style={{
+                        background: "#eef0ff",
+                        color: "#003B5C",
+                        borderRadius: "20px",
+                        padding: "3px 10px",
+                        fontSize: "11px",
+                        fontWeight: 600,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.displayType}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
         </div>
       </div>
     </div>

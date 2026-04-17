@@ -1,13 +1,114 @@
 "use client";
 import PropertySingleCardTwo from "../Common/PropertySingleCardTwo";
 import { propertyData } from "@/data/propertyData";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { IFeaturedPropertyDT } from "@/types/property-d-t";
+import { StaticImageData } from "next/image";
 
 // Import Swiper components and Pagination module
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
+type ApiProperty = {
+  id: string;
+  title?: string;
+  propertyName?: string;
+  listingType?: string;
+  propertyType?: string;
+  streetName?: string;
+  cityName?: string;
+  state?: string;
+  price?: number | string;
+  buildupArea?: number | string;
+  bedrooms?: number | string;
+  bathrooms?: number | string;
+  images?: string[];
+  createdAt?: string;
+  updatedAt?: string;
+};
+
 export default function PropertyHome() {
+  const [items, setItems] = useState<IFeaturedPropertyDT[]>([]);
+
+  const localImagePool: StaticImageData[] = useMemo(
+    () =>
+      propertyData
+        .filter((p) => p.image)
+        .map((p) => p.image as StaticImageData)
+        .slice(0, 20),
+    [],
+  );
+
+  useEffect(() => {
+    const run = async () => {
+      try {
+        const API_BASE =
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+        const res = await fetch(`${API_BASE}/api/properties`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        if (!res.ok) return;
+        const json = await res.json();
+        const list: ApiProperty[] = json?.data ?? json ?? [];
+
+        const sorted = [...list].sort((a, b) => {
+          const aTime = new Date(a.createdAt || a.updatedAt || 0).getTime();
+          const bTime = new Date(b.createdAt || b.updatedAt || 0).getTime();
+          if (
+            !Number.isNaN(aTime) &&
+            !Number.isNaN(bTime) &&
+            (aTime || bTime)
+          ) {
+            return bTime - aTime;
+          }
+          return 0;
+        });
+
+        const top = sorted.slice(0, 20);
+        const mapped: IFeaturedPropertyDT[] = top.map((p, idx) => {
+          const address = [p.streetName, p.cityName, p.state]
+            .filter(Boolean)
+            .join(", ");
+          const beds = parseInt(String(p.bedrooms ?? 0), 10);
+          const baths = parseInt(String(p.bathrooms ?? 0), 10);
+          const area = parseFloat(String(p.buildupArea ?? 0));
+          const livingArea =
+            area > 0
+              ? Number.isInteger(area)
+                ? `${area} Sq Ft`
+                : `${area.toFixed(1)} Sq Ft`
+              : "N/A";
+          const image =
+            p.images && p.images.length > 0
+              ? p.images[0]
+              : localImagePool[idx % localImagePool.length];
+          return {
+            id: p.id as unknown as number,
+            title: p.propertyName || p.title || "Property",
+            address: address || "Address not available",
+            linkUrl: "property-details",
+            image,
+            showTags: true,
+            isForRent: p.listingType === "rent",
+            isForSale: p.listingType === "sale",
+            isFeatured: false,
+            bedrooms: beds > 0 ? String(beds) : "0",
+            bathrooms: baths > 0 ? String(baths) : "0",
+            livingArea,
+            price: parseFloat(String(p.price ?? 0)) || 0,
+            quantity: 0,
+          };
+        });
+
+        setItems(mapped);
+      } catch {
+        setItems([]);
+      }
+    };
+    run();
+  }, [localImagePool]);
+
   return (
     <section className="tp-rent-area p-relative pt-80 pb-60">
       <div className="container">
@@ -33,7 +134,7 @@ export default function PropertyHome() {
                   modules={[Pagination]}
                   slidesPerView={2}
                   spaceBetween={30}
-                  loop={true}
+                  loop={items.length > 4}
                   freeMode={true}
                   breakpoints={{
                     1400: { slidesPerView: 4 },
@@ -47,11 +148,13 @@ export default function PropertyHome() {
                     clickable: true,
                   }}
                 >
-                  {propertyData.slice(0, 5).map((item) => (
-                    <SwiperSlide key={item.id}>
-                      <PropertySingleCardTwo item={item} />
-                    </SwiperSlide>
-                  ))}
+                  {(items.length > 0 ? items : propertyData.slice(0, 5)).map(
+                    (item) => (
+                      <SwiperSlide key={item.id}>
+                        <PropertySingleCardTwo item={item} />
+                      </SwiperSlide>
+                    ),
+                  )}
                 </Swiper>
               </div>
               <div className="tp-rent-slider-dot"></div>

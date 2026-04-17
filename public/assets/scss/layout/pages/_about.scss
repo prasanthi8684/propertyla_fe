@@ -47,7 +47,7 @@
       }
       & span {
         font-weight: 600;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
       }
     }
   }
@@ -63,7 +63,7 @@
     }
     & .btn-2 {
       margin-bottom: 20px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       background-color: var(--tp-theme-secondary);
     }
   }
@@ -136,7 +136,7 @@
       }
       &.service {
         right: 95px;
-        background-color: var(--tp-heading-primary);
+        background-color: var(--tp-theme-primary);
       }
       &.faq {
         left: -95px;
@@ -149,7 +149,7 @@
           color: var(--tp-theme-primary);
         }
         & p {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
         }
       }
       & span {
@@ -190,7 +190,7 @@
         list-style: none;
         font-size: 14px;
         font-weight: 500;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         & span {
           display: inline-block;
           margin-right: 8px;

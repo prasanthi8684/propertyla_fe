@@ -59,8 +59,8 @@
         }
       }
       &:hover {
-        border: 1px solid var(--tp-heading-primary);
-        background-color: var(--tp-heading-primary);
+        border: 1px solid var(--tp-theme-primary);
+        background-color: var(--tp-theme-primary);
       }
     }
   }
@@ -113,9 +113,9 @@
         padding: 8px 20px;
         border-radius: 0;
         color: var(--tp-common-white);
-        background-color: var(--tp-heading-primary);
+        background-color: var(--tp-theme-primary);
         &.active {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           background-color: var(--tp-common-white);
           border: none;
         }
@@ -234,7 +234,7 @@
           background-color: var(--tp-common-white) !important;
         }
         &::after {
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
         }
         &.open {
           & .list {
@@ -272,7 +272,7 @@
           line-height: 50px;
           @include transition();
           border: 1px solid #e6e6e6;
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           &:hover {
             color: var(--tp-common-white);
             background-color: var(--tp-theme-primary);
@@ -408,11 +408,11 @@
       border: none;
       padding: 8px 10px;
       border-radius: 0;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       background-color: var(--tp-common-white);
       &.active {
         color: var(--tp-common-white);
-        background-color: var(--tp-heading-primary);
+        background-color: var(--tp-theme-primary);
         border: none;
       }
       &:hover {
@@ -493,7 +493,7 @@
       font-size: 40px;
       font-weight: 600;
       margin-bottom: 0;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       background: url(../../../img/hero/home-2/hero-signature-bg.png);
       -webkit-text-fill-color: transparent;
       -webkit-background-clip: text;
@@ -706,7 +706,7 @@
       font-weight: 400;
       margin-bottom: 8px;
       letter-spacing: -0.48px;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
     }
     &-title {
       font-size: 80px;
@@ -761,7 +761,7 @@
         border: none;
         padding: 18px 0px;
         border-radius: 0;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         background-color: transparent;
         &:not(:last-child) {
           margin-right: 40px;
@@ -845,7 +845,7 @@
   &-rating {
     margin-right: 28px;
     padding-right: 30px;
-    border-right: 1px solid var(--tp-heading-primary);
+    border-right: 1px solid var(--tp-theme-primary);
     @media #{$lg} {
       padding-right: 15px;
       margin-right: 15px;
@@ -865,7 +865,7 @@
         display: inline-block;
         margin-bottom: 5px;
         letter-spacing: -2.16px;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
       }
       & p {
         font-size: 14px;
@@ -888,7 +888,7 @@
           font-size: 14px;
           font-weight: 600;
           border-radius: 0;
-          color: var(--tp-heading-primary);
+          color: var(--tp-theme-primary);
           background-color: var(--tp-common-white);
           &.active {
             color: var(--tp-common-white);
@@ -1036,7 +1036,7 @@
       padding: 11px 17px;
       display: inline-block;
       border: 1px solid #e6e6e6;
-      color: var(--tp-heading-primary);
+      color: var(--tp-theme-primary);
       & svg {
         display: inline-block;
         transform: translateY(-2px);

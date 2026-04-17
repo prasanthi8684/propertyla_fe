@@ -134,9 +134,12 @@
   width: 0px;
   height: 0px;
   z-index: 10000001;
-  background-color: var(--tp-heading-primary);
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
-    margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  background-color: var(--tp-theme-primary);
+  transition:
+    width 0.3s ease-in-out,
+    height 0.3s ease-in-out,
+    margin 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   & span {
     opacity: 0;
     font-size: 14px;
@@ -286,13 +289,19 @@
 
 .textline {
   background-repeat: no-repeat;
-  background-size: 0% 1px, 0 1px;
-  background-position: 100% 100%, 0 100%;
+  background-size:
+    0% 1px,
+    0 1px;
+  background-position:
+    100% 100%,
+    0 100%;
   transition: background-size 0.3s linear;
-  background-image: linear-gradient(#262b35, #262b35),
-    linear-gradient(#262b35, #262b35);
+  background-image:
+    linear-gradient(#262b35, #262b35), linear-gradient(#262b35, #262b35);
   &:hover {
-    background-size: 0% 1px, 100% 1px;
+    background-size:
+      0% 1px,
+      100% 1px;
   }
 }
 

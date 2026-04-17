@@ -42,7 +42,7 @@
       & span {
         font-size: 22px;
         font-weight: 600;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         & svg {
           margin-right: 8px;
           transform: translateY(-3px);
@@ -57,7 +57,7 @@
         font-size: 14px;
         font-weight: 500;
         border: 1px solid #d9d9d9;
-        color: var(--tp-heading-primary);
+        color: var(--tp-theme-primary);
         background: var(--tp-common-white);
       }
     }
@@ -91,7 +91,7 @@
         margin-right: 30px;
         display: inline-block;
         color: var(--tp-common-white);
-        background-color: var(--tp-heading-primary);
+        background-color: var(--tp-theme-primary);
         &:hover {
           background-color: var(--tp-theme-primary);
         }
