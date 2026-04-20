@@ -5,10 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import UserSvg from "@/components/SVG/UserSvg";
 
-const ProfileDropdown = () => {
+type ProfileDropdownProps = {
+  color?: string;
+};
+
+const ProfileDropdown = ({ color = "#fff" }: ProfileDropdownProps) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const fontColor = color;
 
   const truncateUsername = (value: string, maxLength: number) => {
     if (value.length <= maxLength) return value;
@@ -99,7 +104,7 @@ const ProfileDropdown = () => {
 
               return username ? (
                 <p
-                  style={{ margin: 0 }}
+                  style={{ margin: 0, color: fontColor }}
                 >{`Hi, ${truncateUsername(username, 10)}`}</p>
               ) : (
                 <p style={{ margin: 0 }}></p>

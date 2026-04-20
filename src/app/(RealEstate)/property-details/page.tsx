@@ -7,4 +7,5 @@ export const metadata: Metadata = {
 
 export default function PropertyDetails() {
   redirect("/search");
+  return null;
 }

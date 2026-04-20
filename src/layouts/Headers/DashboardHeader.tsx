@@ -30,9 +30,9 @@ export default function DashboardHeader() {
                 </>
               ) : (
                 <>
-                  <span className="logo-icon-white">Property</span>{" "}
+                  <span className="logo-icon-black">Property</span>{" "}
                   <Image className="logo-header" src={logoIcon} alt="image" />
-                  <span className="logo-icon-white">La</span>
+                  <span className="logo-icon-black">La</span>
                 </>
               )}
             </Link>
@@ -56,7 +56,7 @@ export default function DashboardHeader() {
                     ? localStorage.getItem("loginUser")
                     : null;
                 return username ? (
-                  <ProfileDropdown />
+                  <ProfileDropdown color="#000" />
                 ) : (
                   <div className="tp-header-right-user-icon">
                     <Link href="/sign-in">
