@@ -5,15 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import UserSvg from "@/components/SVG/UserSvg";
 
-type ProfileDropdownProps = {
-  color?: string;
-};
-
-const ProfileDropdown = ({ color = "#fff" }: ProfileDropdownProps) => {
+const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const fontColor = color;
 
   const truncateUsername = (value: string, maxLength: number) => {
     if (value.length <= maxLength) return value;
@@ -52,24 +47,7 @@ const ProfileDropdown = ({ color = "#fff" }: ProfileDropdownProps) => {
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
       <button type="button" className="profile-btn" onClick={handleToggle}>
-        <span
-          style={{
-            position: "relative",
-            display: "inline-flex",
-            width: 36,
-            height: 36,
-            minWidth: 36,
-            maxWidth: 36,
-            borderRadius: "50%",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "rgba(212, 175, 55, 0.18)",
-            border: "1px solid rgba(212, 175, 55, 0.75)",
-            color: "#D4AF37",
-            flexShrink: 0,
-          }}
-          aria-label="Logged in user"
-        >
+        <span className="Profile-btn-span" aria-label="Logged in user">
           <UserSvg />
           <span
             style={{
@@ -89,7 +67,6 @@ const ProfileDropdown = ({ color = "#fff" }: ProfileDropdownProps) => {
           style={{
             paddingLeft: "0px",
             paddingRight: "5px",
-            paddingTop: "10px",
             display: "flex",
             alignItems: "center",
             gap: "8px",
@@ -104,8 +81,8 @@ const ProfileDropdown = ({ color = "#fff" }: ProfileDropdownProps) => {
 
               return username ? (
                 <p
-                  style={{ margin: 0, color: fontColor }}
-                >{`Hi, ${truncateUsername(username, 10)}`}</p>
+                  style={{ margin: 0 }}
+                >{`${truncateUsername(username, 10)}`}</p>
               ) : (
                 <p style={{ margin: 0 }}></p>
               );

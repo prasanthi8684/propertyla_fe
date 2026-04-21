@@ -71,7 +71,7 @@ export default function CommonHeader({ wrapClass = "" }) {
                     ? localStorage.getItem("loginUser")
                     : null;
                 return username ? (
-                  <ProfileDropdown color="#000" />
+                  <ProfileDropdown />
                 ) : (
                   <div className="tp-header-right-user-icon">
                     <Link href="/sign-in">

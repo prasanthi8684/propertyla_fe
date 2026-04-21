@@ -171,6 +171,21 @@
   border: none;
   cursor: pointer;
 }
+.Profile-btn-span {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.75);
+  color: #d4af37;
+  flex-shrink: 0;
+}
 
 .profile-img {
   border-radius: 50%;
@@ -324,6 +339,24 @@
   .tp-property-ptb {
     padding-top: 0px !important;
     padding-bottom: 77px;
+  }
+  .logo-icon-white {
+    font-size: 15px;
+    padding-left: 3px;
+  }
+  .logo-icon-black {
+    font-size: 15px;
+    padding-left: 3px;
+  }
+  .logo-header {
+    width: 40px;
+    height: 40px;
+  }
+  .Profile-btn-span {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    max-width: 25px;
   }
 }
 @media (min-width: 768px) {

@@ -68,7 +68,7 @@ export default function HeaderOne() {
                     ? localStorage.getItem("loginUser")
                     : null;
                 return username ? (
-                  <ProfileDropdown color="#fff" />
+                  <ProfileDropdown />
                 ) : (
                   <div className="tp-header-right-user-icon">
                     <Link href="/sign-in">
