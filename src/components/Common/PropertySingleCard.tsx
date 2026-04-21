@@ -1,21 +1,15 @@
 "use client";
 import {
-  ActiveWishListSvg,
   BathroomsSvg,
   BedroomsSvg,
   CartSvg,
-  CompireSvg,
   LivingSvg,
-  WishListSvg,
 } from "../SVG";
-import { toggle_wishlist } from "@/redux/slices/wishlistSlice";
-import { compire_product } from "@/redux/slices/compireSlice";
 import { IFeatureListProps } from "@/types/custom-interface";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { cart_product } from "@/redux/slices/cartSlice";
 import { formatPrice } from "../Utils/formatPrice";
-import { RootState } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -37,19 +31,6 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
       dispatch(cart_product(product));
     }
   };
-  //handle add to compire
-  const handleAddToCompire = (product: IFeaturedPropertyDT) => {
-    if (product) {
-      dispatch(compire_product(product));
-    }
-  };
-  //handle wishlist
-  const wishlist = useSelector(
-    (state: RootState) => state.wishlist.wishlistProducts,
-  );
-  const isWishlisted = wishlist?.some(
-    (wishlistItem) => wishlistItem.id === item.id,
-  );
 
   return (
     <div
@@ -86,17 +67,6 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
             </div>
           </div>
           <div className="tp-rent-option d-flex">
-            <button onClick={() => handleAddToCompire(item)}>
-              <span>
-                <CompireSvg />
-              </span>{" "}
-            </button>
-            <button onClick={() => dispatch(toggle_wishlist(item))}>
-              <span>
-                {" "}
-                {isWishlisted ? <ActiveWishListSvg /> : <WishListSvg />}
-              </span>
-            </button>
             <button onClick={() => handleAddToCart(item)}>
               <span>
                 <CartSvg />

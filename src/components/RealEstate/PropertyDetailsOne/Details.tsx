@@ -1,25 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  ActiveWishListSvg,
-  BathroomsSvg,
-  BedroomsSvg,
-  LivingSvg,
-  WishListSvg,
-} from "@/components/SVG";
-import { CompireSvgTwo } from "@/components/SVG/PropertySvg/CompireSvg";
-import BookmarkSvg from "@/components/SVG/PropertySvg/BookmarkSvg";
+import { BathroomsSvg, BedroomsSvg, LivingSvg } from "@/components/SVG";
 import DetailsReusableArea from "./subComponents/DetailsReusableArea";
 import PropertyDetailsSlider from "./subComponents/PropertySlider";
-import { toggle_wishlist } from "@/redux/slices/wishlistSlice";
-import { compire_product } from "@/redux/slices/compireSlice";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
-import { useDispatch, useSelector } from "react-redux";
 import { IdProps } from "@/types/custom-interface";
-import { RootState } from "@/redux/store";
 import { formatPrice } from "@/components/Utils/formatPrice";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import { toast } from "sonner";
 
 type ApiProperty = {
   id: string;
@@ -84,7 +73,6 @@ function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {
 }
 
 export default function PropertyDetailsOneArea({ id }: IdProps) {
-  const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const [apiProperty, setApiProperty] = useState<ApiProperty | null>(null);
   const [display, setDisplay] = useState<IFeaturedPropertyDT | null>(null);
@@ -140,8 +128,65 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
     load();
   }, [id]);
 
-  const wishlist = useSelector((s: RootState) => s.wishlist.wishlistProducts);
-  const isWishlisted = wishlist?.some((w) => w.id === display?.id);
+  const getShareUrl = () => window.location.href;
+  const getShareText = () => {
+    const title = display?.title?.trim() ?? "";
+    const description = apiProperty?.description?.trim() ?? "";
+    const url = getShareUrl();
+    return [title, description, url].filter(Boolean).join("\n\n");
+  };
+
+  const openExternal = (url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Link copied.");
+      return true;
+    } catch {
+      toast.error("Could not copy link.");
+      return false;
+    }
+  };
+
+  const shareOnFacebook = () => {
+    const url = getShareUrl();
+    openExternal(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+    );
+  };
+
+  const shareOnWhatsApp = () => {
+    const text = getShareText();
+    openExternal(`https://wa.me/?text=${encodeURIComponent(text)}`);
+  };
+
+  const shareOnInstagram = async () => {
+    const url = getShareUrl();
+    const title = display?.title ?? "Property";
+    const description = apiProperty?.description ?? "";
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title,
+          text: [title, description].filter(Boolean).join("\n\n"),
+          url,
+        });
+        return;
+      } catch {
+        // user cancelled or share failed; fall back
+      }
+    }
+
+    const copied = await copyToClipboard(url);
+    if (copied) {
+      openExternal("https://www.instagram.com/");
+      toast.message("Paste the copied link into Instagram to share.");
+    }
+  };
 
   if (loading) {
     return (
@@ -253,29 +298,35 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
             <div className="col-lg-4">
               <div className="tp-property-details-right-side text-lg-end mb-40">
                 <div className="tp-property-details-icon-box mb-3">
-                  <button title="Bookmark">
+                  <button title="Share on Facebook" onClick={shareOnFacebook}>
                     <span>
-                      <BookmarkSvg />
+                      <i
+                        className="fa-brands fa-facebook-f"
+                        style={{ color: "#1877F2", fontSize: "25px" }}
+                      ></i>
                     </span>
                   </button>
-                  <button
-                    title="Compare"
-                    onClick={() => dispatch(compire_product(display))}
-                  >
+                  <button title="Share on Instagram" onClick={shareOnInstagram}>
                     <span>
-                      <CompireSvgTwo />
+                      <i
+                        className="fa-brands fa-instagram"
+                        style={{
+                          display: "inline-block",
+                          background:
+                            "linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          fontSize: "25px",
+                        }}
+                      ></i>
                     </span>
                   </button>
-                  <button
-                    title="Wishlist"
-                    onClick={() => dispatch(toggle_wishlist(display))}
-                  >
+                  <button title="Share on WhatsApp" onClick={shareOnWhatsApp}>
                     <span>
-                      {isWishlisted ? (
-                        <ActiveWishListSvg width="26" height="26" />
-                      ) : (
-                        <WishListSvg width="20" height="20" />
-                      )}
+                      <i
+                        className="fa-brands fa-whatsapp"
+                        style={{ color: "#25D366", fontSize: "25px" }}
+                      ></i>
                     </span>
                   </button>
                 </div>
