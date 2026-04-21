@@ -1,6 +1,5 @@
 "use client";
 
-//import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import UserSvg from "@/components/SVG/UserSvg";
