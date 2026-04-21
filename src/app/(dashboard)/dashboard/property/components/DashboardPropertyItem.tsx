@@ -3,14 +3,12 @@ import {
   BathroomsSvg,
   BedroomsSvg,
   CartSvg,
-  CompireSvg,
   DeleteIconSvg,
   DuplicateIconSvg,
   LivingSvg,
   MenuDotsSvg,
   MoveToDraftSvg,
   PropertyEditSvg,
-  WishListSvg,
 } from "@/components/SVG";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
 import Image from "next/image";
@@ -54,16 +52,6 @@ export default function DashboardPropertyItem({ property }: IProps) {
               </div>
             </div>
             <div className="tp-rent-option d-flex">
-              <button>
-                <span>
-                  <CompireSvg />
-                </span>
-              </button>
-              <button>
-                <span>
-                  <WishListSvg />
-                </span>
-              </button>
               <button>
                 <span>
                   <CartSvg />

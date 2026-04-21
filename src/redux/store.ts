@@ -1,9 +1,17 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { configureStore as configureStoreRTK } from "@reduxjs/toolkit";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST,PURGE,REGISTER,Persistor} from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  Persistor,
+} from "redux-persist";
 import { cartSlice } from "./slices/cartSlice";
-import { wishlistSlice } from "./slices/wishlistSlice";
-import { compireSlice } from "./slices/compireSlice";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 const createNoopStorage = () => {
@@ -35,9 +43,7 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     cart: cartSlice.reducer,
-    wishlist: wishlistSlice.reducer,
-    compire: compireSlice.reducer,
-  })
+  }),
 );
 
 // Configure Redux store
