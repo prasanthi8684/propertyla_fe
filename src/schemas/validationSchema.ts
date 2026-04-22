@@ -2,10 +2,7 @@ import * as yup from "yup";
 //Sign Up form validation schema
 export const signUpSchema = yup.object().shape({
   displayname: yup.string().required("Enter display name"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
+  email: yup.string().required("Enter email").email("Invalid email format"),
   phone: yup.string().required("Phone number is required"),
   renNumber: yup.string(),
   password: yup
@@ -14,7 +11,7 @@ export const signUpSchema = yup.object().shape({
     .min(6, "Password must be at least 6 characters"),
   confirmPassword: yup
     .string()
-    .required("Please confirm your password")
+    .required("Please same password again")
     .oneOf([yup.ref("password")], "Passwords do not match"),
   remember: yup.boolean(),
 });
@@ -34,7 +31,7 @@ export const forgotSchema = yup.object().shape({
 
 //Verify form validation schema
 export const verifySchema = yup.object().shape({
-  emailOtp: yup.string().required("Email OTP is required"),
+  emailOtp: yup.string().required("Enter email OTP"),
 });
 
 //Add listing basic form validation schema
