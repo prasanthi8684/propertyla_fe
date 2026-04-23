@@ -9,10 +9,15 @@ import ProfileDropdown from "./ProfileDropdown";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { requireAuth } from "@/utils/auth";
 
 export default function CommonHeader({ wrapClass = "" }) {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
+
+  const handlePostPropertyClick = () => {
+    requireAuth('/dashboard/add-new-property');
+  };
 
   // Header Content Component
   const renderHeaderContent = ({
@@ -52,17 +57,21 @@ export default function CommonHeader({ wrapClass = "" }) {
         </div>
         <div className="col-xl-4 col-lg-4 col-md-9 col-6">
           <div className="tp-header-5-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-dashboard-btn d-none d-md-block">
-              <Link
+            <div className="tp-header-dashboard-btn d-none d-md-block d-flex align-items-center">
+              <button
                 className="tp-btn"
-                href="/dashboard/add-new-property"
-                style={{ padding: "12px 20px 7px" }}
+                onClick={handlePostPropertyClick}
+                style={{ 
+                  padding: "12px 16px 7px",
+                  whiteSpace: "nowrap",
+                  minWidth: "auto"
+                }}
               >
                 <span className="btn-wrap">
                   <b className="text-1">Post Property</b>
                   <b className="text-2">Post Property</b>
                 </span>
-              </Link>
+              </button>
             </div>
             <div className="tp-header-right-user ml-20">
               {(() => {

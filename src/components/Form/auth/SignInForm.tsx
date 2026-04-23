@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import axios from "axios";
+import { useSearchParams } from "next/navigation";
 
 interface FormData {
   email: string;
@@ -24,6 +25,8 @@ interface FormData {
 
 export default function SignInForm() {
   const [showPass, setShowPass] = useState(false);
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get('redirect');
 
   const {
     register,
@@ -102,7 +105,10 @@ export default function SignInForm() {
           localStorage.getItem("authToken"),
         );
         setTimeout(() => {
-          if (typeof window !== "undefined") window.location.href = "/";
+          if (typeof window !== "undefined") {
+            const redirectPath = redirectUrl || "/";
+            window.location.href = redirectPath;
+          }
         }, 700);
       }
       console.log("token", token);
