@@ -10,7 +10,7 @@ export default function OffcanvasArea() {
   const { openOffcanvas, toggleOffcanvas } = useGlobalContext();
 
   const handlePostPropertyClick = () => {
-    requireAuth('/dashboard/add-new-property');
+    requireAuth("/dashboard/add-new-property");
     toggleOffcanvas(); // Close the offcanvas after clicking
   };
 
@@ -64,14 +64,15 @@ export default function OffcanvasArea() {
             </div>
             <div
               className="tp-header-dashboard-btn d-md-block d-flex align-items-center"
+              style={{ marginTop: "0px" }}
             >
-              <button 
-                className="tp-btn" 
+              <button
+                className="tp-btn"
                 onClick={handlePostPropertyClick}
-                style={{ 
+                style={{
                   padding: "12px 16px 7px",
                   whiteSpace: "nowrap",
-                  minWidth: "auto"
+                  minWidth: "auto",
                 }}
               >
                 <span className="btn-wrap">

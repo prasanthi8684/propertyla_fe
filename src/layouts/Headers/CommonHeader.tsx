@@ -16,7 +16,7 @@ export default function CommonHeader({ wrapClass = "" }) {
   const { sticky } = useSticky();
 
   const handlePostPropertyClick = () => {
-    requireAuth('/dashboard/add-new-property');
+    requireAuth("/dashboard/add-new-property");
   };
 
   // Header Content Component
@@ -57,14 +57,17 @@ export default function CommonHeader({ wrapClass = "" }) {
         </div>
         <div className="col-xl-4 col-lg-4 col-md-9 col-6">
           <div className="tp-header-5-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-dashboard-btn d-none d-md-block d-flex align-items-center">
+            <div
+              className="tp-header-dashboard-btn d-none d-md-block d-flex align-items-center"
+              style={{ marginTop: "0px" }}
+            >
               <button
                 className="tp-btn"
                 onClick={handlePostPropertyClick}
-                style={{ 
+                style={{
                   padding: "12px 16px 7px",
                   whiteSpace: "nowrap",
-                  minWidth: "auto"
+                  minWidth: "auto",
                 }}
               >
                 <span className="btn-wrap">
