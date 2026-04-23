@@ -63,7 +63,7 @@ export default function RecentlyViewedProperties() {
               : `/property-details/${property.id}`;
 
             return {
-              image: image as any, // Convert string to StaticImageData type for compatibility
+              image,
               link,
               title,
               price: `RM${price.toLocaleString()}/mo`,

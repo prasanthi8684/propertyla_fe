@@ -204,7 +204,7 @@ export interface IReviewDT {
 }
 //define interface for Recently Viewed data
 export interface IRecentlyViewedItem {
-  image: StaticImageData;
+  image: StaticImageData | string;
   link: string;
   title: string;
   price: string;
