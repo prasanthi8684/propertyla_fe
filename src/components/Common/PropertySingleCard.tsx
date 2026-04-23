@@ -13,6 +13,7 @@ import { formatPrice } from "../Utils/formatPrice";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { createCleanFromUrl } from "@/utils/urlEncoding";
 
 export default function PropertySingleCard({ item }: IFeatureListProps) {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function PropertySingleCard({ item }: IFeatureListProps) {
   const fromUrl =
     pathname === "/search" ? `/search?${searchParams.toString()}` : null;
   const detailsHref = fromUrl
-    ? `/${item.linkUrl}/${item.id}?from=${encodeURIComponent(fromUrl)}`
+    ? `/${item.linkUrl}/${item.id}?from=${createCleanFromUrl(fromUrl)}`
     : `/${item.linkUrl}/${item.id}`;
 
   //handle add to cart

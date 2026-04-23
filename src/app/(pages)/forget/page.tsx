@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default function Forget() {
   return (
     <>
-      {/* -- forget area start -- */}
       <section
         className="tp-sign-in-ptb pt-250 pb-95"
         style={{ backgroundImage: `url(${signInThumb.src})` }}

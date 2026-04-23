@@ -6,6 +6,7 @@ import { formatPrice } from "@/components/Utils/formatPrice";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { createCleanFromUrl } from "@/utils/urlEncoding";
 
 interface IPropsWrapperCls {
   wrapperCls?: string;
@@ -103,7 +104,7 @@ export default function SidebarPropertyItem({
 
   const detailsHref = latest
     ? fromUrl
-      ? `/property-details/${latest.id}?from=${encodeURIComponent(fromUrl)}`
+      ? `/property-details/${latest.id}?from=${createCleanFromUrl(fromUrl)}`
       : `/property-details/${latest.id}`
     : "#";
 
