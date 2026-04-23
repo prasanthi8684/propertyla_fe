@@ -344,11 +344,11 @@
     padding-bottom: 77px;
   }
   .logo-icon-white {
-    font-size: 15px;
+    font-size: 18px;
     padding-left: 3px;
   }
   .logo-icon-black {
-    font-size: 15px;
+    font-size: 18px;
     padding-left: 3px;
   }
   .logo-header {
@@ -356,10 +356,18 @@
     height: 40px;
   }
   .Profile-btn-span {
-    width: 25px;
-    height: 25px;
-    min-width: 25px;
-    max-width: 25px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+  }
+  .tp-header-right-user-icon span {
+    height: 34px !important;
+    width: 34px !important;
+    margin-top: -3px;
+  }
+  .mb-icon {
+    margin-top: -7px;
   }
 }
 @media (min-width: 768px) {
