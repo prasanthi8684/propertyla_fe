@@ -16,7 +16,11 @@ export default function HeaderOne() {
   const { sticky } = useSticky();
 
   const handlePostPropertyClick = () => {
-    requireAuth("/dashboard/add-new-property");
+    const isAuthenticated = requireAuth("/dashboard/add-new-property");
+    // If user is authenticated, navigate to the dashboard
+    if (isAuthenticated) {
+      window.location.href = "/dashboard/add-new-property";
+    }
   };
 
   const renderHeaderContent = () => (

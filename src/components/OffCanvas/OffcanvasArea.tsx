@@ -10,8 +10,12 @@ export default function OffcanvasArea() {
   const { openOffcanvas, toggleOffcanvas } = useGlobalContext();
 
   const handlePostPropertyClick = () => {
-    requireAuth("/dashboard/add-new-property");
-    toggleOffcanvas(); // Close the offcanvas after clicking
+    const isAuthenticated = requireAuth("/dashboard/add-new-property");
+    // If user is authenticated, navigate to the dashboard
+    if (isAuthenticated) {
+      toggleOffcanvas(); // Close the offcanvas before navigating
+      window.location.href = "/dashboard/add-new-property";
+    }
   };
 
   return (
