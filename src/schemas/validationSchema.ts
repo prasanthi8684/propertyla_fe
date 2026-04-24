@@ -2,10 +2,7 @@ import * as yup from "yup";
 //Sign Up form validation schema
 export const signUpSchema = yup.object().shape({
   displayname: yup.string().required("Enter display name"),
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
+  email: yup.string().required("Enter email").email("Invalid email format"),
   phone: yup.string().required("Phone number is required"),
   renNumber: yup.string(),
   password: yup
@@ -14,7 +11,7 @@ export const signUpSchema = yup.object().shape({
     .min(6, "Password must be at least 6 characters"),
   confirmPassword: yup
     .string()
-    .required("Please confirm your password")
+    .required("Please same password again")
     .oneOf([yup.ref("password")], "Passwords do not match"),
   remember: yup.boolean(),
 });
@@ -34,7 +31,7 @@ export const forgotSchema = yup.object().shape({
 
 //Verify form validation schema
 export const verifySchema = yup.object().shape({
-  emailOtp: yup.string().required("Email OTP is required"),
+  emailOtp: yup.string().required("Enter email OTP"),
 });
 
 //Add listing basic form validation schema
@@ -176,13 +173,24 @@ export const profileSchema = yup.object().shape({
   companyName: yup.string(),
   icPassport: yup.string(),
   designation: yup.string(),
-  experience: yup.number().typeError("Must be a number").min(0, "Must be 0 or more"),
+  experience: yup
+    .number()
+    .typeError("Must be a number")
+    .min(0, "Must be 0 or more"),
+  phone: yup
+    .string()
+    .required("Phone number is required")
+    .matches(/^[0-9]{10,12}$/, "Phone number must be between 10 and 12 digits"),
+  email: yup.string().email("Invalid email format"),
 });
 
 //Change password validation schema
 export const changePasswordSchema = yup.object().shape({
   oldPassword: yup.string().required("Old password is required"),
-  newPassword: yup.string().required("New password is required").min(6, "At least 6 characters"),
+  newPassword: yup
+    .string()
+    .required("New password is required")
+    .min(6, "At least 6 characters"),
   confirmPassword: yup
     .string()
     .required("Please confirm your password")

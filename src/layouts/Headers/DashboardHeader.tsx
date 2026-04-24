@@ -1,6 +1,5 @@
 "use client";
 
-//import logoBlack from "../../../public/assets/img/logo/logo-black.png";
 import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import UserSvg from "@/components/SVG/UserSvg";
@@ -30,9 +29,9 @@ export default function DashboardHeader() {
                 </>
               ) : (
                 <>
-                  <span className="logo-icon-white">Property</span>{" "}
+                  <span className="logo-icon-black">Property</span>{" "}
                   <Image className="logo-header" src={logoIcon} alt="image" />
-                  <span className="logo-icon-white">La</span>
+                  <span className="logo-icon-black">La</span>
                 </>
               )}
             </Link>

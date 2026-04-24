@@ -4,9 +4,15 @@ import OffcanvasMenus from "./OffcanvasMenus";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { requireAuth } from "@/utils/auth";
 
 export default function OffcanvasArea() {
   const { openOffcanvas, toggleOffcanvas } = useGlobalContext();
+
+  const handlePostPropertyClick = () => {
+    requireAuth("/dashboard/add-new-property");
+    toggleOffcanvas(); // Close the offcanvas after clicking
+  };
 
   return (
     <>
@@ -57,15 +63,23 @@ export default function OffcanvasArea() {
               </div>
             </div>
             <div
-              className="tp-header-dashboard-btn d-md-block"
-              onClick={toggleOffcanvas}
+              className="tp-header-dashboard-btn d-md-block d-flex align-items-center"
+              style={{ marginTop: "0px" }}
             >
-              <Link className="tp-btn" href="/dashboard/add-new-property">
+              <button
+                className="tp-btn"
+                onClick={handlePostPropertyClick}
+                style={{
+                  padding: "12px 16px 7px",
+                  whiteSpace: "nowrap",
+                  minWidth: "auto",
+                }}
+              >
                 <span className="btn-wrap">
                   <b className="text-1">Post Property</b>
                   <b className="text-2">Post Property</b>
                 </span>
-              </Link>
+              </button>
             </div>
 
             <div className="tp-offcanvas-menu fix d-xl-none mb-30">

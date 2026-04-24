@@ -1,6 +1,11 @@
-
 import { HeadPhoneBigSvg, HeadPhoneSvg } from "./HeadPhoneSvg";
-import { CheckSvg, CheckTwoSvg, CheckThreeSvg, CircleCheckSvg, CircleCheckSvgTwo } from "./CheckSvg"
+import {
+  CheckSvg,
+  CheckTwoSvg,
+  CheckThreeSvg,
+  CircleCheckSvg,
+  CircleCheckSvgTwo,
+} from "./CheckSvg";
 import ServiceSvgOne from "./ServiceSvg/ServiceSvgOne";
 import ServiceSvgTwo from "./ServiceSvg/ServiceSvgTwo";
 import ServiceSvgThree from "./ServiceSvg/ServiceSvgThree";
@@ -25,10 +30,6 @@ import OpenEyeSvg from "./AuthSvg/OpenEyeSvg";
 import ClosedEyeSvg from "./AuthSvg/ClosedEyeSvg";
 import AuthGoogleSvg from "./AuthSvg/AuthGoogleSvg";
 import AuthFacebookSvg from "./AuthSvg/AuthFacebookSvg";
-import WishListSvg from "./PropertySvg/WishListSvg";
-import ActiveWishListSvg from "./PropertySvg/ActiveWishListSvg";
-import CompireSvg from "./PropertySvg/CompireSvg";
-import CompireSvgTwo from "./PropertySvg/CompireSvg";
 import CartSvg from "./PropertySvg/CartSvg";
 import BathsroomTwoSvg from "./PropertySvg/BathsroomTwoSvg";
 import BedroomsTwoSvg from "./PropertySvg/BedroomsTwoSvg";
@@ -59,75 +60,69 @@ import ReplayIconSvg from "./ReplayIconSvg";
 import CartPlusIconSvg from "./CartPlusIconSvg";
 import CrossIconSvg from "./CrossIconSvg";
 import MinusIconSvg from "./MinusIconSvg";
-import WishlistIconSvg from "./WishlistIconSvg";
 
 export {
-    WishListSvg,
-    ActiveWishListSvg,
-    CompireSvg,
-    CompireSvgTwo,
-    CartSvg,
-    BathsroomTwoSvg,
-    BedroomsTwoSvg,
-    LivingTwoSvg,
-    BedroomsSvg,
-    BathroomsSvg,
-    LivingSvg,
-    LocationSvg,
-    SearchSvg,
-    SearchSvgTwo,
-    ArrowSvgTwo,
-    CheckSvg,
-    CheckTwoSvg,
-    CheckThreeSvg,
-    CircleCheckSvg,
-    CircleCheckSvgTwo,
-    HeadPhoneSvg,
-    HeadPhoneBigSvg,
-    ServiceSvgOne,
-    ServiceSvgTwo,
-    ServiceSvgThree,
-    ServiceSvgFour,
-    AboutSvgOne,
-    AboutSvgTwo,
-    AboutSvgThree,
-    AboutSvgFour,
-    TeamEmailSvg,
-    CallThreeSvg,
-    //auth svg
-    AuthUserSvg,
-    AuthEmailSvg,
-    AuthLockSvg,
-    OpenEyeSvg,
-    ClosedEyeSvg,
-    AuthGoogleSvg,
-    AuthFacebookSvg,
-    //end
-    BathroomSvg,
-    BedRoomSvg,
-    GarageSvg,
-    HomeSvg,
-    LandSizeSvg,
-    MessageSvgTwo,
-    SquareFeetSvg,
-    YearBuiltIconSvg,
-    //dashboard svg
-    DashboardSvg,
-    AddPropertySvg,
-    MyPropertySvg,
-    MyFavouritesSvg,
-    MyPropertiesSvg,
-    ReviewsSvg,
-    IdentityDockSvg,
-    LogoutSvg,
-    DeleteIconSvg,
-    DuplicateIconSvg,
-    MenuDotsSvg,
-    MoveToDraftSvg,
-    PropertyEditSvg,
-    ReplayIconSvg,
-    CartPlusIconSvg,
-    CrossIconSvg,
-    MinusIconSvg,
-    WishlistIconSvg
-}
+  CartSvg,
+  BathsroomTwoSvg,
+  BedroomsTwoSvg,
+  LivingTwoSvg,
+  BedroomsSvg,
+  BathroomsSvg,
+  LivingSvg,
+  LocationSvg,
+  SearchSvg,
+  SearchSvgTwo,
+  ArrowSvgTwo,
+  CheckSvg,
+  CheckTwoSvg,
+  CheckThreeSvg,
+  CircleCheckSvg,
+  CircleCheckSvgTwo,
+  HeadPhoneSvg,
+  HeadPhoneBigSvg,
+  ServiceSvgOne,
+  ServiceSvgTwo,
+  ServiceSvgThree,
+  ServiceSvgFour,
+  AboutSvgOne,
+  AboutSvgTwo,
+  AboutSvgThree,
+  AboutSvgFour,
+  TeamEmailSvg,
+  CallThreeSvg,
+  //auth svg
+  AuthUserSvg,
+  AuthEmailSvg,
+  AuthLockSvg,
+  OpenEyeSvg,
+  ClosedEyeSvg,
+  AuthGoogleSvg,
+  AuthFacebookSvg,
+  //end
+  BathroomSvg,
+  BedRoomSvg,
+  GarageSvg,
+  HomeSvg,
+  LandSizeSvg,
+  MessageSvgTwo,
+  SquareFeetSvg,
+  YearBuiltIconSvg,
+  //dashboard svg
+  DashboardSvg,
+  AddPropertySvg,
+  MyPropertySvg,
+  MyFavouritesSvg,
+  MyPropertiesSvg,
+  ReviewsSvg,
+  IdentityDockSvg,
+  LogoutSvg,
+  DeleteIconSvg,
+  DuplicateIconSvg,
+  MenuDotsSvg,
+  MoveToDraftSvg,
+  PropertyEditSvg,
+  ReplayIconSvg,
+  CartPlusIconSvg,
+  CrossIconSvg,
+  MinusIconSvg,
+};

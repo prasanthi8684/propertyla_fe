@@ -21,9 +21,8 @@
   margin-bottom: 20px;
 }
 .logo-header {
-  width: 32px;
-  height: 32px;
-  border-radius: 100%;
+  width: 50px;
+  height: 50px;
   margin-bottom: 12px;
 }
 .tp-header-1-menu nav > ul {
@@ -116,6 +115,9 @@
   padding-bottom: 24px;
   margin-bottom: 24px;
 }
+.tp-team-details-info-top {
+  border-radius: 8px 8px 8px 8px !important;
+}
 .tp-sign-in-register-box {
   border-radius: 8px;
 }
@@ -171,6 +173,21 @@
   background: transparent;
   border: none;
   cursor: pointer;
+}
+.Profile-btn-span {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.75);
+  color: #d4af37;
+  flex-shrink: 0;
 }
 
 .profile-img {
@@ -325,6 +342,32 @@
   .tp-property-ptb {
     padding-top: 0px !important;
     padding-bottom: 77px;
+  }
+  .logo-icon-white {
+    font-size: 18px;
+    padding-left: 3px;
+  }
+  .logo-icon-black {
+    font-size: 18px;
+    padding-left: 3px;
+  }
+  .logo-header {
+    width: 40px;
+    height: 40px;
+  }
+  .Profile-btn-span {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+  }
+  .tp-header-right-user-icon span {
+    height: 34px !important;
+    width: 34px !important;
+    margin-top: -3px;
+  }
+  .mb-icon {
+    margin-top: -7px;
   }
 }
 @media (min-width: 768px) {

@@ -47,24 +47,7 @@ const ProfileDropdown = () => {
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
       <button type="button" className="profile-btn" onClick={handleToggle}>
-        <span
-          style={{
-            position: "relative",
-            display: "inline-flex",
-            width: 36,
-            height: 36,
-            minWidth: 36,
-            maxWidth: 36,
-            borderRadius: "50%",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "rgba(212, 175, 55, 0.18)",
-            border: "1px solid rgba(212, 175, 55, 0.75)",
-            color: "#D4AF37",
-            flexShrink: 0,
-          }}
-          aria-label="Logged in user"
-        >
+        <span className="Profile-btn-span" aria-label="Logged in user">
           <UserSvg />
           <span
             style={{
@@ -84,7 +67,6 @@ const ProfileDropdown = () => {
           style={{
             paddingLeft: "0px",
             paddingRight: "5px",
-            paddingTop: "10px",
             display: "flex",
             alignItems: "center",
             gap: "8px",
@@ -100,7 +82,7 @@ const ProfileDropdown = () => {
               return username ? (
                 <p
                   style={{ margin: 0 }}
-                >{`Hi, ${truncateUsername(username, 10)}`}</p>
+                >{`${truncateUsername(username, 10)}`}</p>
               ) : (
                 <p style={{ margin: 0 }}></p>
               );

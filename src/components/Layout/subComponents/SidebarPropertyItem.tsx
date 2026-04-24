@@ -6,6 +6,7 @@ import { formatPrice } from "@/components/Utils/formatPrice";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { createCleanFromUrl } from "@/utils/urlEncoding";
 
 interface IPropsWrapperCls {
   wrapperCls?: string;
@@ -66,7 +67,11 @@ export default function SidebarPropertyItem({
         const sorted = [...list].sort((a, b) => {
           const aTime = new Date(a.createdAt || a.updatedAt || 0).getTime();
           const bTime = new Date(b.createdAt || b.updatedAt || 0).getTime();
-          if (!Number.isNaN(aTime) && !Number.isNaN(bTime) && (aTime || bTime)) {
+          if (
+            !Number.isNaN(aTime) &&
+            !Number.isNaN(bTime) &&
+            (aTime || bTime)
+          ) {
             return bTime - aTime;
           }
           return 0;
@@ -103,7 +108,7 @@ export default function SidebarPropertyItem({
 
   const detailsHref = latest
     ? fromUrl
-      ? `/property-details/${latest.id}?from=${encodeURIComponent(fromUrl)}`
+      ? `/property-details/${latest.id}?from=${createCleanFromUrl(fromUrl)}`
       : `/property-details/${latest.id}`
     : "#";
 

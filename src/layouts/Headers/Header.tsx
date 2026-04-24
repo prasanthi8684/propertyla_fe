@@ -9,10 +9,15 @@ import NavMenus from "../subComponents/NavMenus";
 import UserSvg from "@/components/SVG/UserSvg";
 import useSticky from "@/hooks/useSticky";
 import Link from "next/link";
+import { requireAuth } from "@/utils/auth";
 
 export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
+
+  const handlePostPropertyClick = () => {
+    requireAuth("/dashboard/add-new-property");
+  };
 
   const renderHeaderContent = () => (
     <div className="container container-large">
@@ -45,18 +50,25 @@ export default function HeaderOne() {
             </div>
           </div>
         </div>
-        <div className="col-xl-2 col-lg-2 col-md-4 col-2">
-          <div className="tp-header-dashboard-btn d-none d-md-block">
-            <Link
+        <div className="col-xl-2 col-lg-2 col-md-4 col-2 d-flex align-items-center justify-content-center">
+          <div
+            className="tp-header-dashboard-btn d-none d-md-block"
+            style={{ marginTop: "0px" }}
+          >
+            <button
               className="tp-btn"
-              href="/dashboard/add-new-property"
-              style={{ padding: "12px 20px 7px" }}
+              onClick={handlePostPropertyClick}
+              style={{
+                padding: "12px 16px 7px",
+                whiteSpace: "nowrap",
+                minWidth: "auto",
+              }}
             >
               <span className="btn-wrap">
                 <b className="text-1">Post Property</b>
                 <b className="text-2">Post Property</b>
               </span>
-            </Link>
+            </button>
           </div>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-5 col-2">

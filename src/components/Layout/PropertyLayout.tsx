@@ -36,9 +36,11 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
         style={{ backgroundImage: `url(${propertyBg.src})` }}
       >
         <div className="container">
-          <Breadcrumb
-            items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]}
-          />
+          <div style={{ marginLeft: "-15px" }}>
+            <Breadcrumb
+              items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]}
+            />
+          </div>
           <div className="row align-items-center gsrch">
             <div className="col-lg-12 padLR0">
               <div className="tp-property-heading mb-10 mlb">
