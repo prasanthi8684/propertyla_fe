@@ -178,7 +178,7 @@ export default function AddPropertyPage() {
         console.log(localStorage.getItem("authToken"));
         const authHeader = `Bearer ${rawToken ?? ""}`;
         const API_BASE2 =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://178.128.49.71:3008";
         const propertyUrl = `${API_BASE2}/api/properties`;
         const res = await fetch(propertyUrl, {
           method: "POST",
