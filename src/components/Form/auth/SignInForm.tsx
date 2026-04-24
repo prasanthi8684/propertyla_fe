@@ -44,7 +44,7 @@ export default function SignInForm() {
       "X-Request-Source": "react-client",
     };
     const API_BASE =
-      process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+      process.env.NEXT_PUBLIC_API_BASE ?? "http://178.128.49.71:3008";
 
     const formatApiError = (err: any): string => {
       if (axios.isAxiosError(err)) {
