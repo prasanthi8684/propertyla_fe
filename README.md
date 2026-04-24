@@ -9,11 +9,13 @@ PropertyLa is a comprehensive real estate web application that allows users to b
 ## Tech Stack
 
 ### Frontend Framework
+
 - **Next.js 15.2.0** - React framework with App Router
 - **React 19.0.0** - UI library
 - **TypeScript 5** - Type-safe development
 
 ### Styling & UI
+
 - **Bootstrap 5.3.3** - CSS framework
 - **Sass 1.75.0** - CSS preprocessor
 - **Lucide React 0.552.0** - Icon library
@@ -21,28 +23,33 @@ PropertyLa is a comprehensive real estate web application that allows users to b
 - **Slick Carousel 1.8.1** - Additional carousel support
 
 ### State Management
+
 - **Redux Toolkit 2.6.1** - State management
 - **React Redux 9.2.0** - React bindings
 - **Redux Persist 6.0.0** - State persistence
 
 ### Forms & Validation
+
 - **React Hook Form 7.54.2** - Form management
 - **Yup 1.6.1** - Schema validation
 - **@hookform/resolvers 4.1.3** - Form validation integration
 
 ### Maps & Charts
+
 - **@react-google-maps/api 2.20.7** - Google Maps integration
 - **@googlemaps/js-api-loader 2.0.1** - Google Maps API loader
 - **ApexCharts 4.5.0** - Chart library
 - **React ApexCharts 1.7.0** - React chart components
 
 ### Utilities & Tools
+
 - **Axios 1.13.5** - HTTP client
 - **Sonner 2.0.1** - Toast notifications
 - **Lodash Debounce 4.0.8** - Debouncing utility
 - **React Use 17.6.0** - React hooks library
 
 ### Development Tools
+
 - **ESLint 9** - Code linting
 - **Sharp 0.34.5** - Image optimization
 
@@ -92,18 +99,21 @@ propertyla_fe/
 ## Setup Instructions
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm, yarn, or pnpm
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd propertyla_fe
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -113,6 +123,7 @@ propertyla_fe/
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    ```
@@ -125,13 +136,14 @@ Create a `.env.local` file in the root directory with the following variables:
 
 ```env
 # API Base URL for backend
-NEXT_PUBLIC_API_URL=http://34.42.177.70:3008/api
+NEXT_PUBLIC_API_URL=http://178.128.49.71:3008/api
 
 # Environment (local, development, production)
 NEXT_PUBLIC_ENV=production
 ```
 
 ### Available Environment Files
+
 - `.env.example` - Template file with example values
 - `.env.local` - Local development overrides (highest priority)
 - `.env.development` - Development environment settings
@@ -140,6 +152,7 @@ NEXT_PUBLIC_ENV=production
 ## How to Run
 
 ### Development Server
+
 ```bash
 npm run dev
 # or
@@ -151,24 +164,27 @@ pnpm dev
 The application will be available at [http://localhost:3000](http://localhost:3000).
 
 ### Production Build
+
 ```bash
 npm run build
 npm start
 ```
 
 ### Linting
+
 ```bash
 npm run lint
 ```
 
 ### Clean Dependencies
+
 ```bash
 npm run clean
 ```
 
 ## API Integration
 
-The application connects to a backend API at `http://34.42.177.70:3008/api` by default. The API client is configured in `src/config/axios.ts` with:
+The application connects to a backend API at `http://178.128.49.71:3008/api` by default. The API client is configured in `src/config/axios.ts` with:
 
 - Automatic authentication token handling
 - Request/response interceptors for debugging
@@ -178,6 +194,7 @@ The application connects to a backend API at `http://34.42.177.70:3008/api` by d
 ## Features
 
 ### Core Features
+
 - **Property Search & Filtering**: Advanced search with multiple criteria
 - **Interactive Maps**: Google Maps integration for property locations
 - **Property Listings**: Detailed property cards with images and information
@@ -187,6 +204,7 @@ The application connects to a backend API at `http://34.42.177.70:3008/api` by d
 - **Form Validation**: React Hook Form with Yup validation
 
 ### Advanced Features
+
 - **Property Comparisons**: Side-by-side property comparison
 - **Saved Properties**: Wishlist/favorites functionality
 - **Image Galleries**: Slick carousel for property images
@@ -195,6 +213,7 @@ The application connects to a backend API at `http://34.42.177.70:3008/api` by d
 - **SEO Optimization**: Meta tags and OpenGraph support
 
 ### UI/UX Features
+
 - **Modern Design**: Clean, professional interface
 - **Smooth Animations**: Wow.js for scroll animations
 - **Loading States**: Proper loading indicators
@@ -204,12 +223,14 @@ The application connects to a backend API at `http://34.42.177.70:3008/api` by d
 ## Architecture & Design Patterns
 
 ### Architecture
+
 - **Component-Based Architecture**: Reusable, modular components
 - **App Router Structure**: Next.js 15 App Router for routing
 - **Provider Pattern**: Context providers for global state
 - **Slice Pattern**: Redux Toolkit slices for state management
 
 ### Design Patterns
+
 - **Container/Presentation**: Separation of logic and UI
 - **Custom Hooks**: Reusable stateful logic
 - **Higher-Order Components**: Cross-cutting concerns
@@ -218,6 +239,7 @@ The application connects to a backend API at `http://34.42.177.70:3008/api` by d
 ## Future Improvements
 
 ### Planned Features
+
 - **Advanced Search Filters**: More granular search options
 - **Property Valuation Tool**: Automated property value estimation
 - **Virtual Tours**: 360° property viewing
@@ -226,6 +248,7 @@ The application connects to a backend API at `http://34.42.177.70:3008/api` by d
 - **Multi-language Support**: Internationalization (i18n)
 
 ### Technical Improvements
+
 - **Performance Optimization**: Code splitting and lazy loading
 - **Testing Suite**: Unit and integration tests
 - **CI/CD Pipeline**: Automated deployment

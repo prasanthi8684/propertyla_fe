@@ -41,7 +41,7 @@ export default function SidebarPropertyItem({
     const run = async () => {
       try {
         const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://34.42.177.70:3008";
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://178.128.49.71:3008";
         const res = await fetch(`${API_BASE}/api/properties`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -67,7 +67,11 @@ export default function SidebarPropertyItem({
         const sorted = [...list].sort((a, b) => {
           const aTime = new Date(a.createdAt || a.updatedAt || 0).getTime();
           const bTime = new Date(b.createdAt || b.updatedAt || 0).getTime();
-          if (!Number.isNaN(aTime) && !Number.isNaN(bTime) && (aTime || bTime)) {
+          if (
+            !Number.isNaN(aTime) &&
+            !Number.isNaN(bTime) &&
+            (aTime || bTime)
+          ) {
             return bTime - aTime;
           }
           return 0;
