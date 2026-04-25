@@ -27,10 +27,6 @@ export default function HeroBannerOne() {
             <div className="col-lg-2"></div>
             <div className="col-lg-8">
               <div className="tp-hero-content" style={{ marginTop: "15%" }}>
-                {/* <section className="mx-auto max-w-6xl px-4 py-12">
-                  <SearchAutocomplete />
-                </section> */}
-
                 <div
                   className="tp-hero-tab p-relative wow fadeInUp"
                   data-wow-duration="1s"
@@ -65,43 +61,6 @@ export default function HeroBannerOne() {
                         >
                           Buy
                         </button>
-
-                        {/* <button
-                          className="nav-link"
-                          id="nav-new-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#new-launch"
-                          type="button"
-                          role="tab"
-                          aria-controls="nav-new"
-                          aria-selected="false"
-                        >
-                          New Launch
-                        </button> */}
-                        {/* <button
-                          className="nav-link"
-                          id="nav-commercial-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#commercial"
-                          type="button"
-                          role="tab"
-                          aria-controls="nav-commercial"
-                          aria-selected="false"
-                        >
-                          Commercial
-                        </button> */}
-                        {/* <button
-                          className="nav-link"
-                          id="nav-land-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#land"
-                          type="button"
-                          role="tab"
-                          aria-controls="nav-land"
-                          aria-selected="false"
-                        >
-                          Plots/Land
-                        </button> */}
                       </div>
                     </nav>
                     <div className="tab-content" id="nav-tabContent">
@@ -117,24 +76,6 @@ export default function HeroBannerOne() {
                         onSortChange={handleSorting}
                         toggleFilter={toggleFilter}
                       />
-                      {/* <HeroBannerTabContent
-                        id="new-launch"
-                        isActive={activeTab === "new-launch"}
-                        onSortChange={handleSorting}
-                        toggleFilter={toggleFilter}
-                      />
-                      <HeroBannerTabContent
-                        id="commercial"
-                        isActive={activeTab === "commercial"}
-                        onSortChange={handleSorting}
-                        toggleFilter={toggleFilter}
-                      />
-                      <HeroBannerTabContent
-                        id="land"
-                        isActive={activeTab === "land"}
-                        onSortChange={handleSorting}
-                        toggleFilter={toggleFilter}
-                      /> */}
                     </div>
                   </div>
                   <section

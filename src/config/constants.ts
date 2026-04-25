@@ -19,12 +19,12 @@ export const API_BASE_URL = (() => {
     case "production":
       return process.env.NEXT_PUBLIC_API_BASE
         ? `${process.env.NEXT_PUBLIC_API_BASE}/api`
-        : "http://178.128.49.71:3008/api";
+        : "http://165.245.184.61:3008/api";
     case "development":
-      return "http://178.128.49.71:3008/api";
+      return "http://165.245.184.61:3008/api";
     case "local":
     default:
-      return "http://178.128.49.71:3008/api";
+      return "http://165.245.184.61:3008/api";
   }
 })();
 

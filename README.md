@@ -136,7 +136,7 @@ Create a `.env.local` file in the root directory with the following variables:
 
 ```env
 # API Base URL for backend
-NEXT_PUBLIC_API_URL=http://178.128.49.71:3008/api
+NEXT_PUBLIC_API_URL=http://165.245.184.61:3008/api
 
 # Environment (local, development, production)
 NEXT_PUBLIC_ENV=production
@@ -184,7 +184,7 @@ npm run clean
 
 ## API Integration
 
-The application connects to a backend API at `http://178.128.49.71:3008/api` by default. The API client is configured in `src/config/axios.ts` with:
+The application connects to a backend API at `http://165.245.184.61:3008/api` by default. The API client is configured in `src/config/axios.ts` with:
 
 - Automatic authentication token handling
 - Request/response interceptors for debugging

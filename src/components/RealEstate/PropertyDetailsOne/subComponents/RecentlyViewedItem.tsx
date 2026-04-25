@@ -27,7 +27,7 @@ export default function RecentlyViewedProperties() {
     const fetchRecentProperties = async () => {
       try {
         const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://178.128.49.71:3008";
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://165.245.184.61:3008";
         const res = await fetch(
           `${API_BASE}/api/properties?limit=3&sort=createdAt&order=desc`,
         );
