@@ -91,7 +91,7 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
 
   const listingLabel = (() => {
     try {
-      const u = new URL(listingHref, "http://165.245.184.61");
+      const u = new URL(listingHref, "http://168.144.107.130");
       const sp = u.searchParams;
       return (
         sp.get("propertyName") ||
@@ -112,7 +112,7 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
       setError("");
       try {
         const base =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://165.245.184.61:3008";
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://168.144.107.130:3008";
         const res = await fetch(`${base}/api/properties/${id}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
