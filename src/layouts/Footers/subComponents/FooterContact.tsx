@@ -1,6 +1,6 @@
 // Contact details component
 import { FooterSocialLinks } from "@/components/UI/SocialLinks";
-import logoIcon from "../../../../public/assets/img/logo/logo-icon.png";
+import logoIcon from "../../../../public/assets/img/logo/logo-icon-white.png";
 import Image from "next/image";
 import Link from "next/link";
 

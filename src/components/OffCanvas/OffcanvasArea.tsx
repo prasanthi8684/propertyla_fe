@@ -1,4 +1,4 @@
-import logoIcon from "../../../public/assets/img/logo/logo-icon.png";
+import logoIcon from "../../../public/assets/img/logo/logo-icon-white.png";
 import useGlobalContext from "@/hooks/useContext";
 import OffcanvasMenus from "./OffcanvasMenus";
 import Image from "next/image";
