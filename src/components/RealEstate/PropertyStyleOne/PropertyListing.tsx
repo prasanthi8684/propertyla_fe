@@ -42,7 +42,12 @@ function mapApiProperty(item: ApiProperty, index: number): Property {
     image = localImagePool[index % localImagePool.length];
   }
 
-  const address = [item.streetName, item.cityName, item.state]
+  const address = [
+    item.propertyName,
+    item.streetName,
+    item.cityName,
+    item.state,
+  ]
     .filter(Boolean)
     .join(", ");
 

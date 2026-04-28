@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import UserSvg from "@/components/SVG/UserSvg";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
@@ -47,22 +46,6 @@ const ProfileDropdown = () => {
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
       <button type="button" className="profile-btn" onClick={handleToggle}>
-        <span className="Profile-btn-span" aria-label="Logged in user">
-          <UserSvg />
-          <span
-            style={{
-              position: "absolute",
-              right: -1,
-              bottom: -1,
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              background: "#22C55E",
-              border: "2px solid #003B5C",
-            }}
-            aria-hidden="true"
-          />
-        </span>
         <div
           style={{
             paddingLeft: "0px",
@@ -82,7 +65,7 @@ const ProfileDropdown = () => {
               return username ? (
                 <p
                   style={{ margin: 0 }}
-                >{`${truncateUsername(username, 10)}`}</p>
+                >{`Hi, ${truncateUsername(username, 10)}`}</p>
               ) : (
                 <p style={{ margin: 0 }}></p>
               );

@@ -95,11 +95,7 @@ export const propertySchema = yup.object({
   bathRooms: yup.string().required("Bath rooms are required"),
   availability: yup.string().required("Availability is required"),
   negotiable: yup.string().required("Negotiable is required"),
-  floorLevel: yup
-    .number()
-    .typeError("Floor Number must be a number")
-    .positive("Floor Number must be greater than zero")
-    .required("Floor Number is required"),
+  floorLevel: yup.string().required("Floor Number is required"),
   propertyAge: yup
     .number()
     .typeError("Year of build must be a number")

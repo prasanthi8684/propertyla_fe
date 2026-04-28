@@ -1,4 +1,11 @@
-import { BathroomSvg, BedRoomSvg, HomeSvg, MessageSvgTwo, SquareFeetSvg, YearBuiltIconSvg } from "@/components/SVG";
+import {
+  BathroomSvg,
+  BedRoomSvg,
+  HomeSvg,
+  MessageSvgTwo,
+  SquareFeetSvg,
+  YearBuiltIconSvg,
+} from "@/components/SVG";
 import { ReactNode } from "react";
 
 interface PropertyDetail {
@@ -8,7 +15,7 @@ interface PropertyDetail {
 }
 
 interface Props {
-  id?: string;
+  //id?: string;
   propertyType?: string;
   bedrooms?: string;
   bathrooms?: string;
@@ -16,20 +23,39 @@ interface Props {
   yearOfBuild?: number;
   furnishing?: string;
   listingType?: string;
+  floorLevel?: string;
 }
 
 export default function PropertyDetailsBox({
-  id, propertyType, bedrooms, bathrooms, livingArea, yearOfBuild, furnishing, listingType,
+  //id,
+  propertyType,
+  bedrooms,
+  bathrooms,
+  livingArea,
+  yearOfBuild,
+  furnishing,
+  listingType,
+  floorLevel,
 }: Props) {
   const details: PropertyDetail[] = [
-    { icon: <HomeSvg />,         label: "Listing",    value: listingType ? listingType.charAt(0).toUpperCase() + listingType.slice(1) : "—" },
-    { icon: <MessageSvgTwo />,   label: "Type",       value: propertyType || "—" },
-    { icon: <BedRoomSvg />,      label: "Bedrooms",   value: bedrooms || "—" },
-    { icon: <BathroomSvg />,     label: "Bathrooms",  value: bathrooms || "—" },
-    { icon: <SquareFeetSvg />,   label: "Built-up",   value: livingArea || "—" },
-    { icon: <YearBuiltIconSvg />,label: "Year Built",  value: yearOfBuild ? String(yearOfBuild) : "—" },
-    { icon: <HomeSvg />,         label: "Furnishing", value: furnishing || "—" },
-    { icon: <HomeSvg />,         label: "Property ID", value: id ? id.slice(0, 8).toUpperCase() : "—" },
+    {
+      icon: <HomeSvg />,
+      label: "Listing",
+      value: listingType
+        ? listingType.charAt(0).toUpperCase() + listingType.slice(1)
+        : "—",
+    },
+    { icon: <MessageSvgTwo />, label: "Type", value: propertyType || "—" },
+    { icon: <BedRoomSvg />, label: "Bedrooms", value: bedrooms || "—" },
+    { icon: <BathroomSvg />, label: "Bathrooms", value: bathrooms || "—" },
+    { icon: <SquareFeetSvg />, label: "Built-up", value: livingArea || "—" },
+    {
+      icon: <YearBuiltIconSvg />,
+      label: "Year Built",
+      value: yearOfBuild ? String(yearOfBuild) : "—",
+    },
+    { icon: <HomeSvg />, label: "Furnishing", value: furnishing || "—" },
+    { icon: <HomeSvg />, label: "Floor Level", value: floorLevel || "—" },
   ];
 
   return (

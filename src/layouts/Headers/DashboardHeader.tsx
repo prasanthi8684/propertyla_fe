@@ -1,6 +1,6 @@
 "use client";
 
-import logoIcon from "../../../public/assets/img/logo/logo-icon-white.png";
+import logoIcon from "../../../public/assets/img/logo/logo-icon-blue.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import UserSvg from "@/components/SVG/UserSvg";
 import useGlobalContext from "@/hooks/useContext";

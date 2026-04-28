@@ -15,12 +15,18 @@ interface ApiProperty {
   buildupArea?: number | string;
   yearOfBuild?: number;
   furnishing?: string;
+  propertyName?: string;
+  floorLevel?: string;
   streetName?: string;
   cityName?: string;
   state?: string;
   pincode?: string;
   landmark?: string;
-  amenities?: { lifestyle?: string[]; facilities?: string[]; security?: string[] };
+  amenities?: {
+    lifestyle?: string[];
+    facilities?: string[];
+    security?: string[];
+  };
 }
 
 interface IProps {
@@ -28,24 +34,37 @@ interface IProps {
   property?: ApiProperty;
 }
 
-export default function DetailsReusableArea({ spacingClass, property }: IProps) {
+export default function DetailsReusableArea({
+  spacingClass,
+  property,
+}: IProps) {
   const beds = parseInt(String(property?.bedrooms ?? 0), 10);
   const baths = parseInt(String(property?.bathrooms ?? 0), 10);
   const area = parseFloat(String(property?.buildupArea ?? 0));
-  const livingArea = area > 0 ? (Number.isInteger(area) ? `${area} Sq Ft` : `${area.toFixed(1)} Sq Ft`) : undefined;
+  const livingArea =
+    area > 0
+      ? Number.isInteger(area)
+        ? `${area} Sq Ft`
+        : `${area.toFixed(1)} Sq Ft`
+      : undefined;
 
-  const address = [property?.streetName, property?.cityName, property?.state, property?.pincode]
-    .filter(Boolean).join(", ");
+  const address = [
+    property?.propertyName,
+    property?.streetName,
+    property?.cityName,
+    property?.state,
+    property?.pincode,
+  ]
+    .filter(Boolean)
+    .join(", ");
 
   return (
     <section className={`tp-property-details-ptb pb-120 ${spacingClass ?? ""}`}>
       <div className="container">
         <div className="row">
-
           {/* ── Left column ──────────────────────────────────── */}
           <div className="col-lg-8">
             <div className="tp-property-details-left">
-
               {/* Description */}
               <div className="tp-property-details-box box-1 mb-30">
                 <h3 className="tp-property-details-box-title">Description</h3>
@@ -58,7 +77,7 @@ export default function DetailsReusableArea({ spacingClass, property }: IProps) 
               <div className="tp-property-details-box box-2 mb-30">
                 <h3 className="tp-property-details-box-title">Overview</h3>
                 <PropertyDetailsBox
-                  id={property?.id}
+                  //id={property?.id}
                   propertyType={property?.propertyType}
                   bedrooms={beds > 0 ? String(beds) : undefined}
                   bathrooms={baths > 0 ? String(baths) : undefined}
@@ -66,6 +85,7 @@ export default function DetailsReusableArea({ spacingClass, property }: IProps) 
                   yearOfBuild={property?.yearOfBuild}
                   furnishing={property?.furnishing}
                   listingType={property?.listingType}
+                  floorLevel={property?.floorLevel}
                 />
               </div>
 
@@ -82,12 +102,13 @@ export default function DetailsReusableArea({ spacingClass, property }: IProps) 
                   <div className="tp-property-details-box-desc">
                     <p>{address}</p>
                     {property?.landmark && (
-                      <p><strong>Landmark:</strong> {property.landmark}</p>
+                      <p>
+                        <strong>Landmark:</strong> {property.landmark}
+                      </p>
                     )}
                   </div>
                 </div>
               )}
-
             </div>
           </div>
 
@@ -100,7 +121,6 @@ export default function DetailsReusableArea({ spacingClass, property }: IProps) 
               <DiscountOfferCard wrapperCls="tp-property-filter-wrap" />
             </div>
           </div>
-
         </div>
       </div>
     </section>

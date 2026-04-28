@@ -41,7 +41,12 @@ type ApiProperty = {
 };
 
 function mapToDisplay(item: ApiProperty): IFeaturedPropertyDT {
-  const address = [item.streetName, item.cityName, item.state]
+  const address = [
+    item.propertyName,
+    item.streetName,
+    item.cityName,
+    item.state,
+  ]
     .filter(Boolean)
     .join(", ");
   const beds = parseInt(String(item.bedrooms ?? 0), 10);
@@ -225,7 +230,6 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
             ]}
           />
           <div className="row">
-            {/* Left — title / address / meta */}
             <div className="col-lg-8">
               <div className="tp-property-details-heading mb-40">
                 <div className="mb-2 d-flex gap-2 flex-wrap">
