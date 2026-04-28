@@ -82,8 +82,10 @@ export default function BasicDetails() {
               <label>Furnishing</label>
               <div className="tp-property-tabs-select tp-select">
                 <select {...register("furnishing")} className="listDropDown">
-                  <option value="Fully">Fully Furnished</option>
-                  <option value="Partially">Partially Furnished</option>
+                  <option value="Fully Furnished">Fully Furnished</option>
+                  <option value="Partially Furnished">
+                    Partially Furnished
+                  </option>
                   <option value="Unfurnished">Unfurnished</option>
                 </select>
               </div>
