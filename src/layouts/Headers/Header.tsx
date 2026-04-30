@@ -3,14 +3,14 @@ import Image from "next/image";
 import React from "react";
 import logoIconBlue from "../../../public/assets/img/logo/logo-icon-blue.png";
 import logoIconWhite from "../../../public/assets/img/logo/logo-icon-white.png";
+import ProfileDropdown from "./ProfileDropdown";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
-import HeaderUserSection from "./HeaderUserSection";
 import UserSvg from "@/components/SVG/UserSvg";
-import { requireAuth } from "@/utils/auth";
 import useSticky from "@/hooks/useSticky";
 import Link from "next/link";
+import { requireAuth } from "@/utils/auth";
 
 export default function HeaderOne() {
   const { toggleOffcanvas } = useGlobalContext();
@@ -69,26 +69,54 @@ export default function HeaderOne() {
             style={{ marginTop: "0px" }}
           >
             <button
+              className="tp-btn"
               onClick={handlePostPropertyClick}
-              className="tp-btn white"
-              style={{ border: "none" }}
+              style={{
+                padding: "12px 16px 7px",
+                whiteSpace: "nowrap",
+                minWidth: "auto",
+              }}
             >
-              <span>Post Property</span>
+              <span className="btn-wrap">
+                <b className="text-1">Post Property</b>
+                <b className="text-2">Post Property</b>
+              </span>
             </button>
           </div>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-5 col-2">
           <div className="tp-header-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-right-user d-none d-md-block">
-              <HeaderUserSection />
-            </div>
-            {/* Mobile-only user icon */}
-            <div className="tp-header-right-user d-md-none mr-20">
-              <Link href="/sign-in" className="tp-header-right-user-icon">
-                <span>
-                  <UserSvg />
-                </span>
-              </Link>
+            <div className="tp-header-right-user d-md-flex align-items-center">
+              {(() => {
+                const username =
+                  typeof window !== "undefined"
+                    ? localStorage.getItem("loginUser")
+                    : null;
+                return username ? (
+                  <ProfileDropdown />
+                ) : (
+                  <div className="tp-header-right-user-icon">
+                    <Link href="/sign-in">
+                      <span>
+                        <UserSvg />
+                      </span>
+                    </Link>
+                  </div>
+                );
+              })()}
+
+              <div
+                className="tp-header-right-user-content d-show"
+                style={{ paddingLeft: "5px" }}
+              >
+                {(() => {
+                  const username =
+                    typeof window !== "undefined"
+                      ? localStorage.getItem("loginUser")
+                      : null;
+                  return username ? <p></p> : <p>Hi, Sign In</p>;
+                })()}
+              </div>
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">
               <button onClick={toggleOffcanvas} className="hamburger-btn">
