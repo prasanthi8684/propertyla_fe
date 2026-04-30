@@ -1,11 +1,10 @@
 "use client";
 import logoIcon from "../../../public/assets/img/logo/logo-icon-blue.png";
-import UserSvg from "@/components/SVG/UserSvg";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
-import ProfileDropdown from "./ProfileDropdown";
+import HeaderUserSection from "./HeaderUserSection";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,29 +79,8 @@ export default function CommonHeader({ wrapClass = "" }) {
                 </span>
               </button>
             </div>
-            <div className="tp-header-right-user ml-20">
-              {(() => {
-                const username =
-                  typeof window !== "undefined"
-                    ? localStorage.getItem("loginUser")
-                    : null;
-                return username ? (
-                  <ProfileDropdown />
-                ) : (
-                  <div className="tp-header-right-user-icon">
-                    <Link href="/sign-in">
-                      <span
-                        style={{
-                          background: "var(--tp-theme-primary)",
-                          color: "#fff",
-                        }}
-                      >
-                        <UserSvg />
-                      </span>
-                    </Link>
-                  </div>
-                );
-              })()}
+            <div className="tp-header-right-user d-none d-md-block ml-20">
+              <HeaderUserSection />
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">
               <button

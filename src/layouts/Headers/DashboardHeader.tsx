@@ -2,18 +2,25 @@
 
 import logoIcon from "../../../public/assets/img/logo/logo-icon-blue.png";
 import OffcanvasArea from "../../components/OffCanvas/OffcanvasArea";
-import UserSvg from "@/components/SVG/UserSvg";
 import useGlobalContext from "@/hooks/useContext";
 import NavMenus from "../subComponents/NavMenus";
 import useSticky from "@/hooks/useSticky";
-import ProfileDropdown from "./ProfileDropdown";
+import HeaderUserSection from "./HeaderUserSection";
 import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/Form/auth/SignInForm";
+import { requireAuth } from "@/utils/auth";
 
 export default function DashboardHeader() {
   const { toggleOffcanvas } = useGlobalContext();
   const { sticky } = useSticky();
+
+  const handlePostPropertyClick = () => {
+    const isAuthenticated = requireAuth("/dashboard/add-new-property");
+    if (isAuthenticated) {
+      window.location.href = "/dashboard/add-new-property";
+    }
+  };
 
   const renderHeaderContent = () => (
     <div className="container-fluid">
@@ -48,24 +55,27 @@ export default function DashboardHeader() {
         </div>
         <div className="col-xl-3 col-lg-4 col-md-9 col-6">
           <div className="tp-header-dashboard-main-right d-flex align-items-center justify-content-end">
-            <div className="tp-header-right-user ml-20">
-              {(() => {
-                const username =
-                  typeof window !== "undefined"
-                    ? localStorage.getItem("loginUser")
-                    : null;
-                return username ? (
-                  <ProfileDropdown />
-                ) : (
-                  <div className="tp-header-right-user-icon">
-                    <Link href="/sign-in">
-                      <span>
-                        <UserSvg />
-                      </span>
-                    </Link>
-                  </div>
-                );
-              })()}
+            <div
+              className="tp-header-dashboard-btn d-none d-md-block mr-20"
+              style={{ marginTop: "0px" }}
+            >
+              <button
+                className="tp-btn"
+                onClick={handlePostPropertyClick}
+                style={{
+                  padding: "12px 16px 7px",
+                  whiteSpace: "nowrap",
+                  minWidth: "auto",
+                }}
+              >
+                <span className="btn-wrap">
+                  <b className="text-1">Post Property</b>
+                  <b className="text-2">Post Property</b>
+                </span>
+              </button>
+            </div>
+            <div className="tp-header-right-user d-none d-md-block">
+              <HeaderUserSection />
             </div>
             <div className="tp-header-hamburger d-xl-none offcanvas-open-btn">
               <button onClick={toggleOffcanvas} className="hamburger-btn">

@@ -2,11 +2,8 @@
 import {
   AddPropertySvg,
   MyPropertiesSvg,
-  MyFavouritesSvg,
-  ReviewsSvg,
   IdentityDockSvg,
   LogoutSvg,
-  DashboardSvg,
 } from "@/components/SVG";
 import Link from "next/link";
 import { JSX, useState, useEffect } from "react";
@@ -33,17 +30,6 @@ const Sidebar = () => {
     setActivePath(window.location.pathname);
   }, []);
 
-  const mainSection: SidebarSection = {
-    title: "Main",
-    items: [
-      {
-        href: "/dashboard",
-        label: "Dashboard",
-        icon: <DashboardSvg />,
-      },
-    ],
-  };
-
   const manageListingSection: SidebarSection = {
     title: "Manage listing",
     items: [
@@ -56,16 +42,6 @@ const Sidebar = () => {
         href: "/dashboard/property",
         label: "My properties",
         icon: <MyPropertiesSvg />,
-      },
-      {
-        href: "/dashboard/favourite",
-        label: "My favourites",
-        icon: <MyFavouritesSvg />,
-      },
-      {
-        href: "/dashboard/review",
-        label: "Reviews",
-        icon: <ReviewsSvg />,
       },
     ],
   };
@@ -107,7 +83,6 @@ const Sidebar = () => {
   return (
     <div className="tp-dashboard-sidebar d-none d-xxl-block">
       <div className="tp-dashboard-sidebar-wrap">
-        {renderSection(mainSection)}
         {renderSection(manageListingSection)}
         {renderSection(manageAccountSection)}
       </div>

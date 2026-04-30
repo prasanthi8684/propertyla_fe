@@ -1,3 +1,4 @@
+"use client";
 import logoIcon from "../../../public/assets/img/logo/logo-icon-white.png";
 import useGlobalContext from "@/hooks/useContext";
 import OffcanvasMenus from "./OffcanvasMenus";
@@ -11,9 +12,8 @@ export default function OffcanvasArea() {
 
   const handlePostPropertyClick = () => {
     const isAuthenticated = requireAuth("/dashboard/add-new-property");
-    // If user is authenticated, navigate to the dashboard
     if (isAuthenticated) {
-      toggleOffcanvas(); // Close the offcanvas before navigating
+      toggleOffcanvas();
       window.location.href = "/dashboard/add-new-property";
     }
   };

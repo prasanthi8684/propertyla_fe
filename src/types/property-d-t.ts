@@ -3,12 +3,12 @@ import { JSX } from "react";
 
 // Interface for featured property with details such as title, address, user info, and property features.
 export interface IFeaturedPropertyDT {
-  id: number;
+  id: string | number;
   title: string;
   address?: string;
   linkUrl?: string;
   image: StaticImageData | string;
-  userImage?: StaticImageData;
+  userImage?: StaticImageData | string;
   showTags?: boolean;
   isForRent?: boolean;
   isForSale?: boolean;
