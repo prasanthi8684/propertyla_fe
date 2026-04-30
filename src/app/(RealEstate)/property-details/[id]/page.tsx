@@ -24,7 +24,7 @@ export async function generateMetadata(
 
   try {
     const base =
-      process.env.NEXT_PUBLIC_API_BASE ?? "http://167.172.80.211:3008";
+      process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
     const res = await fetch(`${base}/api/properties/${id}`);
     const json = await res.json();
     const item: ApiPropertyMeta = json?.data ?? json;

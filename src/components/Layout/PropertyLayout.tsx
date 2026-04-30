@@ -58,8 +58,6 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
                   </span>
                 </div>
               </div>
-
-              {/* Refine / Search Bar */}
               <SearchRefineBar />
             </div>
           </div>

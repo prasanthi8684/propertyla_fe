@@ -54,7 +54,7 @@ export default function HeroBannerTabContent({
     const timer = setTimeout(async () => {
       try {
         const API_BASE =
-          process.env.NEXT_PUBLIC_API_BASE ?? "http://167.172.80.211:3008";
+          process.env.NEXT_PUBLIC_API_BASE ?? "http://159.223.92.101:3008";
         const res = await fetch(
           `${API_BASE}/api/properties/search?q=${encodeURIComponent(query)}&type=${id || "rent"}`,
         );

@@ -43,7 +43,6 @@ import LandSizeSvg from "./PropertyDetailsSvg/LandSizeSvg";
 import MessageSvgTwo from "./PropertyDetailsSvg/MessageSvgTwo";
 import SquareFeetSvg from "./PropertyDetailsSvg/SquareFeetSvg";
 import YearBuiltIconSvg from "./PropertyDetailsSvg/YearBuiltIconSvg";
-import DashboardSvg from "./DashboardSvg/DashboardSvg";
 import AddPropertySvg from "./DashboardSvg/AddPropertySvg";
 import MyPropertySvg from "./DashboardSvg/MyPropertySvg";
 import MyFavouritesSvg from "./DashboardSvg/MyFavoriteSvg";
@@ -108,7 +107,6 @@ export {
   SquareFeetSvg,
   YearBuiltIconSvg,
   //dashboard svg
-  DashboardSvg,
   AddPropertySvg,
   MyPropertySvg,
   MyFavouritesSvg,
