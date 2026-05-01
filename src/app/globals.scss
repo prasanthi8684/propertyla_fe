@@ -285,6 +285,20 @@
 .filt {
   padding-left: 0px;
 }
+
+/* Hide elements on mobile (tablets and phones) */
+.hide-mobile {
+  display: block;
+}
+
+/* Hide elements on desktop */
+.hide-desktop {
+  display: none;
+}
+.prop-det-dev {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 @media only screen and (max-width: 767px) {
   .filt {
     padding-left: 15px;
@@ -343,6 +357,12 @@
     padding-top: 0px !important;
     padding-bottom: 77px;
   }
+  .hide-mobile {
+    display: none !important;
+  }
+  .hide-desktop {
+    display: block;
+  }
   .logo-icon-white {
     font-size: 18px;
     padding-left: 3px;
@@ -368,6 +388,11 @@
   }
   .mb-icon {
     margin-top: -15px;
+  }
+  .prop-det-dev {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 20px;
   }
 }
 @media (min-width: 768px) {

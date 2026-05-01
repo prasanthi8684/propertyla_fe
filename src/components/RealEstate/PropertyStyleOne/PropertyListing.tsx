@@ -233,6 +233,7 @@ export default function PropertyListing() {
         {/* Active Filter Badges */}
         {activeFilters.length > 0 && (
           <div
+            className="hide-mobile"
             style={{
               display: "flex",
               flexWrap: "wrap",

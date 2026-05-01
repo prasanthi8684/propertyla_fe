@@ -37,7 +37,13 @@ export default function DashboardPropertyItem({ property }: IProps) {
         {property.showTags && (
           <div className="tp-rent-tags">
             {property.isForRent === true ? <Link href="#">FOR RENT</Link> : ""}{" "}
-            {property.isForSale === true ? <Link href="#">FOR SALE</Link> : ""}
+            {property.isForSale === true ? (
+              <Link className="two" href="#">
+                FOR SALE
+              </Link>
+            ) : (
+              ""
+            )}
             {property.isFeatured === true ? (
               <Link className="two" href="#">
                 FEATURED

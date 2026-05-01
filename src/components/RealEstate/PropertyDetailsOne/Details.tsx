@@ -291,7 +291,11 @@ export default function PropertyDetailsOneArea({ id }: IdProps) {
                         fontSize: "14px",
                       }}
                     >
-                      · {apiProperty.furnishing}
+                      · {apiProperty.furnishing === "Fully"
+                        ? "Fully Furnished"
+                        : apiProperty.furnishing === "Partially"
+                          ? "Partially Furnished"
+                          : apiProperty.furnishing}
                     </span>
                   )}
                 </div>
