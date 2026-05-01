@@ -22,7 +22,7 @@
     "clean": "^4.0.2",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.552.0",
-    "next": "15.2.0",
+    "next": "^15.5.15",
     "rc-slider": "^11.1.8",
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
@@ -37,7 +37,7 @@
     "sharp": "^0.34.5",
     "slick-carousel": "^1.8.1",
     "sonner": "^2.0.1",
-    "swiper": "^11.2.4",
+    "swiper": "^12.1.4",
     "wow.js": "^1.2.2",
     "yarn": "^1.22.22",
     "yup": "^1.6.1"
