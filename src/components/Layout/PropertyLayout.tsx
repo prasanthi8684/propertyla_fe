@@ -43,7 +43,7 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="row align-items-center gsrch">
             <div className="col-lg-12 padLR0">
-              <div className="tp-property-heading mb-10 mlb">
+              <div className="tp-property-heading mb-10 mlb hide-mobile">
                 <div className="tp-property-list">
                   <span style={{ color: "#000" }}>
                     Property search{" "}
@@ -58,7 +58,9 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
                   </span>
                 </div>
               </div>
-              <SearchRefineBar />
+              <div className="hide-mobile">
+                <SearchRefineBar />
+              </div>
             </div>
           </div>
         </div>
@@ -71,17 +73,12 @@ export default function PropertyLayout({ children }: { children: ReactNode }) {
       >
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 filt">
+            <div className="col-lg-3 filt hide-mobile">
               <PropertyFilterWidget />
               <SidebarPropertyItem />
               <DiscountOfferCard />
             </div>
-            <div
-              className="col-lg-9"
-              style={{ paddingLeft: "0px", paddingRight: "0px" }}
-            >
-              {children}
-            </div>
+            <div className="col-lg-9 col-12 prop-det-dev">{children}</div>
           </div>
         </div>
       </section>
