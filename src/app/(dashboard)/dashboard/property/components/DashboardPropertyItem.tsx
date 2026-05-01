@@ -15,32 +15,29 @@ interface IProps {
 }
 
 export default function DashboardPropertyItem({ property }: IProps) {
-
   return (
-    <div className="tp-rent-item p-relative mb-30">
-      <div className="tp-rent-thumb p-relative">
+    <div
+      style={{ border: "1px solid #DBE1EF", marginLeft: "0px" }}
+      className="row tp-rent-item p-relative mb-30"
+    >
+      <div
+        className="col-xl-6 tp-rent-thumb p-relative"
+        style={{ padding: "0px" }}
+      >
         <Link href={`/property-details/${property.id}`}>
           <Image
             src={property?.image}
             width={400}
-            height={150}
-            style={{ width: "100%", height: "150px", objectFit: "cover" }}
-            alt="propery image"
+            height={280}
+            style={{ width: "100%", height: "280px", objectFit: "cover" }}
+            alt="property image"
             unoptimized
           />
         </Link>
         {property.showTags && (
           <div className="tp-rent-tags">
-            {property.isForRent === true ? (
-              <Link href="#">FOR RENT</Link>
-            ) : (
-              ""
-            )}{" "}
-            {property.isForSale === true ? (
-              <Link href="#">FOR SALE</Link>
-            ) : (
-              ""
-            )}
+            {property.isForRent === true ? <Link href="#">FOR RENT</Link> : ""}{" "}
+            {property.isForSale === true ? <Link href="#">FOR SALE</Link> : ""}
             {property.isFeatured === true ? (
               <Link className="two" href="#">
                 FEATURED
@@ -51,7 +48,7 @@ export default function DashboardPropertyItem({ property }: IProps) {
           </div>
         )}
       </div>
-      <div className="tp-rent-content">
+      <div className="col-xl-6 tp-rent-content">
         <h4 className="tp-rent-title">
           <Link className="textline" href={`/property-details/${property.id}`}>
             {property.title}
@@ -66,6 +63,7 @@ export default function DashboardPropertyItem({ property }: IProps) {
               </span>
               <p>{property.bedrooms}</p>
             </div>
+            <p>Bedrooms</p>
           </div>
           <div className="tp-rent-meta-item">
             <div className="tp-rent-meta-content d-flex">
@@ -74,6 +72,7 @@ export default function DashboardPropertyItem({ property }: IProps) {
               </span>
               <p>{property.bathrooms}</p>
             </div>
+            <p>Bathrooms</p>
           </div>
           <div className="tp-rent-meta-item">
             <div className="tp-rent-meta-content d-flex">
@@ -82,15 +81,18 @@ export default function DashboardPropertyItem({ property }: IProps) {
               </span>
               <p>{property.livingArea}</p>
             </div>
+            <p>Living Area</p>
           </div>
         </div>
         <div className="tp-rent-btn-box d-flex justify-content-between align-items-center">
-          <div className="tp-rent-price">
-            <span>{`$${property.price}.000`}</span>
+          <div className="tp-rent-btn">
+            <Link className="tp-btn" href={`/property-details/${property.id}`}>
+              View Details
+            </Link>
           </div>
           <div className="tp-rent-action-btn d-flex">
-            <div className="tp-action-btn">
-              <Link href="#">
+            <div className="tp-action-btn mr-10">
+              <Link href="#" title="Edit Property">
                 <PropertyEditSvg />
               </Link>
             </div>
@@ -103,6 +105,9 @@ export default function DashboardPropertyItem({ property }: IProps) {
                 <DeleteIconSvg />
               </button>
             </div>
+          </div>
+          <div className="tp-rent-price">
+            <span>{`$${property.price}.000`}</span>
           </div>
         </div>
       </div>

@@ -2,9 +2,10 @@
 
 import DashboardPropertyItem from "./components/DashboardPropertyItem";
 import DashboardLayout from "@/layouts/DashboardLayout";
+import DiscountOfferCard from "@/components/Layout/subComponents/DiscountOfferCard";
+import RecentlyViewedProperties from "@/components/RealEstate/PropertyDetailsOne/subComponents/RecentlyViewedItem";
 import { useEffect, useState } from "react";
 import { IFeaturedPropertyDT } from "@/types/property-d-t";
-import FilterByProperty from "./components/FilterByProperty";
 
 // API Property interface
 interface ApiProperty {
@@ -88,47 +89,49 @@ export default function DashboardProperty() {
 
   return (
     <DashboardLayout>
-      {/* Filter by property */}
-      <div className="tp-dashboard-property-wrap">
-        <FilterByProperty />
-      </div>
-
-      {/* My Property */}
       <div className="tp-dashboard-property-wrapper">
         <div className="row">
-          {loading && (
-            <div className="col-12 text-center py-5">
-              <div className="spinner-border text-primary" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-              <p className="mt-2">Loading properties...</p>
-            </div>
-          )}
+          <div className="col-8">
+            <div className="row">
+              {loading && (
+                <div className="col-12 text-center py-5">
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <p className="mt-2">Loading properties...</p>
+                </div>
+              )}
 
-          {error && (
-            <div className="col-12">
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            </div>
-          )}
+              {error && (
+                <div className="col-12">
+                  <div className="alert alert-danger" role="alert">
+                    {error}
+                  </div>
+                </div>
+              )}
 
-          {!loading && !error && properties.length === 0 && (
-            <div className="col-12 text-center py-5">
-              <p className="text-muted">No properties found</p>
-            </div>
-          )}
+              {!loading && !error && properties.length === 0 && (
+                <div className="col-12 text-center py-5">
+                  <p className="text-muted">No properties found</p>
+                </div>
+              )}
 
-          {!loading &&
-            !error &&
-            properties.map((property) => (
-              <div
-                className="col-xxl-3 col-xl-4 col-md-6 col-12"
-                key={property.id}
-              >
-                <DashboardPropertyItem property={property} />
-              </div>
-            ))}
+              {!loading &&
+                !error &&
+                properties.map((property) => (
+                  <div className="col-12" key={property.id}>
+                    <DashboardPropertyItem property={property} />
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          <div className="col-lg-4">
+            <div className="tp-property-details-right">
+              <DiscountOfferCard wrapperCls="tp-property-filter-wrap" />
+              <RecentlyViewedProperties />
+            </div>
+          </div>
         </div>
       </div>
     </DashboardLayout>
